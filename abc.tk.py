@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 # This is my Python Version my my ABC perl script.
+# I made this before I knew Cyber Chef existed
 
+# GitHub Description : Tool to replace command some basic command line functions. This version in Perl.
 # GitHub Description : Tool to replace command some basic command line functions. This version in Python.
 
 
@@ -1272,7 +1274,6 @@ def menubar_tops() :
     abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with double space (C)'          , command = lambda: abc__tops__add_replace( "A" , "C" , "\n" , "\n\n"    ) )
     abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with nothing (C)'               , command = lambda: abc__tops__add_replace( "A" , "C" , "\n" , ""        ) )
     abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with OR (C)'                    , command = lambda: abc__tops__add_replace( "A" , "C" , "\n" , " OR "    ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) Python list (C)'                , command = lambda: abc__tops__add_replace( "A" , "C" , "\n" , "py_list" ) )
 
     ####################################################################
     ##                Text Ops Menu : String Reversals                ##
@@ -1535,16 +1536,6 @@ def abc__tops__add_replace( fm_box , to_box , find_this , repl_with ) :
         for x in lst_fm :
 
             box[ to_box ].insert( "end" , f'{x}\n' )
-
-    elif repl_with == "py_list" :
-
-        lst_fm = box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines()
-
-        lst_fm = [ f'{x}' for x in lst_fm if x and x.strip() ]
-
-        _clear_box( to_box )
-
-        box[ to_box ].insert( "end" , '[ ' + " , ".join(lst_fm) + ' ]\n' )
 
     elif repl_with == "quotes" :
 
@@ -1886,22 +1877,7 @@ def abc__code__build_structures( **kwargs ) :
 
     if   do_this == "py_list" :
 
-        #box[ "A" ].insert( "end" , 
-        #    "\n".join( [
-        #          r'''"""Tripple Double Quotes"""'''
-        #        , r"""'''Tripple Single Quotes'''"""
-        #        , r'''"Single Double Quotes"'''
-        #        , r"'Single Single Quotes'"
-        #        , r'''"asdf"asdf"'''
-        #        , r'''"asdf"""asdf"'''
-        #        , r'''"asdf'asdf"'''
-        #        , r"""'asdf"asdf'"""
-        #        , r"""'asdf"asdf'"""
-        #        , r"""'asdf'asdf'"""
-        #        , r"""'asdf'''asdf'"""
-        #    ] ) )
-
-        lst_fm = []
+        lst_to = []
         
         for v in [ x for x in box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() if x and x.strip() ] :
 
@@ -1911,31 +1887,22 @@ def abc__code__build_structures( **kwargs ) :
             elif ( lst_val := re.match( r'^\"\"\"(.*)\"\"\"$' , v ) ) : lst_val = lst_val.group(1)
             elif ( lst_val := re.match( r'^\'(.*)\'$'         , v ) ) : lst_val = lst_val.group(1)
             elif ( lst_val := re.match( r'^\"(.*)\"$'         , v ) ) : lst_val = lst_val.group(1)
-            elif ( lst_val := re.match( r'^(.*)$'             , v ) ) : lst_val = lst_val.group(1)
+            elif ( lst_val := re.match( r'^(..*)$'            , v ) ) : lst_val = lst_val.group(1)
 
             if lst_val :
 
-                if  not re.search( r'(?:\'\'\'|\"\"\"|\")' , lst_val ) : 
-                    print( f're.search : 0 : {lst_val}')
-                    lst_fm.append( f'"{lst_val}"' )
+                if   not re.search( r'(?:\'\'\'|\"\"\"|\")' , lst_val ) : lst_to.append( f'"{lst_val}"' )
+                elif not re.search( r'(?:\'\'|\"\"\"|\')'   , lst_val ) : lst_to.append( f"'{lst_val}'" )
+                elif not re.search( r'\"'                   , lst_val ) : lst_to.append( f'"{lst_val}"' )
+                elif not re.search( r'\''                   , lst_val ) : lst_to.append( f"'{lst_val}'" )
+                else : print( f'# WARN # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # abc__code__build_structures # Failed to match this : {lst_val}' )
 
-                elif not re.search( r'(?:\'\'|\"\"\"|\')' , lst_val ) : 
-                    print( f're.search : 1 : {lst_val}')
-                    lst_fm.append( f"'{lst_val}'" )
+        if lst_to :
+            
+            _clear_box( to_box )
 
-                elif not re.search( r'\"' , lst_val ) : 
-                    print( f're.search : 2 : {lst_val}')
-                    lst_fm.append( f'"{lst_val}"' )
+            box[ to_box ].insert( "end" , '[ ' + "\n , ".join(lst_to) + ' ]\n' )
 
-                elif not re.search( r'\'' , lst_val ) : 
-                    print( f're.search : 3 : {lst_val}')
-                    lst_fm.append( f"'{lst_val}'" )
-                else :
-                    print( f'# WARN # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # abc__code__build_structures # Failed to match this : {lst_val}' )
-
-        _clear_box( to_box )
-
-        box[ to_box ].insert( "end" , '[ ' + "\n , ".join(lst_fm) + ' ]\n' )
 
 def abc__code__hash_function() : pass
 
