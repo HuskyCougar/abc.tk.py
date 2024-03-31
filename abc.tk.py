@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 
 # This is my Python Version my my ABC perl script.
-# I made this before I knew Cyber Chef existed
 
-# GitHub Description : Tool to replace command some basic command line functions. This version in Perl.
 # GitHub Description : Tool to replace command some basic command line functions. This version in Python.
 
 
@@ -19,6 +17,7 @@ import re
 import os
 
 from collections import Counter
+from inspect import currentframe, getframeinfo
 
 # endregion  # Imports #################################################
 
@@ -1876,11 +1875,6 @@ def abc__code__fancy_comments( **kwargs ) :
 
 
 def abc__code__build_structures( **kwargs ) :
-
-    from inspect import currentframe, getframeinfo
-
-    #frameinfo = getframeinfo(currentframe())
-    #print(frameinfo.filename, frameinfo.lineno)
 
     fm_box  = kwargs.get( "fm_box"  , "A" )
     to_box  = kwargs.get( "to_box"  , fm_box )
