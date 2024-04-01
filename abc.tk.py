@@ -6,6 +6,15 @@
 # GitHub Description : Tool to replace command some basic command line functions. This version in Perl.
 # GitHub Description : Tool to replace command some basic command line functions. This version in Python.
 
+# https://github.com/HuskyCougar/abc.tk.py
+# https://github.com/HuskyCougar/abc.tk.py.git
+# git clone https://github.com/HuskyCougar/abc.tk.py.git
+
+
+
+
+
+
 
 ########################################################################
 ##                              Imports                               ##
@@ -25,17 +34,11 @@ from inspect import currentframe, getframeinfo
 
 
 
-
-
-
 ########################################################################
 #                            Main Function                             #
 ########################################################################
 
 # region     # Main Function ###########################################
-
-#from tkinter import *
-#from tkinter.ttk import Button, Frame, LabelFrame, PanedWindow
 
 from tkinter import Menu, Tk, Button, Frame, LabelFrame, PanedWindow, Toplevel, Label, Entry
 from tkinter.scrolledtext import ScrolledText
@@ -72,6 +75,11 @@ def main() :
 
     abc[ "main_window" ].mainloop()
 
+abc_window_title = "ABC - Python Version : 2024-04-01"
+print( f'# INFO # {datetime.datetime.now():%Y-%m-%d %H:%M:%S} # Line : {getframeinfo(currentframe()).lineno:4,d} # Script Name : {getframeinfo(currentframe()).filename}' )
+print( f'# INFO # {datetime.datetime.now():%Y-%m-%d %H:%M:%S} # Line : {getframeinfo(currentframe()).lineno:4,d} # Script Version : {abc_window_title}' )
+
+
 # endregion  # Main Function ###########################################
 
 
@@ -86,7 +94,8 @@ def build_main_window() :
 
     abc[ "main_window" ] = Tk()
 
-    abc[ "main_window" ].title( "ABC - Python Version : 2024-03-23" )
+    abc[ "main_window" ].title( abc_window_title )
+    #abc[ "main_window" ].title( "ABC - Python Version : 2024-03-23" )
 
     abc[ "main_window" ].option_add('*Dialog.msg.font', 'TkFixedFont')
 
@@ -1667,7 +1676,8 @@ def menubar_code() :
 
     abc[ "menubar_code"  ].add_cascade( font = "TkFixedFont" , label = "Code Comments" , menu = abc[ "menubar_code__cmnt"     ] )
 
-    abc[ "menubar_code"  ].add_command( font = "TkFixedFont" , label = 'Build Python List (C) from lines in (A)'                 , command = lambda: abc__code__build_structures( **{ "fm_box":"A" , "to_box":"C" , "do_this":"py_list" } ) )
+    abc[ "menubar_code"             ].add_command( font = "TkFixedFont" , label = 'Build Python List (C) from lines in (A)'                                            , command = lambda: abc__code__build_structures( **{ "fm_box":"A" , "to_box":"C" , "do_this":"py_list"                       } ) )
+    abc[ "menubar_code"             ].add_command( font = "TkFixedFont" , label = 'Build Python List (C) from lines in (A) with newline'                               , command = lambda: abc__code__build_structures( **{ "fm_box":"A" , "to_box":"C" , "do_this":"py_list" , "delim" : "newline" } ) )
 
     abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 Center Space Pad with VS Code Folding'   , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
     abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 Center Space Pad with VS Code Folding'   , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
@@ -1791,7 +1801,7 @@ def menubar_code() :
 
 # region     # Code Functions ##########################################
 
-def abc__code__fancy_comments( **kwargs ) :
+def abc__code__fancy_comments( **kwargs ) :  ## 6a3b1c44f856adfea9381e438f3ea8a3 # 2024-04-01 00:27:50 #
     
     fm_box      = kwargs.get( "fm_box"    , "A" )
     to_box      = kwargs.get( "to_box"    , "C" )
@@ -1827,7 +1837,6 @@ def abc__code__fancy_comments( **kwargs ) :
                  f'''{cmnt_indent}##{'':#^{pw0}}##\n'''
                  )
 
-            #print(x)
             box[ to_box ].insert( "end" , f'{x}\n' )
 
         if cmnt_head == 2 :
@@ -1840,7 +1849,6 @@ def abc__code__fancy_comments( **kwargs ) :
                  f'''{cmnt_indent}##{'':#^{pw0}}##\n'''
                  )
 
-            #print(x)
             box[ to_box ].insert( "end" , f'{x}\n' )
 
         if cmnt_head == 3 :
@@ -1849,7 +1857,6 @@ def abc__code__fancy_comments( **kwargs ) :
 
             x = f'''{cmnt_indent}##{f'{f" {cmnt} "}':{cmnt_pad}{cmnt_align}{pw0}}##\n'''
 
-            #print(x)
             box[ to_box ].insert( "end" , f'{x}\n' )
 
         if fold_type == "V" :
@@ -1861,15 +1868,15 @@ def abc__code__fancy_comments( **kwargs ) :
                  f'''{cmnt_indent}#endregion ##{f'{f" {cmnt} "}':#{fold_align}{pw0}}##\n'''
                  )
 
-            #print(x)
             box[ to_box ].insert( "end" , f'{x}\n' )
 
 
-def abc__code__build_structures( **kwargs ) :
+def abc__code__build_structures( **kwargs ) :  ## f8b75ac47da1efaa378ef8a2085fe656 # 2024-04-01 00:25:31 #
 
-    fm_box  = kwargs.get( "fm_box"  , "A" )
-    to_box  = kwargs.get( "to_box"  , fm_box )
+    fm_box  = kwargs.get( "fm_box"  , "A"      )
+    to_box  = kwargs.get( "to_box"  , fm_box   )
     do_this = kwargs.get( "do_this" , "py_lst" )
+    delim   = kwargs.get( "delim"   , None     )
 
     timenow = datetime.datetime.now()
 
@@ -1901,10 +1908,58 @@ def abc__code__build_structures( **kwargs ) :
             
             _clear_box( to_box )
 
-            box[ to_box ].insert( "end" , '[ ' + "\n , ".join(lst_to) + ' ]\n' )
+            #if   delim == "newline" : print( 'my_list = [ \n      ' + "\n    , ".join(lst_to) + '\n    ]\n' )
+            #else                    : print( 'my_list = [ ' + " , ".join(lst_to) + ' ]\n' )
 
+            if   delim == "newline" : box[ to_box ].insert( "end" , 'my_list = [ \n      ' + "\n    , ".join(lst_to) + '\n    ]\n' )
+            else                    : box[ to_box ].insert( "end" , 'my_list = [ ' + " , ".join(lst_to) + ' ]\n' )
+         
 
-def abc__code__hash_function() : pass
+def abc__code__hash_function( **kwargs ) :  ## eac3d72c85cdbe517a7c32064e722011 # 2024-04-01 00:23:37 #
+    
+    fm_box  = kwargs.get( "fm_box"  , "C" )
+    to_box  = kwargs.get( "to_box"  , fm_box )
+
+    timenow = datetime.datetime.now()
+
+    print( f'# INFO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # abc__code__hash_function( {{ "fm_box" : "{fm_box}" }} )' )
+
+    lst_orig = [ x.rstrip() for x in box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() ]
+
+    ## Remove Leading Blank lines 
+    while lst_orig[0] == '' : lst_orig.pop(0)
+
+    ## Remove Current fingerprint
+    if (func_name := re.search( r"^(def .*\))\s*:(?:\s\s*#..*)?$" , lst_orig[0] ) ) :
+        lst_orig[0] = f'{func_name.group(1)} : '
+    
+    lst_hash = []
+    
+    ## Remove lines that do not need to be hashed
+    for x in lst_orig :
+        if ( re.match( r"^$"    , x ) ) : continue
+        if ( re.match( r"^\s*#" , x ) ) : continue
+        lst_hash.append(x)
+
+    if lst_hash :
+        str_md5 = "\n".join( lst_hash )
+        str_md5 = hashlib.md5(str_md5.encode()).hexdigest()
+        lst_orig[0] = f'{lst_orig[0]} ## {str_md5} # {timenow:%Y-%m-%d %H:%M:%S} #'
+
+        _clear_box( "A" )
+        _clear_box( "B" )
+
+        box[ "A" ].insert( "end" , '################################################\n' )
+        box[ "A" ].insert( "end" , '##               Original Code                ##\n' )
+        box[ "A" ].insert( "end" , '################################################\n' )
+        box[ "A" ].insert( "end" , '\n' )
+        box[ "A" ].insert( "end" , "\n".join(lst_orig) + '\n' )
+
+        box[ "B" ].insert( "end" , '################################################\n' )
+        box[ "B" ].insert( "end" , '##                Code Hashed                 ##\n' )
+        box[ "B" ].insert( "end" , '################################################\n' )
+        box[ "B" ].insert( "end" , '\n' )
+        box[ "B" ].insert( "end" , "\n".join(lst_hash) + '\n' )
 
 
 
