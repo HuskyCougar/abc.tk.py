@@ -1,19 +1,13 @@
 #!/usr/bin/env python
 
-# This is my Python Version my my ABC perl script.
+# This is my Python Version my ABC perl script.
 
 # GitHub Description : Tool to replace command some basic command line functions. This version in Python.
 
 # https://github.com/HuskyCougar/abc.tk.py
 # https://github.com/HuskyCougar/abc.tk.py.git
 # git clone https://github.com/HuskyCougar/abc.tk.py.git
-
-
-
-
-
-
-
+# https://github.com/HuskyCougar/abc.tk.py/blob/master/abc.tk.py
 
 
 ########################################################################
@@ -79,8 +73,8 @@ def main() :  ## 804afb85d46a18fe14d982ea69898c9b # 2024-04-02 09:28:12 #
 
     abc[ "main_window" ].mainloop()
 
+abc_window_title = "ABC : 2024-04-10"
 
-abc_window_title = "ABC - Python Version : 2024-04-10"
 print( f'# INFO # {datetime.datetime.now():%Y-%m-%d %H:%M:%S} # Line : {getframeinfo(currentframe()).lineno:4,d} # Script Name : {getframeinfo(currentframe()).filename}' )
 print( f'# INFO # {datetime.datetime.now():%Y-%m-%d %H:%M:%S} # Line : {getframeinfo(currentframe()).lineno:4,d} # Script Version : {abc_window_title}' )
 
