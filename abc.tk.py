@@ -10,6 +10,20 @@
 # https://github.com/HuskyCougar/abc.tk.py/blob/master/abc.tk.py
 
 
+
+########################################################################
+##                              Updates                               ##
+########################################################################
+
+#region    ## Updates ##################################################
+
+# 2024-10-14 11:35:14 # abc__tops__add_replace. Replacing with \n resulted in \n in log. Log now shows "\n"
+# 2024-10-14 01:04:34 # abc__tops__split_string_by. Added text tokenizer. This should help with finding good strings to match on when looking for artifacts in text files.
+# 2024-10-13 19:13:49 #_sort_lines  Replaced with a new one that adds case-insensitive sorting. Also added domain name, IP address, and email address sorting. 
+
+#endregion ## Updates ##################################################
+
+
 ########################################################################
 ##                              Imports                               ##
 ########################################################################
@@ -22,9 +36,9 @@ import re
 import os
 import hashlib
 
+
 from collections import Counter
 from inspect import currentframe, getframeinfo
-
 
 # endregion  # Imports #################################################
 
@@ -58,7 +72,7 @@ gopts = {  # set defaults. Will change with GUI later
 }
 
 
-def main() :  ## 804afb85d46a18fe14d982ea69898c9b # 2024-04-02 09:28:12 #
+def main() :  ## 914751229efdd8016424481f8f8342be # 2024-10-14 17:13:17 #
 
     build_main_window()
     menubar_file()
@@ -71,10 +85,10 @@ def main() :  ## 804afb85d46a18fe14d982ea69898c9b # 2024-04-02 09:28:12 #
     menubar_misc()
     menubar_options()
 
-    abc[ "main_window" ].mainloop()
+    abc[  "main_window" ].mainloop()
 
-abc_window_title = "ABC : 2024-04-10"
 
+abc_window_title = "ABC : 2024-10-14"
 print( f'# INFO # {datetime.datetime.now():%Y-%m-%d %H:%M:%S} # Line : {getframeinfo(currentframe()).lineno:4,d} # Script Name : {getframeinfo(currentframe()).filename}' )
 print( f'# INFO # {datetime.datetime.now():%Y-%m-%d %H:%M:%S} # Line : {getframeinfo(currentframe()).lineno:4,d} # Script Version : {abc_window_title}' )
 
@@ -88,109 +102,88 @@ print( f'# INFO # {datetime.datetime.now():%Y-%m-%d %H:%M:%S} # Line : {getframe
 
 # region     ## Build GUI Window ###################################
 
-def build_main_window() :  ## 62bb2b090d1012f38dfc59552a326c39 # 2024-04-02 10:02:36 #
+def build_main_window() :  ## f56fc16f56f5fa8e91fd2cd888c45189 # 2024-10-14 17:21:00 #
 
-    abc[ "main_window" ] = Tk()
+    abc[  "main_window" ] = Tk()
 
-    abc[ "main_window" ].title( abc_window_title )
+    abc[  "main_window" ].title( abc_window_title )
 
-    abc[ "main_window" ].option_add('*Dialog.msg.font', 'TkFixedFont')
+    abc[  "main_window" ].option_add('*Dialog.msg.font', 'TkFixedFont')
 
-    abc[ "Adjuster_LR" ] = PanedWindow( abc[ "main_window" ] , orient="horizontal" )
+    abc[  "Adjuster_LR" ] = PanedWindow( abc[  "main_window" ] , orient="horizontal" )
 
-    abc[ "frame_L" ] = Frame( abc[ "main_window" ] , relief = 'groove' , borderwidth = 1 ) ; abc[ "frame_L" ].pack( side = "left" , fill = "both" , expand = True )
-    abc[ "frame_R" ] = Frame( abc[ "main_window" ] , relief = 'groove' , borderwidth = 1 ) ; abc[ "frame_R" ].pack( side = "left" , fill = "both" , expand = True )
+    abc[  "frame_L" ] = Frame( abc[  "main_window" ] , relief = 'groove' , borderwidth = 1 ) ; abc[  "frame_L" ].pack( side = "left" , fill = "both" , expand = True )
+    abc[  "frame_R" ] = Frame( abc[  "main_window" ] , relief = 'groove' , borderwidth = 1 ) ; abc[  "frame_R" ].pack( side = "left" , fill = "both" , expand = True )
 
-    abc[ "Adjuster_LR" ].add( abc[ "frame_L" ] )
-    abc[ "Adjuster_LR" ].add( abc[ "frame_R" ] )
-    abc[ "Adjuster_LR" ].pack( fill = "both" , expand = True )
+    abc[  "Adjuster_LR" ].add( abc[  "frame_L" ] )
+    abc[  "Adjuster_LR" ].add( abc[  "frame_R" ] )
+    abc[  "Adjuster_LR" ].pack( fill = "both" , expand = True )
 
-    abc[ "Adjuster_AB" ] = PanedWindow( abc[ "frame_L" ] , orient = "vertical" )
+    abc[  "Adjuster_AB" ] = PanedWindow( abc[  "frame_L" ] , orient = "vertical" )
 
-    abc[ "frame_A" ] = Frame( abc[ "frame_L" ] , relief = 'groove' , borderwidth = 1 ) ; abc[ "frame_A" ].pack( side = "top" , fill = "both" , expand = "yes" )
-    abc[ "frame_B" ] = Frame( abc[ "frame_L" ] , relief = 'groove' , borderwidth = 1 ) ; abc[ "frame_B" ].pack( side = "top" , fill = "both" , expand = "yes" )
+    abc[  "frame_A" ] = Frame( abc[  "frame_L" ] , relief = 'groove' , borderwidth = 1 ) ; abc[  "frame_A" ].pack( side = "top" , fill = "both" , expand = "yes" )
+    abc[  "frame_B" ] = Frame( abc[  "frame_L" ] , relief = 'groove' , borderwidth = 1 ) ; abc[  "frame_B" ].pack( side = "top" , fill = "both" , expand = "yes" )
 
-    abc[ "Adjuster_AB" ].add( abc[ "frame_A" ] )
-    abc[ "Adjuster_AB" ].add( abc[ "frame_B" ] )
-    abc[ "Adjuster_AB" ].pack( fill = "both" , expand = True )
+    abc[  "Adjuster_AB" ].add( abc[  "frame_A" ] )
+    abc[  "Adjuster_AB" ].add( abc[  "frame_B" ] )
+    abc[  "Adjuster_AB" ].pack( fill = "both" , expand = True )
 
-    abc[ "frame_C" ] = Frame( abc[ "frame_R" ] , relief = 'groove' , borderwidth = 1 ) ; abc[ "frame_C" ].pack( side = "top" , fill = "both" , expand = "yes" )
+    abc[  "frame_C" ] = Frame( abc[  "frame_R" ] , relief = 'groove' , borderwidth = 1 ) ; abc[  "frame_C" ].pack( side = "top" , fill = "both" , expand = "yes" )
 
-    abc[ "LabFrame_A" ] = LabelFrame( abc[ "frame_A" ] , text = "Box A" ) ; abc[ "LabFrame_A" ].pack( side = "top" , fill = "both" , expand = "yes" )
-    abc[ "LabFrame_B" ] = LabelFrame( abc[ "frame_B" ] , text = "Box B" ) ; abc[ "LabFrame_B" ].pack( side = "top" , fill = "both" , expand = "yes" )
-    abc[ "LabFrame_C" ] = LabelFrame( abc[ "frame_C" ] , text = "Box C" ) ; abc[ "LabFrame_C" ].pack( side = "top" , fill = "both" , expand = "yes" )
+    abc[  "LabFrame_A" ] = LabelFrame( abc[  "frame_A" ] , text = "Box A" ) ; abc[  "LabFrame_A" ].pack( side = "top" , fill = "both" , expand = "yes" )
+    abc[  "LabFrame_B" ] = LabelFrame( abc[  "frame_B" ] , text = "Box B" ) ; abc[  "LabFrame_B" ].pack( side = "top" , fill = "both" , expand = "yes" )
+    abc[  "LabFrame_C" ] = LabelFrame( abc[  "frame_C" ] , text = "Box C" ) ; abc[  "LabFrame_C" ].pack( side = "top" , fill = "both" , expand = "yes" )
 
-    abc[ "LabFrame_A_Top" ] = Frame( abc[ "LabFrame_A" ] , relief = 'groove' , borderwidth = 1 ) ; abc[ "LabFrame_A_Top" ].pack( side = "top" ,                expand = "no"  )
-    abc[ "LabFrame_A_Bot" ] = Frame( abc[ "LabFrame_A" ] , relief = 'groove' , borderwidth = 1 ) ; abc[ "LabFrame_A_Bot" ].pack( side = "top" , fill = "both", expand = "yes" )
+    abc[  "LabFrame_A_Top" ] = Frame( abc[  "LabFrame_A" ] , relief = 'groove' , borderwidth = 1 ) ; abc[  "LabFrame_A_Top" ].pack( side = "top" ,                expand = "no"  )
+    abc[  "LabFrame_A_Bot" ] = Frame( abc[  "LabFrame_A" ] , relief = 'groove' , borderwidth = 1 ) ; abc[  "LabFrame_A_Bot" ].pack( side = "top" , fill = "both", expand = "yes" )
 
-    abc[ "LabFrame_B_Top" ] = Frame( abc[ "LabFrame_B" ] , relief = 'groove' , borderwidth = 1 ) ; abc[ "LabFrame_B_Top" ].pack( side = "top" ,                expand = "no"  )
-    abc[ "LabFrame_B_Bot" ] = Frame( abc[ "LabFrame_B" ] , relief = 'groove' , borderwidth = 1 ) ; abc[ "LabFrame_B_Bot" ].pack( side = "top" , fill = "both", expand = "yes" )
+    abc[  "LabFrame_B_Top" ] = Frame( abc[  "LabFrame_B" ] , relief = 'groove' , borderwidth = 1 ) ; abc[  "LabFrame_B_Top" ].pack( side = "top" ,                expand = "no"  )
+    abc[  "LabFrame_B_Bot" ] = Frame( abc[  "LabFrame_B" ] , relief = 'groove' , borderwidth = 1 ) ; abc[  "LabFrame_B_Bot" ].pack( side = "top" , fill = "both", expand = "yes" )
 
-    abc[ "LabFrame_C_Top" ] = Frame( abc[ "LabFrame_C" ] , relief = 'groove' , borderwidth = 1 ) ; abc[ "LabFrame_C_Top" ].pack( side = "top" ,                expand = "no"  )
-    abc[ "LabFrame_C_Bot" ] = Frame( abc[ "LabFrame_C" ] , relief = 'groove' , borderwidth = 1 ) ; abc[ "LabFrame_C_Bot" ].pack( side = "top" , fill = "both", expand = "yes" )
+    abc[  "LabFrame_C_Top" ] = Frame( abc[  "LabFrame_C" ] , relief = 'groove' , borderwidth = 1 ) ; abc[  "LabFrame_C_Top" ].pack( side = "top" ,                expand = "no"  )
+    abc[  "LabFrame_C_Bot" ] = Frame( abc[  "LabFrame_C" ] , relief = 'groove' , borderwidth = 1 ) ; abc[  "LabFrame_C_Bot" ].pack( side = "top" , fill = "both", expand = "yes" )
 
-    box["A"] = ScrolledText( abc[ "LabFrame_A_Bot" ] , height = 15 , width = 60 , wrap = "none")
-    box["B"] = ScrolledText( abc[ "LabFrame_B_Bot" ] , height = 15 , width = 60 , wrap = "none")
-    box["C"] = ScrolledText( abc[ "LabFrame_C_Bot" ] , height = 15 , width = 60 , wrap = "none")
+    box[ "A" ] = ScrolledText( abc[  "LabFrame_A_Bot" ] , height = 15 , width = 60 , wrap = "none")
+    box[ "B" ] = ScrolledText( abc[  "LabFrame_B_Bot" ] , height = 15 , width = 60 , wrap = "none")
+    box[ "C" ] = ScrolledText( abc[  "LabFrame_C_Bot" ] , height = 15 , width = 60 , wrap = "none")
 
-    abc[ "Button_A1" ] = Button( abc[ "LabFrame_A_Top" ] , text = 'A  > B' , command=lambda: _move_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) ).pack( side = "left" )
-    abc[ "Button_A2" ] = Button( abc[ "LabFrame_A_Top" ] , text = 'A >> B' , command=lambda: _apnd_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) ).pack( side = "left" )
-    abc[ "Button_A3" ] = Button( abc[ "LabFrame_A_Top" ] , text = 'A <> B' , command=lambda: _swap_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) ).pack( side = "left" )
-    abc[ "Button_A4" ] = Button( abc[ "LabFrame_A_Top" ] , text = 'A  > C' , command=lambda: _move_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) ).pack( side = "left" )
-    abc[ "Button_A5" ] = Button( abc[ "LabFrame_A_Top" ] , text = 'A >> C' , command=lambda: _apnd_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) ).pack( side = "left" )
-    abc[ "Button_A6" ] = Button( abc[ "LabFrame_A_Top" ] , text = 'A <> C' , command=lambda: _swap_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) ).pack( side = "left" )
-    abc[ "Button_A7" ] = Button( abc[ "LabFrame_A_Top" ] , text = 'Dedupe' , command=lambda: _deduplicate_lines(    **{ "fm_box" : "A"                  } ) ).pack( side = "left" )
-    abc[ "Button_A9" ] = Button( abc[ "LabFrame_A_Top" ] , text = 'Sort'   , command=lambda: _sort_lines(           **{ "fm_box" : "A" , "order" : "A"  } ) ).pack( side = "left" )
-    abc[ "Button_A8" ] = Button( abc[ "LabFrame_A_Top" ] , text = 'Trim'   , command=lambda: _trim_blank_lines(     **{ "fm_box" : "A"                  } ) ).pack( side = "left" )
-    abc[ "Button_AC" ] = Button( abc[ "LabFrame_A_Top" ] , text = 'Clear'  , command=lambda: _clear_box(                           "A"                    ) ).pack( side = "left" )
+    abc[  "Button_A1" ] = Button( abc[  "LabFrame_A_Top" ] , text = 'A  > B' , command=lambda: _move_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) ).pack( side = "left" )
+    abc[  "Button_A2" ] = Button( abc[  "LabFrame_A_Top" ] , text = 'A >> B' , command=lambda: _apnd_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) ).pack( side = "left" )
+    abc[  "Button_A3" ] = Button( abc[  "LabFrame_A_Top" ] , text = 'A <> B' , command=lambda: _swap_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) ).pack( side = "left" )
+    abc[  "Button_A4" ] = Button( abc[  "LabFrame_A_Top" ] , text = 'A  > C' , command=lambda: _move_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) ).pack( side = "left" )
+    abc[  "Button_A5" ] = Button( abc[  "LabFrame_A_Top" ] , text = 'A >> C' , command=lambda: _apnd_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) ).pack( side = "left" )
+    abc[  "Button_A6" ] = Button( abc[  "LabFrame_A_Top" ] , text = 'A <> C' , command=lambda: _swap_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) ).pack( side = "left" )
+    abc[  "Button_A7" ] = Button( abc[  "LabFrame_A_Top" ] , text = 'Dedupe' , command=lambda: _deduplicate_lines(    **{ "fm_box" : "A"                  } ) ).pack( side = "left" )
+    abc[  "Button_A9" ] = Button( abc[  "LabFrame_A_Top" ] , text = 'Sort'   , command=lambda: _sort_lines(           **{ "fm_box" : "A" , "sort_what" : "lines" , "sort_order" : "AZ" , "sort_case" : 0 } ) ).pack( side = "left" )
+    abc[  "Button_A8" ] = Button( abc[  "LabFrame_A_Top" ] , text = 'Trim'   , command=lambda: _trim_blank_lines(     **{ "fm_box" : "A"                  } ) ).pack( side = "left" )
+    abc[  "Button_AC" ] = Button( abc[  "LabFrame_A_Top" ] , text = 'Clear'  , command=lambda: _clear_box(                           "A"                    ) ).pack( side = "left" )
 
-    abc[ "Button_B1" ] = Button( abc[ "LabFrame_B_Top" ] , text = 'B  > A' , command=lambda: _move_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) ).pack( side = "left" )
-    abc[ "Button_B2" ] = Button( abc[ "LabFrame_B_Top" ] , text = 'B >> A' , command=lambda: _apnd_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) ).pack( side = "left" )
-    abc[ "Button_B3" ] = Button( abc[ "LabFrame_B_Top" ] , text = 'B <> A' , command=lambda: _swap_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) ).pack( side = "left" )
-    abc[ "Button_B4" ] = Button( abc[ "LabFrame_B_Top" ] , text = 'B  > C' , command=lambda: _move_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) ).pack( side = "left" )
-    abc[ "Button_B5" ] = Button( abc[ "LabFrame_B_Top" ] , text = 'B >> C' , command=lambda: _apnd_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) ).pack( side = "left" )
-    abc[ "Button_B6" ] = Button( abc[ "LabFrame_B_Top" ] , text = 'B <> C' , command=lambda: _swap_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) ).pack( side = "left" )
-    abc[ "Button_B7" ] = Button( abc[ "LabFrame_B_Top" ] , text = 'Dedupe' , command=lambda: _deduplicate_lines(    **{ "fm_box" : "B"                  } ) ).pack( side = "left" )
-    abc[ "Button_B9" ] = Button( abc[ "LabFrame_B_Top" ] , text = 'Sort'   , command=lambda: _sort_lines(           **{ "fm_box" : "B" , "order" : "A"  } ) ).pack( side = "left" )
-    abc[ "Button_B8" ] = Button( abc[ "LabFrame_B_Top" ] , text = 'Trim'   , command=lambda: _trim_blank_lines(     **{ "fm_box" : "B"                  } ) ).pack( side = "left" )
-    abc[ "Button_BC" ] = Button( abc[ "LabFrame_B_Top" ] , text = 'Clear'  , command=lambda: _clear_box(                           "B"                    ) ).pack( side = "left" )
+    abc[  "Button_B1" ] = Button( abc[  "LabFrame_B_Top" ] , text = 'B  > A' , command=lambda: _move_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) ).pack( side = "left" )
+    abc[  "Button_B2" ] = Button( abc[  "LabFrame_B_Top" ] , text = 'B >> A' , command=lambda: _apnd_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) ).pack( side = "left" )
+    abc[  "Button_B3" ] = Button( abc[  "LabFrame_B_Top" ] , text = 'B <> A' , command=lambda: _swap_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) ).pack( side = "left" )
+    abc[  "Button_B4" ] = Button( abc[  "LabFrame_B_Top" ] , text = 'B  > C' , command=lambda: _move_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) ).pack( side = "left" )
+    abc[  "Button_B5" ] = Button( abc[  "LabFrame_B_Top" ] , text = 'B >> C' , command=lambda: _apnd_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) ).pack( side = "left" )
+    abc[  "Button_B6" ] = Button( abc[  "LabFrame_B_Top" ] , text = 'B <> C' , command=lambda: _swap_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) ).pack( side = "left" )
+    abc[  "Button_B7" ] = Button( abc[  "LabFrame_B_Top" ] , text = 'Dedupe' , command=lambda: _deduplicate_lines(    **{ "fm_box" : "B"                  } ) ).pack( side = "left" )
+    abc[  "Button_B9" ] = Button( abc[  "LabFrame_B_Top" ] , text = 'Sort'   , command=lambda: _sort_lines(           **{ "fm_box" : "B" , "sort_what" : "lines" , "sort_order" : "AZ" , "sort_case" : 0 } ) ).pack( side = "left" )
+    abc[  "Button_B8" ] = Button( abc[  "LabFrame_B_Top" ] , text = 'Trim'   , command=lambda: _trim_blank_lines(     **{ "fm_box" : "B"                  } ) ).pack( side = "left" )
+    abc[  "Button_BC" ] = Button( abc[  "LabFrame_B_Top" ] , text = 'Clear'  , command=lambda: _clear_box(                           "B"                    ) ).pack( side = "left" )
 
-    abc[ "Button_C1" ] = Button( abc[ "LabFrame_C_Top" ] , text = 'C  > A' , command=lambda: _move_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) ).pack( side = "left" )
-    abc[ "Button_C2" ] = Button( abc[ "LabFrame_C_Top" ] , text = 'C >> A' , command=lambda: _apnd_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) ).pack( side = "left" )
-    abc[ "Button_C3" ] = Button( abc[ "LabFrame_C_Top" ] , text = 'C <> A' , command=lambda: _swap_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) ).pack( side = "left" )
-    abc[ "Button_C4" ] = Button( abc[ "LabFrame_C_Top" ] , text = 'C  > B' , command=lambda: _move_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) ).pack( side = "left" )
-    abc[ "Button_C5" ] = Button( abc[ "LabFrame_C_Top" ] , text = 'C >> B' , command=lambda: _apnd_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) ).pack( side = "left" )
-    abc[ "Button_C6" ] = Button( abc[ "LabFrame_C_Top" ] , text = 'C <> B' , command=lambda: _swap_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) ).pack( side = "left" )
-    abc[ "Button_C7" ] = Button( abc[ "LabFrame_C_Top" ] , text = 'Dedupe' , command=lambda: _deduplicate_lines(    **{ "fm_box" : "C"                  } ) ).pack( side = "left" )
-    abc[ "Button_C9" ] = Button( abc[ "LabFrame_C_Top" ] , text = 'Sort'   , command=lambda: _sort_lines(           **{ "fm_box" : "C" , "order" : "A"  } ) ).pack( side = "left" )
-    abc[ "Button_C8" ] = Button( abc[ "LabFrame_C_Top" ] , text = 'Trim'   , command=lambda: _trim_blank_lines(     **{ "fm_box" : "C"                  } ) ).pack( side = "left" )
-    abc[ "Button_CC" ] = Button( abc[ "LabFrame_C_Top" ] , text = 'Clear'  , command=lambda: _clear_box(                           "C"                    ) ).pack( side = "left" )
+    abc[  "Button_C1" ] = Button( abc[  "LabFrame_C_Top" ] , text = 'C  > A' , command=lambda: _move_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) ).pack( side = "left" )
+    abc[  "Button_C2" ] = Button( abc[  "LabFrame_C_Top" ] , text = 'C >> A' , command=lambda: _apnd_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) ).pack( side = "left" )
+    abc[  "Button_C3" ] = Button( abc[  "LabFrame_C_Top" ] , text = 'C <> A' , command=lambda: _swap_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) ).pack( side = "left" )
+    abc[  "Button_C4" ] = Button( abc[  "LabFrame_C_Top" ] , text = 'C  > B' , command=lambda: _move_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) ).pack( side = "left" )
+    abc[  "Button_C5" ] = Button( abc[  "LabFrame_C_Top" ] , text = 'C >> B' , command=lambda: _apnd_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) ).pack( side = "left" )
+    abc[  "Button_C6" ] = Button( abc[  "LabFrame_C_Top" ] , text = 'C <> B' , command=lambda: _swap_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) ).pack( side = "left" )
+    abc[  "Button_C7" ] = Button( abc[  "LabFrame_C_Top" ] , text = 'Dedupe' , command=lambda: _deduplicate_lines(    **{ "fm_box" : "C"                  } ) ).pack( side = "left" )
+    abc[  "Button_C9" ] = Button( abc[  "LabFrame_C_Top" ] , text = 'Sort'   , command=lambda: _sort_lines(           **{ "fm_box" : "C" , "sort_what" : "lines" , "sort_order" : "AZ" , "sort_case" : 0 } ) ).pack( side = "left" )
+    abc[  "Button_C8" ] = Button( abc[  "LabFrame_C_Top" ] , text = 'Trim'   , command=lambda: _trim_blank_lines(     **{ "fm_box" : "C"                  } ) ).pack( side = "left" )
+    abc[  "Button_CC" ] = Button( abc[  "LabFrame_C_Top" ] , text = 'Clear'  , command=lambda: _clear_box(                           "C"                    ) ).pack( side = "left" )
 
-    box["A"].pack( fill = "both" , expand = True )
-    box["B"].pack( fill = "both" , expand = True )
-    box["C"].pack( fill = "both" , expand = True )
+    box[ "A" ].pack( fill = "both" , expand = True )
+    box[ "B" ].pack( fill = "both" , expand = True )
+    box[ "C" ].pack( fill = "both" , expand = True )
 
-    ## Frame with File A and File B ########################################
-
-    #abc[ "frame_F" ] = Frame( abc[ "main_window" ] , relief = 'groove' , borderwidth = 1 ) ; abc[ "frame_F" ].pack( side = "bottom" , fill = "x" , expand = False )
-    #
-    #abc[ "LabFrame_FA" ] = LabelFrame( abc[ "frame_F" ] , text = "File A" )
-    #abc[ "LabFrame_FB" ] = LabelFrame( abc[ "frame_F" ] , text = "File B" )
-    #
-    #abc[ "Button_FA" ] = Button(       abc[ "LabFrame_FA" ] , height = 2 , text = 'File Select' , command = lambda: _file_box_set( "Button_FA" , "File_A" ) )
-    #box[ "File_A"    ] = ScrolledText( abc[ "LabFrame_FA" ] , height = 2 )
-    #
-    #abc[ "Button_FB" ] = Button(       abc[ "LabFrame_FB" ] , height = 2 , text = 'File Select' , command = lambda: _file_box_set( "Button_FB" , "File_B" ) )
-    #box[ "File_B"    ] = ScrolledText( abc[ "LabFrame_FB" ] , height = 2 )
-    #
-    #abc[ "LabFrame_FA" ].pack( side = "left" , fill = "x" , expand = False )
-    #abc[ "LabFrame_FB" ].pack( side = "left" , fill = "x" , expand = False )
-    #
-    #abc[ "Button_FA" ].pack( side = "left" )
-    #abc[ "Button_FB" ].pack( side = "left" )
-    #
-    #box[ "File_A" ].pack( side = "left" , fill = "x" , expand = False )
-    #box[ "File_B" ].pack( side = "left" , fill = "x" , expand = False )
 
 # endregion  ## Build GUI Window ###################################
 
@@ -298,30 +291,36 @@ def _Apnd_from_File( to_box ) :
     print( f'# TODO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # _Apnd_from_File : Not Done Yet' )
     messagebox.showinfo( '_Apnd_from_File' , 'This function is not done yet.' )
 
+
 def _Open_from_Clip( to_box ) : 
     timenow = datetime.datetime.now()
     print( f'# TODO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # _Open_from_Clip : Not Done Yet' )
     messagebox.showinfo( '_Open_from_Clip' , 'This function is not done yet.' )
+
 
 def _Apnd_from_Clip( to_box ) : 
     timenow = datetime.datetime.now()
     print( f'# TODO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # _Apnd_from_Clip : Not Done Yet' )
     messagebox.showinfo( '_Apnd_from_Clip' , 'This function is not done yet.' )
 
+
 def _Save_to_File(   fm_box ) : 
     timenow = datetime.datetime.now()
     print( f'# TODO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # _Save_to_File : Not Done Yet' )
     messagebox.showinfo( '_Save_to_File' , 'This function is not done yet.' )
+
 
 def _Apnd_to_File(   fm_box ) : 
     timenow = datetime.datetime.now()
     print( f'# TODO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # _Apnd_to_File : Not Done Yet' )
     messagebox.showinfo( '_Apnd_to_File' , 'This function is not done yet.' )
 
+
 def _Save_to_Clip(   fm_box ) : 
     timenow = datetime.datetime.now()
     print( f'# TODO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # _Save_to_Clip : Not Done Yet' )
     messagebox.showinfo( '_Save_to_Clip' , 'This function is not done yet.' )
+
 
 def _Apnd_to_Clip(   fm_box ) : 
     timenow = datetime.datetime.now()
@@ -466,22 +465,23 @@ def _deduplicate_lines( **kwargs ) :  ## 821b1ffd087740381a2013ec05ed2215 # 2024
     for x in lst_fm : box[ to_box ].insert( "end" , f"{x}\n" )
 
 
-def _sort_lines( **kwargs ) :  ## 6b71917fde5a9ce242d3f5e17cd4eb2b # 2024-04-02 09:59:54 #
+def _sort_lines( **kwargs ) :  ## 4e89854aa2039992cbfe9e79757b9091 # 2024-10-14 16:40:39 #
 
     timenow = datetime.datetime.now()
 
     fm_box = kwargs.get( "fm_box" , "A" )
     to_box = kwargs.get( "to_box" , fm_box )
-    order  = kwargs.get( "order"  , "A" )
+    order  = kwargs.get( "order"  , "AZ" )
 
     print( f'# INFO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # _sort_lines( {{ "fm_box" : "{fm_box}" , "to_box" : "{to_box}" , "order" : "{order}" }} )' )
 
-    if order == "A" : lst_fm = sorted( box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() )
-    if order == "D" : lst_fm = sorted( box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() , reverse=True )
+    sorted_lines = []
+    if   order == "AZ" : sorted_lines = sorted( box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() , key=str.casefold                )
+    elif order == "ZA" : sorted_lines = sorted( box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() , key=str.casefold , reverse=True )
 
     _clear_box( to_box )
 
-    for x in lst_fm : box[ to_box ].insert( "end" , f"{x}\n" )
+    for x in sorted_lines : box[ to_box ].insert( "end" , f"{x}\n" )
 
 
 def _change_case_upper( **kwargs ) :  ## fd28abd581639dcbf13b0bf5e49b02b4 # 2024-04-02 09:59:41 #
@@ -664,21 +664,21 @@ def _move_to_box_from_box( **kwargs ) :  ## 885d377140f9c4cd6f7d7b447eba9d3b # 2
 
 # region     ## File Menu ##############################################
 
-def menubar_file() :  ## 724bfe8096cfa3679f9206c40e6b7c82 # 2024-04-10 10:06:14 #
+def menubar_file() :  ## 88dab9245731a5bf5e71605f10da3641 # 2024-10-14 17:24:48 #
 
     ## Main Title Menu #################################################
 
-    abc[ "menubar" ] = Menu( abc[ "main_window" ] )
+    abc[  "menubar" ] = Menu( abc[  "main_window" ] )
 
-    abc[ "main_window" ].config( menu = abc[ "menubar" ] )
+    abc[  "main_window" ].config( menu = abc[  "menubar" ] )
 
     ####################################################################
     #                            File Menu                             #
     ####################################################################
 
-    abc[ "menubar_file" ] = Menu( abc[ "menubar" ] , tearoff = 1 ) ; abc[ "menubar" ].add_cascade( label = "File" , menu = abc[ "menubar_file" ] )
+    abc[  "menubar_file" ] = Menu( abc[  "menubar" ] , tearoff = 1 ) ; abc[  "menubar" ].add_cascade( label = "File" , menu = abc[  "menubar_file" ] )
 
-    abc[ "menubar_file" ].add_command( label = 'Exit' , command = abc[ "main_window" ].destroy )
+    abc[  "menubar_file" ].add_command( label = 'Exit' , command = abc[  "main_window" ].destroy )
 
 # endregion  ## File Menu ##############################################
 
@@ -709,67 +709,67 @@ def menubar_file() :  ## 724bfe8096cfa3679f9206c40e6b7c82 # 2024-04-10 10:06:14 
 
 #region    ## Options Menu #############################################
 
-def menubar_options() :  ## deecbccadb6af7f6637735774809bab5 # 2024-04-10 10:07:26 #
+def menubar_options() :  ## 3c3a1e90516701af743cfd822ec123dc # 2024-10-14 17:26:47 #
 
-    abc[ "menubar_options"  ] = Menu( abc[ "menubar" ] , tearoff = 1 ) ; abc[ "menubar" ].add_cascade( label = "Options"   , menu = abc[ "menubar_options"  ] )
+    abc[  "menubar_options"  ] = Menu( abc[  "menubar" ] , tearoff = 1 ) ; abc[  "menubar" ].add_cascade( label = "Options"   , menu = abc[  "menubar_options"  ] )
 
     ## Options Menu : Default Record Separators ########################
 
-    abc[ "options_record_separator" ] = StringVar()
-    abc[ "options_record_separator" ].set( gopts[ "record_separator" ] )
+    abc[  "options_record_separator" ] = StringVar()
+    abc[  "options_record_separator" ].set( gopts[ "record_separator" ] )
 
-    abc[ "menubar_options_rec_sep"  ] = Menu( abc[ "menubar_options" ] , tearoff = 1 )
+    abc[  "menubar_options_rec_sep"  ] = Menu( abc[  "menubar_options" ] , tearoff = 1 )
 
-    abc[ "menubar_options" ].add_cascade( font = "TkFixedFont" , label = "Default Record Separator" , menu = abc[ "menubar_options_rec_sep" ] )
+    abc[  "menubar_options" ].add_cascade( font = "TkFixedFont" , label = "Default Record Separator" , menu = abc[  "menubar_options_rec_sep" ] )
 
-    abc[ "menubar_options_rec_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Newline         \\n"            , value = '\n'       , variable=abc[ "options_record_separator" ] )
-    abc[ "menubar_options_rec_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "CRLF            \\r\\n"         , value = '\r\n'     , variable=abc[ "options_record_separator" ] )
-    abc[ "menubar_options_rec_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Double Newline  \\n\\n"         , value = '\n\n'     , variable=abc[ "options_record_separator" ] )
-    abc[ "menubar_options_rec_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Double CRLF     \\r\\n\\r\\n"   , value = '\r\n\r\n' , variable=abc[ "options_record_separator" ] )
-    abc[ "menubar_options_rec_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Pound LF        #\\n"           , value = '#\n'      , variable=abc[ "options_record_separator" ] )
-    abc[ "menubar_options_rec_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Bang LF         !\\n"           , value = '!\n'      , variable=abc[ "options_record_separator" ] )
+    abc[  "menubar_options_rec_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Newline         \\n"            , value = '\n'       , variable=abc[ "options_record_separator" ] )
+    abc[  "menubar_options_rec_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "CRLF            \\r\\n"         , value = '\r\n'     , variable=abc[ "options_record_separator" ] )
+    abc[  "menubar_options_rec_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Double Newline  \\n\\n"         , value = '\n\n'     , variable=abc[ "options_record_separator" ] )
+    abc[  "menubar_options_rec_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Double CRLF     \\r\\n\\r\\n"   , value = '\r\n\r\n' , variable=abc[ "options_record_separator" ] )
+    abc[  "menubar_options_rec_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Pound LF        #\\n"           , value = '#\n'      , variable=abc[ "options_record_separator" ] )
+    abc[  "menubar_options_rec_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Bang LF         !\\n"           , value = '!\n'      , variable=abc[ "options_record_separator" ] )
 
     ## Options Menu : Default Column Separator #########################
 
-    abc[ "options_column_separator" ] = StringVar()
-    abc[ "options_column_separator" ].set( gopts[ "column_separator" ] )
+    abc[  "options_column_separator" ] = StringVar()
+    abc[  "options_column_separator" ].set( gopts[ "column_separator" ] )
 
-    abc[ "menubar_options_col_sep"  ] = Menu( abc[ "menubar_options" ] , tearoff = 1 )
+    abc[  "menubar_options_col_sep"  ] = Menu( abc[  "menubar_options" ] , tearoff = 1 )
 
-    abc[ "menubar_options" ].add_cascade( font = "TkFixedFont" , label = "Default Column Separator" , menu = abc[ "menubar_options_col_sep" ] )
+    abc[  "menubar_options" ].add_cascade( font = "TkFixedFont" , label = "Default Column Separator" , menu = abc[  "menubar_options_col_sep" ] )
 
-    abc[ "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Comma           \",\""     , value = ','     , variable=abc[ "options_column_separator" ] )
-    abc[ "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Comma Space     \", \""    , value = ', '    , variable=abc[ "options_column_separator" ] )
-    abc[ "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Pipe            \"|\""     , value = '|'     , variable=abc[ "options_column_separator" ] )
-    abc[ "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Carat           \"^\""     , value = '^'     , variable=abc[ "options_column_separator" ] )
-    abc[ "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Spaced ORs      \" OR \""  , value = ' OR '  , variable=abc[ "options_column_separator" ] )
-    abc[ "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Spaced ||s      \" || \""  , value = ' OR '  , variable=abc[ "options_column_separator" ] )
-    abc[ "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Spaced ANDs     \" AND \"" , value = ' AND ' , variable=abc[ "options_column_separator" ] )
-    abc[ "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Spaced &&s      \" && \""  , value = ' AND ' , variable=abc[ "options_column_separator" ] )
-    abc[ "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Cherries        \"@@@\""   , value = '@@@'   , variable=abc[ "options_column_separator" ] )
+    abc[  "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Comma           \",\""     , value = ','     , variable=abc[ "options_column_separator" ] )
+    abc[  "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Comma Space     \", \""    , value = ', '    , variable=abc[ "options_column_separator" ] )
+    abc[  "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Pipe            \"|\""     , value = '|'     , variable=abc[ "options_column_separator" ] )
+    abc[  "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Carat           \"^\""     , value = '^'     , variable=abc[ "options_column_separator" ] )
+    abc[  "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Spaced ORs      \" OR \""  , value = ' OR '  , variable=abc[ "options_column_separator" ] )
+    abc[  "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Spaced ||s      \" || \""  , value = ' OR '  , variable=abc[ "options_column_separator" ] )
+    abc[  "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Spaced ANDs     \" AND \"" , value = ' AND ' , variable=abc[ "options_column_separator" ] )
+    abc[  "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Spaced &&s      \" && \""  , value = ' AND ' , variable=abc[ "options_column_separator" ] )
+    abc[  "menubar_options_col_sep"  ].add_radiobutton( font = "TkFixedFont" , label = "Cherries        \"@@@\""   , value = '@@@'   , variable=abc[ "options_column_separator" ] )
 
     ## Options Menu : Readlines Options ################################
 
-    abc[ "options_trim_leading_spaces"  ] = BooleanVar()
-    abc[ "options_trim_trailing_spaces" ] = BooleanVar()
-    abc[ "options_trim_blank_lines"     ] = BooleanVar()
-    abc[ "options_read_in_boxes_upper"  ] = BooleanVar()
-    abc[ "options_read_in_boxes_lower"  ] = BooleanVar()
-    abc[ "options_read_in_boxes_dedupe" ] = BooleanVar()
+    abc[  "options_trim_leading_spaces"  ] = BooleanVar()
+    abc[  "options_trim_trailing_spaces" ] = BooleanVar()
+    abc[  "options_trim_blank_lines"     ] = BooleanVar()
+    abc[  "options_read_in_boxes_upper"  ] = BooleanVar()
+    abc[  "options_read_in_boxes_lower"  ] = BooleanVar()
+    abc[  "options_read_in_boxes_dedupe" ] = BooleanVar()
 
-    abc[ "options_trim_leading_spaces"  ].set( gopts[ "trim_leading_spaces"  ] )
-    abc[ "options_trim_trailing_spaces" ].set( gopts[ "trim_trailing_spaces" ] )
-    abc[ "options_trim_blank_lines"     ].set( gopts[ "trim_blank_lines"     ] )
-    abc[ "options_read_in_boxes_upper"  ].set( gopts[ "read_in_boxes_upper"  ] )
-    abc[ "options_read_in_boxes_lower"  ].set( gopts[ "read_in_boxes_lower"  ] )
-    abc[ "options_read_in_boxes_dedupe" ].set( gopts[ "read_in_boxes_dedupe" ] )
+    abc[  "options_trim_leading_spaces"  ].set( gopts[ "trim_leading_spaces"  ] )
+    abc[  "options_trim_trailing_spaces" ].set( gopts[ "trim_trailing_spaces" ] )
+    abc[  "options_trim_blank_lines"     ].set( gopts[ "trim_blank_lines"     ] )
+    abc[  "options_read_in_boxes_upper"  ].set( gopts[ "read_in_boxes_upper"  ] )
+    abc[  "options_read_in_boxes_lower"  ].set( gopts[ "read_in_boxes_lower"  ] )
+    abc[  "options_read_in_boxes_dedupe" ].set( gopts[ "read_in_boxes_dedupe" ] )
 
-    abc[ "menubar_options"  ].add_checkbutton( label = "Trim leading spaces on read"  , onvalue=1 , offvalue=0 , variable=abc[ "options_trim_leading_spaces"  ] )
-    abc[ "menubar_options"  ].add_checkbutton( label = "Trim trailing spaces on read" , onvalue=1 , offvalue=0 , variable=abc[ "options_trim_trailing_spaces" ] )
-    abc[ "menubar_options"  ].add_checkbutton( label = "Trim blank lines on read"     , onvalue=1 , offvalue=0 , variable=abc[ "options_trim_blank_lines"     ] )
-    abc[ "menubar_options"  ].add_checkbutton( label = "Uppercase on read"            , onvalue=1 , offvalue=0 , variable=abc[ "options_read_in_boxes_upper"  ] )
-    abc[ "menubar_options"  ].add_checkbutton( label = "Lowercase on read"            , onvalue=1 , offvalue=0 , variable=abc[ "options_read_in_boxes_lower"  ] )
-    abc[ "menubar_options"  ].add_checkbutton( label = "Dedupe on read"               , onvalue=1 , offvalue=0 , variable=abc[ "options_read_in_boxes_dedupe" ] )
+    abc[  "menubar_options"  ].add_checkbutton( label = "Trim leading spaces on read"  , onvalue=1 , offvalue=0 , variable=abc[ "options_trim_leading_spaces"  ] )
+    abc[  "menubar_options"  ].add_checkbutton( label = "Trim trailing spaces on read" , onvalue=1 , offvalue=0 , variable=abc[ "options_trim_trailing_spaces" ] )
+    abc[  "menubar_options"  ].add_checkbutton( label = "Trim blank lines on read"     , onvalue=1 , offvalue=0 , variable=abc[ "options_trim_blank_lines"     ] )
+    abc[  "menubar_options"  ].add_checkbutton( label = "Uppercase on read"            , onvalue=1 , offvalue=0 , variable=abc[ "options_read_in_boxes_upper"  ] )
+    abc[  "menubar_options"  ].add_checkbutton( label = "Lowercase on read"            , onvalue=1 , offvalue=0 , variable=abc[ "options_read_in_boxes_lower"  ] )
+    abc[  "menubar_options"  ].add_checkbutton( label = "Dedupe on read"               , onvalue=1 , offvalue=0 , variable=abc[ "options_read_in_boxes_dedupe" ] )
 
 #endregion ## Options Menu #############################################
 
@@ -799,177 +799,258 @@ def menubar_options() :  ## deecbccadb6af7f6637735774809bab5 # 2024-04-10 10:07:
 
 # region     ## ABC Menu ###############################################
 
-def menubar_abc() :  ## 13cd78124d2365961e6369046b133d58 # 2024-04-10 10:10:11 #
+def menubar_abc() :  ## d03b39ed1711ac91cba1dd9d29b947cb # 2024-10-14 17:27:08 #
 
-    abc[ "menubar_abc" ] = Menu( abc[ "menubar" ] , tearoff = 1 )
+    abc[  "menubar_abc" ] = Menu( abc[  "menubar" ] , tearoff = 1 )
     
-    abc[ "menubar" ].add_cascade( label = "ABC" , menu = abc[ "menubar_abc" ] )
+    abc[  "menubar" ].add_cascade( label = "ABC" , menu = abc[  "menubar_abc" ] )
 
-    abc[ "menubar_abc" ].add_command( font = "TkFixedFont" , label = 'Clear All Boxes' , command = lambda: _clear_boxes() )
-    abc[ "menubar_abc" ].add_command( font = "TkFixedFont" , label = 'Clear Box A'     , command = lambda: _clear_box( "A" ) )
-    abc[ "menubar_abc" ].add_command( font = "TkFixedFont" , label = 'Clear Box B'     , command = lambda: _clear_box( "B" ) )
-    abc[ "menubar_abc" ].add_command( font = "TkFixedFont" , label = 'Clear Box C'     , command = lambda: _clear_box( "C" ) )
+    abc[  "menubar_abc" ].add_command( font = "TkFixedFont" , label = 'Clear All Boxes' , command = lambda: _clear_boxes() )
+    abc[  "menubar_abc" ].add_command( font = "TkFixedFont" , label = 'Clear Box A'     , command = lambda: _clear_box( "A" ) )
+    abc[  "menubar_abc" ].add_command( font = "TkFixedFont" , label = 'Clear Box B'     , command = lambda: _clear_box( "B" ) )
+    abc[  "menubar_abc" ].add_command( font = "TkFixedFont" , label = 'Clear Box C'     , command = lambda: _clear_box( "C" ) )
 
-    abc[ "menubar_abc" ].add_separator()
+    abc[  "menubar_abc" ].add_separator()
 
     ####################################################################
     ##                        ABC Menu: Box A                         ##
     ####################################################################
 
-    abc[ "menubar_abc__box_a"  ] = Menu( abc[ "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc__box_a"  ] = Menu( abc[  "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "Box A" , menu = abc[  "menubar_abc__box_a" ] )
 
-    abc[ "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "Box A" , menu = abc[ "menubar_abc__box_a" ] )
-
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Open File into Box'               , command = lambda: _Open_from_File( "A" , 1 ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Open File Append to Box'          , command = lambda: _Open_from_File( "A" , 0 ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Open File into Box'               , command = lambda: _Open_from_File( "A" , 1 ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Open File Append to Box'          , command = lambda: _Open_from_File( "A" , 0 ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Trim blank lines and spaces'      , command = lambda: _trim_blank_lines(     **{ "fm_box" : "A"                  } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Trim trailing whitespace'         , command = lambda: _trim_trailing_spaces( **{ "fm_box" : "A"                  } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Trim leading whitespace'          , command = lambda: _trim_leading_spaces(  **{ "fm_box" : "A"                  } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Sort lines ascending order'       , command = lambda: _sort_lines(           **{ "fm_box" : "A" , "order" : "AZ" } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Sort lines descending order'      , command = lambda: _sort_lines(           **{ "fm_box" : "A" , "order" : "ZA" } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Dedupe Lines'                     , command = lambda: _deduplicate_lines(    **{ "fm_box" : "A"                  } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Change data to upper case'        , command = lambda: _change_case_upper(    **{ "fm_box" : "A"                  } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Change data to lower case'        , command = lambda: _change_case_lower(    **{ "fm_box" : "A"                  } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Change data to casefold case'     , command = lambda: _change_case_casefold( **{ "fm_box" : "A"                  } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Change data to title case'        , command = lambda: _change_case_title(    **{ "fm_box" : "A"                  } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Swap Box A contents with Box B'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Swap Box A contents with Box C'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Move Box A contents to Box B'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Move Box A contents to Box C'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Append Box A contents to Box B'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Append Box A contents to Box C'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) )
+    abc[  "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Clear Box'                        , command = lambda: _clear_box(                           "A"                    ) )
     #abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Save to File'                     , command = lambda: _not_done_yet() )
     #abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Append to File'                   , command = lambda: _not_done_yet() )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Sort lines ascending order'       , command = lambda: _sort_lines(           **{ "fm_box" : "A" , "to_box" : "A" , "order" : "A" } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Sort lines descending order'      , command = lambda: _sort_lines(           **{ "fm_box" : "A" , "to_box" : "A" , "order" : "D" } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Dedupe Lines'                     , command = lambda: _deduplicate_lines(    **{ "fm_box" : "A"                  } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Trim blank lines and spaces'      , command = lambda: _trim_blank_lines(     **{ "fm_box" : "A"                  } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Trim trailing whitespace'         , command = lambda: _trim_trailing_spaces( **{ "fm_box" : "A"                  } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Trim leading whitespace'          , command = lambda: _trim_leading_spaces(  **{ "fm_box" : "A"                  } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Change data to upper case'        , command = lambda: _change_case_upper(    **{ "fm_box" : "A"                  } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Change data to lower case'        , command = lambda: _change_case_lower(    **{ "fm_box" : "A"                  } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Change data to casefold case'     , command = lambda: _change_case_casefold( **{ "fm_box" : "A"                  } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Change data to title case'        , command = lambda: _change_case_title(    **{ "fm_box" : "A"                  } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Swap Box A contents with Box B'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Swap Box A contents with Box C'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Move Box A contents to Box B'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Move Box A contents to Box C'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Append Box A contents to Box B'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Append Box A contents to Box C'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) )
-    abc[ "menubar_abc__box_a" ].add_command( font = "TkFixedFont" , label = 'Clear Box'                        , command = lambda: _clear_box(                           "A"                    ) )
+
+    ####################################################################
+    ##              ABC Menu: Box A : Sorting Functions               ##
+    ####################################################################
+
+    abc[  "menubar_abc__box_a_sort"  ] = Menu( abc[  "menubar_abc__box_a" ] , tearoff = 1 )
+    abc[  "menubar_abc__box_a" ].add_cascade( font = "TkFixedFont" , label = "More Sorting Functions" , menu = abc[  "menubar_abc__box_a_sort" ] )
+
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. A to Z. Ignore Case.'                , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "lines"  , "sort_order" : "AZ"   , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. A to Z.'                             , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "lines"  , "sort_order" : "AZ"   , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Z to A. Ignore Case.'                , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "lines"  , "sort_order" : "ZA"   , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Z to A.'                             , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "lines"  , "sort_order" : "ZA"   , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Long to Short. A to Z. Ignore Case.' , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "lines"  , "sort_order" : "LSAZ" , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Long to Short. A to Z.'              , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "lines"  , "sort_order" : "LSAZ" , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Long to Short. Z to A. Ignore Case.' , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "lines"  , "sort_order" : "LSZA" , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Long to Short. Z to A.'              , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "lines"  , "sort_order" : "LSZA" , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Short to Long. A to Z. Ignore Case.' , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "lines"  , "sort_order" : "SLAZ" , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Short to Long. A to Z.'              , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "lines"  , "sort_order" : "SLAZ" , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Short to Long. Z to A. Ignore Case.' , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "lines"  , "sort_order" : "SLZA" , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Short to Long. Z to A.'              , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "lines"  , "sort_order" : "SLZA" , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort IP Addresses. Low to High.'                 , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "ipaddr" , "sort_order" : "AZ"                     } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort IP Addresses. High to Low.'                 , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "ipaddr" , "sort_order" : "ZA"                     } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort Domain Names. A to Z. Ignore Case.'         , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "domain" , "sort_order" : "AZ"                     } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort Domain Names. Z to A. Ignore Case.'         , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "domain" , "sort_order" : "ZA"                     } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort Email Addresses. A to Z. Ignore Case.'      , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "email"  , "sort_order" : "AZ"                     } ) )
+    abc[  "menubar_abc__box_a_sort" ].add_command( font = "TkFixedFont" , label = 'Sort Email Addresses. Z to A. Ignore Case.'      , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "A" , "sort_what"  : "email"  , "sort_order" : "ZA"                     } ) )
+
 
     ####################################################################
     ##                        ABC Menu: Box B                         ##
     ####################################################################
 
-    abc[ "menubar_abc__box_b"  ] = Menu( abc[ "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc__box_b"  ] = Menu( abc[  "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "Box B" , menu = abc[  "menubar_abc__box_b" ] )
 
-    abc[ "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "Box B" , menu = abc[ "menubar_abc__box_b" ] )
-
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Open File into Box'               , command = lambda: _Open_from_File( "B" , 1 ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Open File Append to Box'          , command = lambda: _Open_from_File( "B" , 0 ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Open File into Box'               , command = lambda: _Open_from_File( "B" , 1 ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Open File Append to Box'          , command = lambda: _Open_from_File( "B" , 0 ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Trim blank lines and spaces'      , command = lambda: _trim_blank_lines(     **{ "fm_box" : "B"                  } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Trim trailing whitespace'         , command = lambda: _trim_trailing_spaces( **{ "fm_box" : "B"                  } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Trim leading whitespace'          , command = lambda: _trim_leading_spaces(  **{ "fm_box" : "B"                  } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Sort lines ascending order'       , command = lambda: _sort_lines(           **{ "fm_box" : "B" , "order" : "AZ" } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Sort lines descending order'      , command = lambda: _sort_lines(           **{ "fm_box" : "B" , "order" : "ZA" } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Dedupe Lines'                     , command = lambda: _deduplicate_lines(    **{ "fm_box" : "B"                  } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Change data to upper case'        , command = lambda: _change_case_upper(    **{ "fm_box" : "B"                  } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Change data to lower case'        , command = lambda: _change_case_lower(    **{ "fm_box" : "B"                  } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Change data to casefold case'     , command = lambda: _change_case_casefold( **{ "fm_box" : "B"                  } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Change data to title case'        , command = lambda: _change_case_title(    **{ "fm_box" : "B"                  } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Swap Box B contents with Box A'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Swap Box B contents with Box C'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Move Box B contents to Box A'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Move Box B contents to Box C'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Append Box B contents to Box A'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Append Box B contents to Box C'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) )
+    abc[  "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Clear Box'                        , command = lambda: _clear_box(                           "B"                    ) )
     #abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Save to File'                     , command = lambda: _not_done_yet() )
     #abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Append to File'                   , command = lambda: _not_done_yet() )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Sort lines ascending order'       , command = lambda: _sort_lines(           **{ "fm_box" : "B" , "to_box" : "B" , "order" : "A" } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Sort lines descending order'      , command = lambda: _sort_lines(           **{ "fm_box" : "B" , "to_box" : "B" , "order" : "D" } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Dedupe Lines'                     , command = lambda: _deduplicate_lines(    **{ "fm_box" : "B"                  } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Trim blank lines and spaces'      , command = lambda: _trim_blank_lines(     **{ "fm_box" : "B"                  } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Trim trailing whitespace'         , command = lambda: _trim_trailing_spaces( **{ "fm_box" : "B"                  } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Trim leading whitespace'          , command = lambda: _trim_leading_spaces(  **{ "fm_box" : "B"                  } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Change data to upper case'        , command = lambda: _change_case_upper(    **{ "fm_box" : "B"                  } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Change data to lower case'        , command = lambda: _change_case_lower(    **{ "fm_box" : "B"                  } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Change data to casefold case'     , command = lambda: _change_case_casefold( **{ "fm_box" : "B"                  } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Change data to title case'        , command = lambda: _change_case_title(    **{ "fm_box" : "B"                  } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Swap Box B contents with Box A'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Swap Box B contents with Box C'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Move Box B contents to Box A'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Move Box B contents to Box C'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Append Box B contents to Box A'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Append Box B contents to Box C'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) )
-    abc[ "menubar_abc__box_b" ].add_command( font = "TkFixedFont" , label = 'Clear Box'                        , command = lambda: _clear_box(                           "B"                    ) )
+
+    ####################################################################
+    ##              ABC Menu: Box B : Sorting Functions               ##
+    ####################################################################
+
+    abc[  "menubar_abc__box_b_sort"  ] = Menu( abc[  "menubar_abc__box_b" ] , tearoff = 1 )
+    abc[  "menubar_abc__box_b" ].add_cascade( font = "TkFixedFont" , label = "More Sorting Functions" , menu = abc[  "menubar_abc__box_b_sort" ] )
+
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. A to Z. Ignore Case.'                , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "lines"  , "sort_order" : "AZ"   , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. A to Z.'                             , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "lines"  , "sort_order" : "AZ"   , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Z to A. Ignore Case.'                , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "lines"  , "sort_order" : "ZA"   , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Z to A.'                             , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "lines"  , "sort_order" : "ZA"   , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Long to Short. A to Z. Ignore Case.' , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "lines"  , "sort_order" : "LSAZ" , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Long to Short. A to Z.'              , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "lines"  , "sort_order" : "LSAZ" , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Long to Short. Z to A. Ignore Case.' , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "lines"  , "sort_order" : "LSZA" , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Long to Short. Z to A.'              , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "lines"  , "sort_order" : "LSZA" , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Short to Long. A to Z. Ignore Case.' , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "lines"  , "sort_order" : "SLAZ" , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Short to Long. A to Z.'              , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "lines"  , "sort_order" : "SLAZ" , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Short to Long. Z to A. Ignore Case.' , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "lines"  , "sort_order" : "SLZA" , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Short to Long. Z to A.'              , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "lines"  , "sort_order" : "SLZA" , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort IP Addresses. Low to High.'                 , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "ipaddr" , "sort_order" : "AZ"                     } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort IP Addresses. High to Low.'                 , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "ipaddr" , "sort_order" : "ZA"                     } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort Domain Names. A to Z. Ignore Case.'         , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "domain" , "sort_order" : "AZ"                     } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort Domain Names. Z to A. Ignore Case.'         , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "domain" , "sort_order" : "ZA"                     } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort Email Addresses. A to Z. Ignore Case.'      , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "email"  , "sort_order" : "AZ"                     } ) )
+    abc[  "menubar_abc__box_b_sort" ].add_command( font = "TkFixedFont" , label = 'Sort Email Addresses. Z to A. Ignore Case.'      , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "B" , "sort_what"  : "email"  , "sort_order" : "ZA"                     } ) )
+
 
     ####################################################################
     ##                        ABC Menu: Box C                         ##
     ####################################################################
 
-    abc[ "menubar_abc__box_c"  ] = Menu( abc[ "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc__box_c"  ] = Menu( abc[  "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "Box C" , menu = abc[  "menubar_abc__box_c" ] )
 
-    abc[ "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "Box C" , menu = abc[ "menubar_abc__box_c" ] )
-
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Open File into Box'               , command = lambda: _Open_from_File( "C" , 1 ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Open File Append to Box'          , command = lambda: _Open_from_File( "C" , 0 ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Open File into Box'               , command = lambda: _Open_from_File( "C" , 1 ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Open File Append to Box'          , command = lambda: _Open_from_File( "C" , 0 ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Trim blank lines and spaces'      , command = lambda: _trim_blank_lines(     **{ "fm_box" : "C"                  } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Trim trailing whitespace'         , command = lambda: _trim_trailing_spaces( **{ "fm_box" : "C"                  } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Trim leading whitespace'          , command = lambda: _trim_leading_spaces(  **{ "fm_box" : "C"                  } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Sort lines ascending order'       , command = lambda: _sort_lines(           **{ "fm_box" : "C" , "order" : "AZ" } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Sort lines descending order'      , command = lambda: _sort_lines(           **{ "fm_box" : "C" , "order" : "ZA" } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Dedupe Lines'                     , command = lambda: _deduplicate_lines(    **{ "fm_box" : "C"                  } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Change data to upper case'        , command = lambda: _change_case_upper(    **{ "fm_box" : "C"                  } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Change data to lower case'        , command = lambda: _change_case_lower(    **{ "fm_box" : "C"                  } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Change data to casefold case'     , command = lambda: _change_case_casefold( **{ "fm_box" : "C"                  } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Change data to title case'        , command = lambda: _change_case_title(    **{ "fm_box" : "C"                  } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Swap Box C contents with Box A'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Swap Box C contents with Box B'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Move Box C contents to Box A'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Move Box C contents to Box B'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Append Box C contents to Box A'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Append Box C contents to Box B'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) )
+    abc[  "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Clear Box'                        , command = lambda: _clear_box(                           "C"                    ) )
     #abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Save to File'                     , command = lambda: _not_done_yet() )
     #abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Append to File'                   , command = lambda: _not_done_yet() )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Sort lines ascending order'       , command = lambda: _sort_lines(           **{ "fm_box" : "C" , "to_box" : "C" , "order" : "A" } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Sort lines descending order'      , command = lambda: _sort_lines(           **{ "fm_box" : "C" , "to_box" : "C" , "order" : "D" } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Dedupe Lines'                     , command = lambda: _deduplicate_lines(    **{ "fm_box" : "C"                  } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Trim blank lines and spaces'      , command = lambda: _trim_blank_lines(     **{ "fm_box" : "C"                  } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Trim trailing whitespace'         , command = lambda: _trim_trailing_spaces( **{ "fm_box" : "C"                  } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Trim leading whitespace'          , command = lambda: _trim_leading_spaces(  **{ "fm_box" : "C"                  } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Change data to upper case'        , command = lambda: _change_case_upper(    **{ "fm_box" : "C"                  } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Change data to lower case'        , command = lambda: _change_case_lower(    **{ "fm_box" : "C"                  } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Change data to casefold case'     , command = lambda: _change_case_casefold( **{ "fm_box" : "C"                  } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Change data to title case'        , command = lambda: _change_case_title(    **{ "fm_box" : "C"                  } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Swap Box C contents with Box A'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Swap Box C contents with Box B'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Move Box C contents to Box A'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Move Box C contents to Box B'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Append Box C contents to Box A'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Append Box C contents to Box B'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) )
-    abc[ "menubar_abc__box_c" ].add_command( font = "TkFixedFont" , label = 'Clear Box'                        , command = lambda: _clear_box(                           "C"                    ) )
+
+    ####################################################################
+    ##              ABC Menu: Box C : Sorting Functions               ##
+    ####################################################################
+
+    abc[  "menubar_abc__box_c_sort"  ] = Menu( abc[  "menubar_abc__box_c" ] , tearoff = 1 )
+    abc[  "menubar_abc__box_c" ].add_cascade( font = "TkFixedFont" , label = "More Sorting Functions" , menu = abc[  "menubar_abc__box_c_sort" ] )
+
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. A to Z. Ignore Case.'                , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "lines"  , "sort_order" : "AZ"   , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. A to Z.'                             , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "lines"  , "sort_order" : "AZ"   , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Z to A. Ignore Case.'                , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "lines"  , "sort_order" : "ZA"   , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Z to A.'                             , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "lines"  , "sort_order" : "ZA"   , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Long to Short. A to Z. Ignore Case.' , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "lines"  , "sort_order" : "LSAZ" , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Long to Short. A to Z.'              , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "lines"  , "sort_order" : "LSAZ" , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Long to Short. Z to A. Ignore Case.' , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "lines"  , "sort_order" : "LSZA" , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Long to Short. Z to A.'              , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "lines"  , "sort_order" : "LSZA" , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Short to Long. A to Z. Ignore Case.' , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "lines"  , "sort_order" : "SLAZ" , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Short to Long. A to Z.'              , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "lines"  , "sort_order" : "SLAZ" , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Short to Long. Z to A. Ignore Case.' , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "lines"  , "sort_order" : "SLZA" , "sort_case" : 0 } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort lines. Short to Long. Z to A.'              , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "lines"  , "sort_order" : "SLZA" , "sort_case" : 1 } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort IP Addresses. Low to High.'                 , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "ipaddr" , "sort_order" : "AZ"                     } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort IP Addresses. High to Low.'                 , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "ipaddr" , "sort_order" : "ZA"                     } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort Domain Names. A to Z. Ignore Case.'         , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "domain" , "sort_order" : "AZ"                     } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort Domain Names. Z to A. Ignore Case.'         , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "domain" , "sort_order" : "ZA"                     } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort Email Addresses. A to Z. Ignore Case.'      , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "email"  , "sort_order" : "AZ"                     } ) )
+    abc[  "menubar_abc__box_c_sort" ].add_command( font = "TkFixedFont" , label = 'Sort Email Addresses. Z to A. Ignore Case.'      , command = lambda: abc__tops__sort_lines( **{ "fm_box" : "C" , "sort_what"  : "email"  , "sort_order" : "ZA"                     } ) )
+
 
     ####################################################################
     ##                       ABC Menu: Box Swap                       ##
     ####################################################################
 
-    abc[ "menubar_abc__swap"   ] = Menu( abc[ "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc__swap"   ] = Menu( abc[  "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "Box Swap" , menu = abc[  "menubar_abc__swap" ] )
 
-    abc[ "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "Box Swap" , menu = abc[ "menubar_abc__swap" ] )
-
-    abc[ "menubar_abc__swap"   ].add_command( font = "TkFixedFont" , label = 'Swap Box A contents with Box B'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) ) #   -command => sub { &U__ABC__data_swap("A" , "B")   ; } ]
-    abc[ "menubar_abc__swap"   ].add_command( font = "TkFixedFont" , label = 'Swap Box A contents with Box C'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) ) #   -command => sub { &U__ABC__data_swap("A" , "C")   ; } ]
-    abc[ "menubar_abc__swap"   ].add_command( font = "TkFixedFont" , label = 'Swap Box B contents with Box A'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) ) #   -command => sub { &U__ABC__data_swap("B" , "A")   ; } ]
-    abc[ "menubar_abc__swap"   ].add_command( font = "TkFixedFont" , label = 'Swap Box B contents with Box C'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) ) #   -command => sub { &U__ABC__data_swap("B" , "C")   ; } ]
-    abc[ "menubar_abc__swap"   ].add_command( font = "TkFixedFont" , label = 'Swap Box C contents with Box A'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) ) #   -command => sub { &U__ABC__data_swap("C" , "A")   ; } ]
-    abc[ "menubar_abc__swap"   ].add_command( font = "TkFixedFont" , label = 'Swap Box C contents with Box B'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) ) #   -command => sub { &U__ABC__data_swap("C" , "B")   ; } ]
+    abc[  "menubar_abc__swap" ].add_command( font = "TkFixedFont" , label = 'Swap Box A contents with Box B'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) ) #   -command => sub { &U__ABC__data_swap("A" , "B")   ; } ]
+    abc[  "menubar_abc__swap" ].add_command( font = "TkFixedFont" , label = 'Swap Box A contents with Box C'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) ) #   -command => sub { &U__ABC__data_swap("A" , "C")   ; } ]
+    abc[  "menubar_abc__swap" ].add_command( font = "TkFixedFont" , label = 'Swap Box B contents with Box A'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) ) #   -command => sub { &U__ABC__data_swap("B" , "A")   ; } ]
+    abc[  "menubar_abc__swap" ].add_command( font = "TkFixedFont" , label = 'Swap Box B contents with Box C'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) ) #   -command => sub { &U__ABC__data_swap("B" , "C")   ; } ]
+    abc[  "menubar_abc__swap" ].add_command( font = "TkFixedFont" , label = 'Swap Box C contents with Box A'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) ) #   -command => sub { &U__ABC__data_swap("C" , "A")   ; } ]
+    abc[  "menubar_abc__swap" ].add_command( font = "TkFixedFont" , label = 'Swap Box C contents with Box B'   , command = lambda: _swap_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) ) #   -command => sub { &U__ABC__data_swap("C" , "B")   ; } ]
 
     ####################################################################
     ##                       ABC Menu: Box Move                       ##
     ####################################################################
 
-    abc[ "menubar_abc__move"   ] = Menu( abc[ "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc__move"   ] = Menu( abc[  "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "Box Move" , menu = abc[  "menubar_abc__move"   ] )
 
-    abc[ "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "Box Move" , menu = abc[ "menubar_abc__move"   ] )
-
-    abc[ "menubar_abc__move"   ].add_command( font = "TkFixedFont" , label = 'Move Box A contents to Box B'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) ) #   -command => sub { &U__ABC__data_move("A" , "B")   ; } ]
-    abc[ "menubar_abc__move"   ].add_command( font = "TkFixedFont" , label = 'Move Box A contents to Box C'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) ) #   -command => sub { &U__ABC__data_move("A" , "C")   ; } ]
-    abc[ "menubar_abc__move"   ].add_command( font = "TkFixedFont" , label = 'Move Box B contents to Box A'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) ) #   -command => sub { &U__ABC__data_move("B" , "A")   ; } ]
-    abc[ "menubar_abc__move"   ].add_command( font = "TkFixedFont" , label = 'Move Box B contents to Box C'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) ) #   -command => sub { &U__ABC__data_move("B" , "C")   ; } ]
-    abc[ "menubar_abc__move"   ].add_command( font = "TkFixedFont" , label = 'Move Box C contents to Box A'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) ) #   -command => sub { &U__ABC__data_move("C" , "A")   ; } ]
-    abc[ "menubar_abc__move"   ].add_command( font = "TkFixedFont" , label = 'Move Box C contents to Box B'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) ) #   -command => sub { &U__ABC__data_move("C" , "B")   ; } ]
+    abc[  "menubar_abc__move" ].add_command( font = "TkFixedFont" , label = 'Move Box A contents to Box B'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) ) #   -command => sub { &U__ABC__data_move("A" , "B")   ; } ]
+    abc[  "menubar_abc__move" ].add_command( font = "TkFixedFont" , label = 'Move Box A contents to Box C'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) ) #   -command => sub { &U__ABC__data_move("A" , "C")   ; } ]
+    abc[  "menubar_abc__move" ].add_command( font = "TkFixedFont" , label = 'Move Box B contents to Box A'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) ) #   -command => sub { &U__ABC__data_move("B" , "A")   ; } ]
+    abc[  "menubar_abc__move" ].add_command( font = "TkFixedFont" , label = 'Move Box B contents to Box C'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) ) #   -command => sub { &U__ABC__data_move("B" , "C")   ; } ]
+    abc[  "menubar_abc__move" ].add_command( font = "TkFixedFont" , label = 'Move Box C contents to Box A'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) ) #   -command => sub { &U__ABC__data_move("C" , "A")   ; } ]
+    abc[  "menubar_abc__move" ].add_command( font = "TkFixedFont" , label = 'Move Box C contents to Box B'     , command = lambda: _move_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) ) #   -command => sub { &U__ABC__data_move("C" , "B")   ; } ]
 
     ####################################################################
     ##                      ABC Menu: Box Append                      ##
     ####################################################################
 
-    abc[ "menubar_abc__apnd"   ] = Menu( abc[ "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc__apnd"   ] = Menu( abc[  "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "Box Append" , menu = abc[  "menubar_abc__apnd" ] )
 
-    abc[ "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "Box Append" , menu = abc[ "menubar_abc__apnd" ] )
+    abc[  "menubar_abc__apnd" ].add_command( font = "TkFixedFont" , label = 'Append Box A contents to Box B'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) ) #   -command => sub { &U__ABC__data_append("A" , "B")  ; } ]
+    abc[  "menubar_abc__apnd" ].add_command( font = "TkFixedFont" , label = 'Append Box A contents to Box C'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) ) #   -command => sub { &U__ABC__data_append("A" , "C")  ; } ]
+    abc[  "menubar_abc__apnd" ].add_command( font = "TkFixedFont" , label = 'Append Box B contents to Box A'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) ) #   -command => sub { &U__ABC__data_append("B" , "A")  ; } ]
+    abc[  "menubar_abc__apnd" ].add_command( font = "TkFixedFont" , label = 'Append Box B contents to Box C'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) ) #   -command => sub { &U__ABC__data_append("B" , "C")  ; } ]
+    abc[  "menubar_abc__apnd" ].add_command( font = "TkFixedFont" , label = 'Append Box C contents to Box A'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) ) #   -command => sub { &U__ABC__data_append("C" , "A")  ; } ]
+    abc[  "menubar_abc__apnd" ].add_command( font = "TkFixedFont" , label = 'Append Box C contents to Box B'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) ) #   -command => sub { &U__ABC__data_append("C" , "B")  ; } ]
 
-    abc[ "menubar_abc__apnd"   ].add_command( font = "TkFixedFont" , label = 'Append Box A contents to Box B'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "B" } ) ) #   -command => sub { &U__ABC__data_append("A" , "B")  ; } ]
-    abc[ "menubar_abc__apnd"   ].add_command( font = "TkFixedFont" , label = 'Append Box A contents to Box C'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "A" , "to_box" : "C" } ) ) #   -command => sub { &U__ABC__data_append("A" , "C")  ; } ]
-    abc[ "menubar_abc__apnd"   ].add_command( font = "TkFixedFont" , label = 'Append Box B contents to Box A'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "A" } ) ) #   -command => sub { &U__ABC__data_append("B" , "A")  ; } ]
-    abc[ "menubar_abc__apnd"   ].add_command( font = "TkFixedFont" , label = 'Append Box B contents to Box C'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "B" , "to_box" : "C" } ) ) #   -command => sub { &U__ABC__data_append("B" , "C")  ; } ]
-    abc[ "menubar_abc__apnd"   ].add_command( font = "TkFixedFont" , label = 'Append Box C contents to Box A'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "A" } ) ) #   -command => sub { &U__ABC__data_append("C" , "A")  ; } ]
-    abc[ "menubar_abc__apnd"   ].add_command( font = "TkFixedFont" , label = 'Append Box C contents to Box B'   , command = lambda: _apnd_to_box_from_box( **{ "fm_box" : "C" , "to_box" : "B" } ) ) #   -command => sub { &U__ABC__data_append("C" , "B")  ; } ]
+    ####################################################################
+    ##                        ABC Menu: File A                        ##
+    ####################################################################
 
-    # ####################################################################
-    # ##                        ABC Menu: File A                        ##
-    # ####################################################################
-    # 
-    # abc[ "menubar_abc__file_a" ] = Menu( abc[ "menubar_abc" ] , tearoff = 1 )
-    # 
-    # abc[ "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "File A" , menu = abc[ "menubar_abc__file_a" ] )
-    # 
-    # abc[ "menubar_abc__file_a" ].add_command( font = "TkFixedFont" , label = 'Append File A and File B to Box A' , command = lambda: _not_done_yet() )
-    # abc[ "menubar_abc__file_a" ].add_command( font = "TkFixedFont" , label = 'Diff File A and File B to Box C'   , command = lambda: _not_done_yet() )
-    # 
-    # ####################################################################
-    # ##                        ABC Menu: File B                        ##
-    # ####################################################################
-    # 
-    # abc[ "menubar_abc__file_b" ] = Menu( abc[ "menubar_abc" ] , tearoff = 1 )
-    # 
-    # abc[ "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "File B" , menu = abc[ "menubar_abc__file_b"   ] )
-    # 
-    # abc[ "menubar_abc__file_b" ].add_command( font = "TkFixedFont" , label = 'Append File A and File B to Box A' , command = lambda: _not_done_yet() )
-    # abc[ "menubar_abc__file_b" ].add_command( font = "TkFixedFont" , label = 'Diff File A and File B to Box C'   , command = lambda: _not_done_yet() )
+    abc[  "menubar_abc__file_a" ] = Menu( abc[  "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "File A" , menu = abc[  "menubar_abc__file_a" ] )
+
+    abc[  "menubar_abc__file_a" ].add_command( font = "TkFixedFont" , label = 'Append File A and File B to Box A' , command = lambda: _not_done_yet() )
+    abc[  "menubar_abc__file_a" ].add_command( font = "TkFixedFont" , label = 'Diff File A and File B to Box C'   , command = lambda: _not_done_yet() )
+
+    ####################################################################
+    ##                        ABC Menu: File B                        ##
+    ####################################################################
+
+    abc[  "menubar_abc__file_b" ] = Menu( abc[  "menubar_abc" ] , tearoff = 1 )
+    abc[  "menubar_abc" ].add_cascade( font = "TkFixedFont" , label = "File B" , menu = abc[  "menubar_abc__file_b"   ] )
+
+    abc[  "menubar_abc__file_b" ].add_command( font = "TkFixedFont" , label = 'Append File A and File B to Box A' , command = lambda: _not_done_yet() )
+    abc[  "menubar_abc__file_b" ].add_command( font = "TkFixedFont" , label = 'Diff File A and File B to Box C'   , command = lambda: _not_done_yet() )
 
 # endregion  ## ABC Menu ###########################################
+
+
+
+
+
+
+
+
 
 
 
@@ -994,39 +1075,42 @@ def menubar_abc() :  ## 13cd78124d2365961e6369046b133d58 # 2024-04-10 10:10:11 #
 
 # region     ## Compare Menu ###########################################
 
-def menubar_compare() :  ## f2e630e1349142d89806c4914f3a2371 # 2024-04-10 10:13:00 #
+def menubar_compare() :  ## 80a128fbc9c3fa9ba506c46bf8d83298 # 2024-10-14 17:30:22 #
 
-    abc[ "menubar_compare"  ] = Menu( abc[ "menubar" ] , tearoff = 1 ) ; abc[ "menubar" ].add_cascade( label = "Compare"   , menu = abc[ "menubar_compare"  ] )
+    abc[  "menubar_compare"  ] = Menu( abc[  "menubar" ] , tearoff = 1 ) ; abc[  "menubar" ].add_cascade( label = "Compare"   , menu = abc[  "menubar_compare"  ] )
 
-    abc[ "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'A + B to C (Merge A and B)'                 , command = lambda: abc__compare__AB_union(     "A" , "B" , "C" ) )
-    abc[ "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'A - B to C (Take B from A)'                 , command = lambda: abc__compare__AB_minus(     "A" , "B" , "C" ) )
-    abc[ "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'B - A to C (Take A from B)'                 , command = lambda: abc__compare__AB_minus(     "B" , "A" , "C" ) )
-    abc[ "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'AB to C (In both A and B)'                  , command = lambda: abc__compare__AB_intersect( "A" , "B" , "C" ) )
-    abc[ "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'A + B - AB to C (In A or B but not both)'   , command = lambda: abc__compare__AB_symdiff(   "A" , "B" , "C" ) )
-    abc[ "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'Labeled Diff A and B'                       , command = lambda: abc__compare__AB_diff(      "A" , "B" , "C" ) )
-    abc[ "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'Count Lines in Each Box'                    , command = lambda: abc__cardinality_all() )
-
-    ####################################################################
-
-    abc[ "menubar_compare" ].add_separator()
+    abc[  "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'A + B to C (Merge A and B)'                 , command = lambda: abc__compare__AB_union(     "A" , "B" , "C" ) )
+    abc[  "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'A - B to C (Take B from A)'                 , command = lambda: abc__compare__AB_minus(     "A" , "B" , "C" ) )
+    abc[  "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'B - A to C (Take A from B)'                 , command = lambda: abc__compare__AB_minus(     "B" , "A" , "C" ) )
+    abc[  "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'AB to C (In both A and B)'                  , command = lambda: abc__compare__AB_intersect( "A" , "B" , "C" ) )
+    abc[  "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'A + B - AB to C (In A or B but not both)'   , command = lambda: abc__compare__AB_symdiff(   "A" , "B" , "C" ) )
+    abc[  "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'Labeled Diff A and B'                       , command = lambda: abc__compare__AB_diff(      "A" , "B" , "C" ) )
+    abc[  "menubar_compare" ].add_command( font = "TkFixedFont" , label = 'Count Lines in Each Box'                    , command = lambda: abc__cardinality_all() )
 
     ####################################################################
 
-    abc[ "menubar_compare__more"  ] = Menu( abc[ "menubar_compare" ] , tearoff = 1 )
+    abc[  "menubar_compare" ].add_separator()
 
-    abc[ "menubar_compare" ].add_cascade( font = "TkFixedFont" , label = "More" , menu = abc[ "menubar_compare__more"  ] )
+    ####################################################################
 
-    abc[ "menubar_compare__more"  ].add_command( font = "TkFixedFont" , label = 'A & B                 > Box C' , command = lambda: abc__compare__AB_union(     "A" , "B" , "C" ) )
-    abc[ "menubar_compare__more"  ].add_command( font = "TkFixedFont" , label = 'A - B                 > Box C' , command = lambda: abc__compare__AB_minus(     "A" , "B" , "C" ) )
-    abc[ "menubar_compare__more"  ].add_command( font = "TkFixedFont" , label = 'B - A                 > Box C' , command = lambda: abc__compare__AB_minus(     "B" , "A" , "C" ) )
-    abc[ "menubar_compare__more"  ].add_command( font = "TkFixedFont" , label = 'A | B                 > Box C' , command = lambda: abc__compare__AB_intersect( "A" , "B" , "C" ) )
-    abc[ "menubar_compare__more"  ].add_command( font = "TkFixedFont" , label = 'A \u0394 B = ( A - B ) & ( B - A )  > Box C' , command = lambda: abc__compare__AB_symdiff(   "A" , "B" , "C" ) )
-    abc[ "menubar_compare__more"  ].add_command( font = "TkFixedFont" , label = 'A X B (Cross Product) > Box C' , command = lambda: abc__compare__AB_cross_prod( "A" , "B" , "C" ) )
-    abc[ "menubar_compare__more"  ].add_command( font = "TkFixedFont" , label = '|A|         '                  , command = lambda: abc__cardinality_one( "A" ) )
-    abc[ "menubar_compare__more"  ].add_command( font = "TkFixedFont" , label = '|B|         '                  , command = lambda: abc__cardinality_one( "B" ) )
-    abc[ "menubar_compare__more"  ].add_command( font = "TkFixedFont" , label = '|C|         '                  , command = lambda: abc__cardinality_one( "C" ) )
+    abc[  "menubar_compare__more"  ] = Menu( abc[  "menubar_compare" ] , tearoff = 1 )
+    abc[  "menubar_compare" ].add_cascade( font = "TkFixedFont" , label = "More" , menu = abc[  "menubar_compare__more"  ] )
+
+    abc[  "menubar_compare__more" ].add_command( font = "TkFixedFont" , label = 'A & B                 > Box C' , command = lambda: abc__compare__AB_union(     "A" , "B" , "C" ) )
+    abc[  "menubar_compare__more" ].add_command( font = "TkFixedFont" , label = 'A - B                 > Box C' , command = lambda: abc__compare__AB_minus(     "A" , "B" , "C" ) )
+    abc[  "menubar_compare__more" ].add_command( font = "TkFixedFont" , label = 'B - A                 > Box C' , command = lambda: abc__compare__AB_minus(     "B" , "A" , "C" ) )
+    abc[  "menubar_compare__more" ].add_command( font = "TkFixedFont" , label = 'A | B                 > Box C' , command = lambda: abc__compare__AB_intersect( "A" , "B" , "C" ) )
+    abc[  "menubar_compare__more" ].add_command( font = "TkFixedFont" , label = 'A \u0394 B = ( A - B ) & ( B - A )  > Box C' , command = lambda: abc__compare__AB_symdiff(   "A" , "B" , "C" ) )
+    abc[  "menubar_compare__more" ].add_command( font = "TkFixedFont" , label = 'A X B (Cross Product) > Box C' , command = lambda: abc__compare__AB_cross_prod( "A" , "B" , "C" ) )
+    abc[  "menubar_compare__more" ].add_command( font = "TkFixedFont" , label = '|A|         '                  , command = lambda: abc__cardinality_one( "A" ) )
+    abc[  "menubar_compare__more" ].add_command( font = "TkFixedFont" , label = '|B|         '                  , command = lambda: abc__cardinality_one( "B" ) )
+    abc[  "menubar_compare__more" ].add_command( font = "TkFixedFont" , label = '|C|         '                  , command = lambda: abc__cardinality_one( "C" ) )
 
 # endregion  ## Compare Menu ###########################################
+
+
+
+
 
 ########################################################################
 #                          Compare Functions                           #
@@ -1034,7 +1118,7 @@ def menubar_compare() :  ## f2e630e1349142d89806c4914f3a2371 # 2024-04-10 10:13:
 
 # region     # Compare Functions #######################################
 
-def abc__compare__AB_union( box_a , box_b , to_box ) :
+def abc__compare__AB_union( box_a , box_b , to_box ) :  ## 22af3553312de5783cef2d925f396ac1 # 2024-10-14 17:31:56 #
 
     print( f'abc__compare__AB_union( "{box_a}" , "{box_b}" , "{to_box}" )')
 
@@ -1047,7 +1131,7 @@ def abc__compare__AB_union( box_a , box_b , to_box ) :
         if x and x.strip() : box[ to_box ].insert( "end" , f"{x}\n" )
 
 
-def abc__compare__AB_intersect( box_a , box_b , to_box ) :
+def abc__compare__AB_intersect( box_a , box_b , to_box ) :  ## 4f95caeff18a37e23c1ea393e324a7d0 # 2024-10-14 17:32:13 #
 
     print( f'abc__compare__AB_intersect( "{box_a}" , "{box_b}" , "{to_box}" )')
 
@@ -1060,7 +1144,7 @@ def abc__compare__AB_intersect( box_a , box_b , to_box ) :
         if x and x.strip() : box[ to_box ].insert( "end" , f"{x}\n" )
 
 
-def abc__compare__AB_minus( box_a , box_b , to_box ) :
+def abc__compare__AB_minus( box_a , box_b , to_box ) :  ## 40b4f68b557c6ae03717ccd6bab578c7 # 2024-10-14 17:32:46 #
 
     print( f'abc__compare__AB_minus( "{box_a}" , "{box_b}" , "{to_box}" )')
 
@@ -1073,7 +1157,7 @@ def abc__compare__AB_minus( box_a , box_b , to_box ) :
         if x and x.strip() : box[ to_box ].insert( "end" , f"{x}\n" )
 
 
-def abc__compare__AB_diff( box_a , box_b , to_box ) :
+def abc__compare__AB_diff( box_a , box_b , to_box ) :  ## d17e902cbf09d2f69005ad6d86c3ff34 # 2024-10-14 17:33:05 #
 
     print( f'abc__compare__AB_diff( "{box_a}" , "{box_b}" , "{to_box}" )')
 
@@ -1092,7 +1176,7 @@ def abc__compare__AB_diff( box_a , box_b , to_box ) :
     for x in set_a.intersection( set_b ) : box[ to_box ].insert( "end" , f"{x}\n" )
 
 
-def abc__compare__AB_symdiff( box_a , box_b , to_box ) :
+def abc__compare__AB_symdiff( box_a , box_b , to_box ) :  ## 5ce5ac8c7baa7a39f9d190d024f9c0ee # 2024-10-14 17:33:36 #
 
     print( f'abc__compare__AB_symdiff( "{box_a}" , "{box_b}" , "{to_box}" )')
 
@@ -1105,7 +1189,7 @@ def abc__compare__AB_symdiff( box_a , box_b , to_box ) :
         if x and x.strip() : box[ to_box ].insert( "end" , f"{x}\n" )
 
 
-def abc__cardinality_one( fm_box ):
+def abc__cardinality_one( fm_box ) :  ## 3bf24bd2496088ca5954514bdb9073a0 # 2024-10-14 17:33:52 #
 
     print( f'abc__cardinality_one( "{fm_box}" )')
 
@@ -1114,7 +1198,7 @@ def abc__cardinality_one( fm_box ):
     messagebox.showinfo( 'Cardinality' , f'{len( lst_a ):14,d} : Total lines in Box {fm_box}\n{len( set( lst_a ) ):14,d} : Total unique lines in Box {fm_box}' )
 
 
-def abc__cardinality_all( ):
+def abc__cardinality_all() :  ## f4298839cc382008238a8e8f15575a0e # 2024-10-14 17:34:36 #
 
     print( f'abc__cardinality_all( )')
 
@@ -1147,7 +1231,7 @@ def abc__cardinality_all( ):
     messagebox.showinfo( 'Cardinality' , message_text )
 
 
-def abc__compare__AB_cross_prod( box_a , box_b , to_box ) :
+def abc__compare__AB_cross_prod( box_a , box_b , to_box ) :  ## ff9ea25749cff04b68a46bcb4c41975e # 2024-10-14 17:34:52 #
 
     set_a = set( box[ box_a ].get( "1.0" , 'end-1c' ).splitlines() )
     set_b = set( box[ box_b ].get( "1.0" , 'end-1c' ).splitlines() )
@@ -1300,51 +1384,277 @@ def menubar_convert() :
 
 # region     ## Text Ops Menu ##########################################
 
-def menubar_tops() :  ## 3cfc12be2791544118f97540af820fa2 # 2024-04-10 10:16:45 #
+def menubar_tops() :  ## 7c4527a9e19c3febdeb5d83e775e8fc2 # 2024-10-14 17:37:25 #
 
-    abc[ "menubar_tops"     ] = Menu( abc[ "menubar" ] , tearoff = 1 ) ; abc[ "menubar" ].add_cascade( label = "Text Ops" , menu = abc[ "menubar_tops"     ] )
+    abc[  "menubar_tops"     ] = Menu( abc[  "menubar" ] , tearoff = 1 ) ; abc[  "menubar" ].add_cascade( label = "Text Ops" , menu = abc[  "menubar_tops"     ] )
 
     ####################################################################
     ##              Text Ops Menu : Basic Bash Commands               ##
     ####################################################################
 
-    abc[ "menubar_tops"   ].add_command( font = "TkFixedFont" , label = 'sort (A) and unique (C)'                           , command = lambda: abc__tops__sort_unique(            "A" , "C" ) )
-    abc[ "menubar_tops"   ].add_command( font = "TkFixedFont" , label = 'sort (A), unique and count (C)'                    , command = lambda: abc__tops__sort_unique_count(      "A" , "C" ) )
-    abc[ "menubar_tops"   ].add_command( font = "TkFixedFont" , label = 'sort (A), unique, count and sort again (C)'        , command = lambda: abc__tops__sort_unique_count_sort( "A" , "C" ) )
-    abc[ "menubar_tops"   ].add_command( font = "TkFixedFont" , label = 'Split lines from (A) into n line groups (C)'       , command = lambda: abc__tops__split_by_n_lines( "A" , "C" ) )
-    abc[ "menubar_tops"   ].add_command( font = "TkFixedFont" , label = 'Shuffle lines (A) to (C)'                          , command = lambda: abc__tops__randomize_list(   "A" , "C" ) )
-    abc[ "menubar_tops"   ].add_command( font = "TkFixedFont" , label = 'String Interpolate (B) using vars in (A) to to (C)' , command = lambda: abc__tops__string_interpolate( "A" , "B" , "C" ) )
+    abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'sort (A) and unique (C)'                           , command = lambda: abc__tops__sort_unique(            "A" , "C" ) )
+    abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'sort (A), unique and count (C)'                    , command = lambda: abc__tops__sort_unique_count(      "A" , "C" ) )
+    abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'sort (A), unique, count and sort again (C)'        , command = lambda: abc__tops__sort_unique_count_sort( "A" , "C" ) )
+    #abc[ "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Grep from (B) using args in (A) to (C)'            , command = lambda: _not_done_yet() )
+    #abc[ "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Grep -i from (B) using args in (A) to (C)'         , command = lambda: _not_done_yet() )
+    abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Split lines from (A) into n line groups (C)'       , command = lambda: abc__tops__split_by_n_lines( "A" , "C" ) )
+    abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Shuffle lines (A) to (C)'                          , command = lambda: abc__tops__randomize_list(   "A" , "C" ) )
+    abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Split (A) to Tokens (C) by Space'                  , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Split (A) to Tokens (C) with Simple Tokenizer'     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Reverse order of lines in (A) to (C)'              , command = lambda: _not_done_yet() )
+    #abc[ "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Get Character Frequency in (A) to (C)'             , command = lambda: _not_done_yet() )
+    #abc[ "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Group (A) by first $n Characters to (C)'           , command = lambda: _not_done_yet() )
+    #abc[ "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Dedupe lines (A) by first $n Characters to (C)'    , command = lambda: _not_done_yet() )
+    #abc[ "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Remove extra HTML Attributes (C) to (C)'           , command = lambda: _not_done_yet() )
+    #abc[ "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Prepend (A) and Append (B) to each in (C) to (D)'  , command = lambda: _not_done_yet() )
+    #abc[ "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Bulk Search and Replace from (A) to (C)'           , command = lambda: _not_done_yet() )
+    #abc[ "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Unescape Escaped Characters (A) to (C)'            , command = lambda: _not_done_yet() ) #  { "boxin" => "A" , "boxout" => "C" } )          ; } ]
+    abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'String Interpolate (B) using vars in (A) to to (C)' , command = lambda: abc__tops__string_interpolate( "A" , "B" , "C" ) )
+
 
     ####################################################################
     ##                Text Ops Menu : Extract Columns                 ##
     ####################################################################
 
+    #abc[ "menubar_tops__extract_cols"     ] = Menu( abc[  "menubar_tops" ] , tearoff = 1 )
+
+    #abc[ "menubar_tops__extract_cols"   ] = Menu( abc[  "menubar_tops" ] , tearoff = 1 )
+
+    #abc[ "menubar_tops"  ].add_cascade( font = "TkFixedFont" , label = "Extract Columns of Text" , menu = abc[  "menubar_tops__extract_cols" ] )
+
+    #abc[ "menubar_tops__extract_cols" ].add_command( font = "TkFixedFont" , label = 'Tab delim column in (A) to (C)'                    , command = lambda: _not_done_yet() ) # umn( { 'box' => "A" , 'sepval' => "tab"   } ) ; } ]
+    #abc[ "menubar_tops__extract_cols" ].add_command( font = "TkFixedFont" , label = 'Tab delim column in (B) to (C)'                    , command = lambda: _not_done_yet() ) # umn( { 'box' => "B" , 'sepval' => "tab"   } ) ; } ]
+    #abc[ "menubar_tops__extract_cols" ].add_command( font = "TkFixedFont" , label = 'Comma delim column in (A) to (C)'                  , command = lambda: _not_done_yet() ) # umn( { 'box' => "A" , 'sepval' => "comma" } ) ; } ]
+    #abc[ "menubar_tops__extract_cols" ].add_command( font = "TkFixedFont" , label = 'Comma delim column in (B) to (C)'                  , command = lambda: _not_done_yet() ) # umn( { 'box' => "B" , 'sepval' => "comma" } ) ; } ]
+    #abc[ "menubar_tops__extract_cols" ].add_command( font = "TkFixedFont" , label = 'Pipe delim column in (A) to (C)'                   , command = lambda: _not_done_yet() ) # umn( { 'box' => "A" , 'sepval' => "pipe"  } ) ; } ]
+    #abc[ "menubar_tops__extract_cols" ].add_command( font = "TkFixedFont" , label = 'pipe delim column in (B) to (C)'                   , command = lambda: _not_done_yet() ) # umn( { 'box' => "B" , 'sepval' => "pipe"  } ) ; } ]
+
     ####################################################################
     ##                  Text Ops Menu : Add/Replace                   ##
     ####################################################################
 
-    abc[ "menubar_tops__add_replace"  ] = Menu( abc[ "menubar_tops" ] , tearoff = 1 )
+    abc[  "menubar_tops__add_replace"  ] = Menu( abc[  "menubar_tops" ] , tearoff = 1 )
 
-    abc[ "menubar_tops" ].add_cascade( font = "TkFixedFont" , label = "Add/Replace" , menu = abc[ "menubar_tops__add_replace" ] )
+    abc[  "menubar_tops" ].add_cascade( font = "TkFixedFont" , label = "Add/Replace" , menu = abc[  "menubar_tops__add_replace" ] )
 
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Escape Characters in (A)'                           , command = lambda: abc__tops__add_replace( "A" , "A" , "\n" , "escape"  ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Add quotes to strings in (A)'                       , command = lambda: abc__tops__add_replace( "A" , "A" , "\n" , "quotes_strings"  ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Add quotes to everything in (A)'                    , command = lambda: abc__tops__add_replace( "A" , "A" , "\n" , "quotes"  ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Pipe (A) with a Newline (C)'                , command = lambda: abc__tops__add_replace( "A" , "C" , "|"  , "\n"      ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace single space (A) with a Newline (C)'        , command = lambda: abc__tops__add_replace( "A" , "C" , " "  , "\n"      ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Comma (A) with a Newline (C)'               , command = lambda: abc__tops__add_replace( "A" , "C" , ","  , "\n"      ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace tab (A) with a Newline (C)'                 , command = lambda: abc__tops__add_replace( "A" , "C" , "\t" , "\n"      ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with a Pipe (C)'                , command = lambda: abc__tops__add_replace( "A" , "C" , "\n" , "|"       ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with a comma (C)'               , command = lambda: abc__tops__add_replace( "A" , "C" , "\n" , ","       ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with a tab (C)'                 , command = lambda: abc__tops__add_replace( "A" , "C" , "\n" , "\t"      ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with space (C)'                 , command = lambda: abc__tops__add_replace( "A" , "C" , "\n" , " "       ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with double space (C)'          , command = lambda: abc__tops__add_replace( "A" , "C" , "\n" , "\n\n"    ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with nothing (C)'               , command = lambda: abc__tops__add_replace( "A" , "C" , "\n" , ""        ) )
-    abc[ "menubar_tops__add_replace"      ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with OR (C)'                    , command = lambda: abc__tops__add_replace( "A" , "C" , "\n" , " OR "    ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Escape Characters in (A)'                           , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "A" , "find_this" : "escape"    , "repl_with" : "newline"     } ) ) #  "\n" , "escape"  ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Add quotes to strings in (A)'                       , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "A" , "find_this" : "quote_str" , "repl_with" : "newline"     } ) ) #  "\n" , "quotes_strings"  ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Add quotes to everything in (A)'                    , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "A" , "find_this" : "quote_all" , "repl_with" : "newline"     } ) ) #  "\n" , "quotes"  ) )
+
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Pipe (A) with a Newline (C)'                , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "pipe"      , "repl_with" : "newline"     } ) ) #  "|"  , "\n"      ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace white space (A) with a Newline (C)'         , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "space"     , "repl_with" : "newline"     } ) ) #  " "  , "\n"      ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace non-word chars (A) with a Newline (C)'      , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "non_word"  , "repl_with" : "newline"     } ) ) #  " "  , "\n"      ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Comma (A) with a Newline (C)'               , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "comma"     , "repl_with" : "newline"     } ) ) #  ","  , "\n"      ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace tab (A) with a Newline (C)'                 , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "tab"       , "repl_with" : "newline"     } ) ) #  "\t" , "\n"      ) )
+
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with a comma (C)'               , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "newline"   , "repl_with" : "comma"       } ) ) #  "\n" , ","       ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with a tab (C)'                 , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "newline"   , "repl_with" : "tab"         } ) ) #  "\n" , "\t"      ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with space (C)'                 , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "newline"   , "repl_with" : "space"       } ) ) #  "\n" , " "       ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with comma space (C)'           , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "newline"   , "repl_with" : "comma_space" } ) ) #  "\n" , "\n\n"    ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with nothing (C)'               , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "newline"   , "repl_with" : "nothing"     } ) ) #  "\n" , ""        ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with a Pipe (C)'                , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "newline"   , "repl_with" : "pipe"        } ) ) #  "\n" , "|"       ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with OR (C)'                    , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "newline"   , "repl_with" : "OR"          } ) ) #  "\n" , " OR "    ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with double space (C)'          , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "newline"   , "repl_with" : "lflf"        } ) ) #  "\n" , "\n\n"    ) )
+    abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with a CRLF (C)'                , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "newline"   , "repl_with" : "crlf"        } ) ) #  "\n" , ","       ) )
+
 
     ####################################################################
     ##                Text Ops Menu : String Reversals                ##
     ####################################################################
+
+    #abc[ "menubar_tops__newlines"         ] = Menu( abc[  "menubar_tops" ] , tearoff = 1 )
+
+    #abc[ "menubar_tops__reverse_strings"   ] = Menu( abc[  "menubar_tops" ] , tearoff = 1 )
+
+    #abc[ "menubar_tops"  ].add_cascade( font = "TkFixedFont" , label = "Reverse Strings and Lists" , menu = abc[  "menubar_tops__reverse_strings" ] )
+
+    #abc[ "menubar_tops__reverse_strings"  ] = Menu( abc[  "menubar_tops" ] , tearoff = 1 )
+    #abc[ "menubar_tops"  ].add_cascade( font = "TkFixedFont" , label = "String Reversal" , menu = abc[  "menubar_tops__reverse_strings" ] )
+
+    #abc[ "menubar_tops__reverse_strings" ].add_command( font = "TkFixedFont" , label = 'Reverse String (A) to (C)'                         , command = lambda: _not_done_yet() ) #  { 'type' => 'string'                   } ) ; } ]
+    #abc[ "menubar_tops__reverse_strings" ].add_command( font = "TkFixedFont" , label = 'Reverse dot Separated List (A) to (C)'             , command = lambda: _not_done_yet() ) #  { 'type' => 'list'   , "split" => '\.' , "join" => '.'  } ) ; } ]
+    #abc[ "menubar_tops__reverse_strings" ].add_command( font = "TkFixedFont" , label = 'Reverse colon Separated List (A) to (C)'           , command = lambda: _not_done_yet() ) #  { 'type' => 'list'   , "split" => '\:' , "join" => ':'  } ) ; } ]
+    #abc[ "menubar_tops__reverse_strings" ].add_command( font = "TkFixedFont" , label = 'Reverse pipe Separated List (A) to (C)'            , command = lambda: _not_done_yet() ) #  { 'type' => 'list'   , "split" => '\|' , "join" => '|'  } ) ; } ]
+    #abc[ "menubar_tops__reverse_strings" ].add_command( font = "TkFixedFont" , label = 'Reverse comma Separated List (A) to (C)'           , command = lambda: _not_done_yet() ) #  { 'type' => 'list'   , "split" => ','  , "join" => ','  } ) ; } ]
+    #abc[ "menubar_tops__reverse_strings" ].add_command( font = "TkFixedFont" , label = 'Reverse tab Separated List (A) to (C)'             , command = lambda: _not_done_yet() ) #  { 'type' => 'list'   , "split" => '\t' , "join" => "\t" } ) ; } ]
+    #abc[ "menubar_tops__reverse_strings" ].add_command( font = "TkFixedFont" , label = 'Reverse semi-colon Separated List (A) to (C)'      , command = lambda: _not_done_yet() ) #  { 'type' => 'list'   , "split" => ';'  , "join" => ';'  } ) ; } ]
+
+    ####################################################################
+    ##              Text Ops Menu : More Text Splitting               ##
+    ####################################################################
+
+    #region    ## Text Ops Menu : More Text Splitting ##################
+
+    abc[  "menubar_tops_split_more"  ] = Menu( abc[  "menubar_tops" ] , tearoff = 1 )
+    abc[  "menubar_tops" ].add_cascade( font = "TkFixedFont" , label = "More Text Splitting Functions" , menu = abc[  "menubar_tops_split_more" ] )
+
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace.'                                                                , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Dedupe.'                                                        , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. MinLen=4.'                                                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. MaxLen=48.'                                                     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. English Stops.'                                                 , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted.'                                                        , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. MinLen=4. Dedupe.'                                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. MaxLen=48. Dedupe.'                                             , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. English Stops. Dedupe.'                                         , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. Dedupe.'                                                , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. MinLen=4. MaxLen=48.'                                           , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. MinLen=4. English Stops.'                                       , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. MinLen=4.'                                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. MaxLen=48. English Stops.'                                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. MaxLen=48.'                                             , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. English Stops.'                                         , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. MinLen=4. MaxLen=48. Dedupe.'                                   , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. MinLen=4. English Stops. Dedupe.'                               , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. MinLen=4. Dedupe.'                                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. MaxLen=48. English Stops. Dedupe.'                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. MaxLen=48. Dedupe.'                                     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. English Stops. Dedupe.'                                 , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. MinLen=4. MaxLen=48. English Stops.'                            , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. MinLen=4. MaxLen=48.'                                   , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. MinLen=4. English Stops.'                               , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. MaxLen=48. English Stops.'                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. MinLen=4. MaxLen=48. English Stops. Dedupe.'                    , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. MinLen=4. MaxLen=48. Dedupe.'                           , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. MinLen=4. English Stops. Dedupe.'                       , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. MaxLen=48. English Stops. Dedupe.'                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. MinLen=4. MaxLen=48. English Stops.'                    , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Whitespace. Sorted. MinLen=4. MaxLen=48. English Stops. Dedupe.'            , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer.'                                                          , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Dedupe.'                                                  , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. MinLen=4.'                                                , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. MaxLen=48.'                                               , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. English Stops.'                                           , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted.'                                                  , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. MinLen=4. Dedupe.'                                        , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. MaxLen=48. Dedupe.'                                       , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. English Stops. Dedupe.'                                   , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. Dedupe.'                                          , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. MinLen=4. MaxLen=48.'                                     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. MinLen=4. English Stops.'                                 , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. MinLen=4.'                                        , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. MaxLen=48. English Stops.'                                , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. MaxLen=48.'                                       , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. English Stops.'                                   , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. MinLen=4. MaxLen=48. Dedupe.'                             , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. MinLen=4. English Stops. Dedupe.'                         , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. MinLen=4. Dedupe.'                                , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. MaxLen=48. English Stops. Dedupe.'                        , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. MaxLen=48. Dedupe.'                               , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. English Stops. Dedupe.'                           , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. MinLen=4. MaxLen=48. English Stops.'                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. MinLen=4. MaxLen=48.'                             , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. MinLen=4. English Stops.'                         , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. MaxLen=48. English Stops.'                        , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. MinLen=4. MaxLen=48. English Stops. Dedupe.'              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. MinLen=4. MaxLen=48. Dedupe.'                     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. MinLen=4. English Stops. Dedupe.'                 , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. MaxLen=48. English Stops. Dedupe.'                , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. MinLen=4. MaxLen=48. English Stops.'              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Simple Tokenizer. Sorted. MinLen=4. MaxLen=48. English Stops. Dedupe.'      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "simple"   , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only.'                                                               , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Dedupe.'                                                       , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. MinLen=4.'                                                     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. MaxLen=48.'                                                    , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. English Stops.'                                                , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted.'                                                       , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. MinLen=4. Dedupe.'                                             , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. MaxLen=48. Dedupe.'                                            , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. English Stops. Dedupe.'                                        , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. Dedupe.'                                               , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. MinLen=4. MaxLen=48.'                                          , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. MinLen=4. English Stops.'                                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. MinLen=4.'                                             , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. MaxLen=48. English Stops.'                                     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. MaxLen=48.'                                            , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. English Stops.'                                        , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. MinLen=4. MaxLen=48. Dedupe.'                                  , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. MinLen=4. English Stops. Dedupe.'                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. MinLen=4. Dedupe.'                                     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. MaxLen=48. English Stops. Dedupe.'                             , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. MaxLen=48. Dedupe.'                                    , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. English Stops. Dedupe.'                                , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. MinLen=4. MaxLen=48. English Stops.'                           , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. MinLen=4. MaxLen=48.'                                  , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. MinLen=4. English Stops.'                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. MaxLen=48. English Stops.'                             , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. MinLen=4. MaxLen=48. English Stops. Dedupe.'                   , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. MinLen=4. MaxLen=48. Dedupe.'                          , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. MinLen=4. English Stops. Dedupe.'                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. MaxLen=48. English Stops. Dedupe.'                     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. MinLen=4. MaxLen=48. English Stops.'                   , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Alphas Only. Sorted. MinLen=4. MaxLen=48. English Stops. Dedupe.'           , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "alpha"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars'                                                                 , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Dedupe.'                                                        , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. MinLen=4.'                                                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. MaxLen=48.'                                                     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. English Stops.'                                                 , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted.'                                                        , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. MinLen=4. Dedupe.'                                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. MaxLen=48. Dedupe.'                                             , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. English Stops. Dedupe.'                                         , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. Dedupe.'                                                , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. MinLen=4. MaxLen=48.'                                           , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. MinLen=4. English Stops.'                                       , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. MinLen=4.'                                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. MaxLen=48. English Stops.'                                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. MaxLen=48.'                                             , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. English Stops.'                                         , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. MinLen=4. MaxLen=48. Dedupe.'                                   , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. MinLen=4. English Stops. Dedupe.'                               , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. MinLen=4. Dedupe.'                                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. MaxLen=48. English Stops. Dedupe.'                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. MaxLen=48. Dedupe.'                                     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. English Stops. Dedupe.'                                 , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. MinLen=4. MaxLen=48. English Stops.'                            , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. MinLen=4. MaxLen=48.'                                   , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. MinLen=4. English Stops.'                               , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. MaxLen=48. English Stops.'                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. MinLen=4. MaxLen=48. English Stops. Dedupe.'                    , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. MinLen=4. MaxLen=48. Dedupe.'                           , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. MinLen=4. English Stops. Dedupe.'                       , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. MaxLen=48. English Stops. Dedupe.'                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. MinLen=4. MaxLen=48. English Stops.'                    , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Word Chars. Sorted. MinLen=4. MaxLen=48. English Stops. Dedupe.'            , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "words"    , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+   
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer.'                                                        , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Dedupe.'                                                , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. MinLen=4.'                                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. MaxLen=48.'                                             , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. English Stops.'                                         , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted.'                                                , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. MinLen=4. Dedupe.'                                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. MaxLen=48. Dedupe.'                                     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. English Stops. Dedupe.'                                 , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. Dedupe.'                                        , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. MinLen=4. MaxLen=48.'                                   , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. MinLen=4. English Stops.'                               , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MinLen=4.'                                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. MaxLen=48. English Stops.'                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MaxLen=48.'                                     , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. English Stops.'                                 , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. MinLen=4. MaxLen=48. Dedupe.'                           , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. MinLen=4. English Stops. Dedupe.'                       , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MinLen=4. Dedupe.'                              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. MaxLen=48. English Stops. Dedupe.'                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MaxLen=48. Dedupe.'                             , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. English Stops. Dedupe.'                         , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. MinLen=4. MaxLen=48. English Stops.'                    , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MinLen=4. MaxLen=48.'                           , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MinLen=4. English Stops.'                       , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MaxLen=48. English Stops.'                      , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. MinLen=4. MaxLen=48. English Stops. Dedupe.'            , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 0 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MinLen=4. MaxLen=48. Dedupe.'                   , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 0 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MinLen=4. English Stops. Dedupe.'               , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" :  0 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MaxLen=48. English Stops. Dedupe.'              , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    #abc[ "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MinLen=4. MaxLen=48. English Stops.'            , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 0 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+    abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MinLen=4. MaxLen=48. English Stops. Dedupe.'    , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
+
+    #endregion ## Text Ops Menu : More Text Splitting ##################
+
 
     ####################################################################
     ##                    Text Ops Menu : Examples                    ##
@@ -1352,33 +1662,42 @@ def menubar_tops() :  ## 3cfc12be2791544118f97540af820fa2 # 2024-04-10 10:16:45 
 
     ####################################################################
 
-    abc[ "menubar_tops" ].add_separator()
+    abc[  "menubar_tops" ].add_separator()
 
     ####################################################################
 
-    abc[ "menubar_tops__examples" ] = Menu( abc[ "menubar_tops" ] , tearoff = 1 )
+    abc[  "menubar_tops__examples" ] = Menu( abc[  "menubar_tops" ] , tearoff = 1 )
 
-    abc[ "menubar_tops" ].add_cascade( font = "TkFixedFont" , label = "Text Ops Examples" , menu = abc[ "menubar_tops__examples" ] )
+    abc[  "menubar_tops" ].add_cascade( font = "TkFixedFont" , label = "Text Ops Examples" , menu = abc[  "menubar_tops__examples" ] )
 
-    abc[ "menubar_tops__examples" ].add_command( font = "TkFixedFont" , label = 'String Interpolate : Ping'            , command = lambda: abc__tops__examples( "abc__tops__interpolate_ping" ) )
-    abc[ "menubar_tops__examples" ].add_command( font = "TkFixedFont" , label = 'String Interpolate : Ping with status', command = lambda: abc__tops__examples( "abc__tops__interpolate_ping_status" ) )
-    abc[ "menubar_tops__examples" ].add_command( font = "TkFixedFont" , label = 'String Interpolate : Ping with color' , command = lambda: abc__tops__examples( "abc__tops__interpolate_ping_color" ) )
-    abc[ "menubar_tops__examples" ].add_command( font = "TkFixedFont" , label = 'String Interpolate : NMap Advanced'   , command = lambda: abc__tops__examples( "abc__tops__interpolate_nmap_advanced" ) )
+    abc[  "menubar_tops__examples" ].add_command( font = "TkFixedFont" , label = 'String Interpolate : Ping'            , command = lambda: abc__tops__examples( "abc__tops__interpolate_ping" ) )
+    abc[  "menubar_tops__examples" ].add_command( font = "TkFixedFont" , label = 'String Interpolate : Ping with status', command = lambda: abc__tops__examples( "abc__tops__interpolate_ping_status" ) )
+    abc[  "menubar_tops__examples" ].add_command( font = "TkFixedFont" , label = 'String Interpolate : Ping with color' , command = lambda: abc__tops__examples( "abc__tops__interpolate_ping_color" ) )
+    abc[  "menubar_tops__examples" ].add_command( font = "TkFixedFont" , label = 'String Interpolate : NMap Advanced'   , command = lambda: abc__tops__examples( "abc__tops__interpolate_nmap_advanced" ) )
 
-
-    ####################################################################
-
-    abc[ "menubar_tops" ].add_separator()
 
     ####################################################################
 
-    abc[ "menubar_tops__help" ] = Menu( abc[ "menubar_tops" ] , tearoff = 1 )
+    abc[  "menubar_tops" ].add_separator()
 
-    abc[ "menubar_tops" ].add_cascade( font = "TkFixedFont" , label = "Help with Text Ops functions" , menu = abc[ "menubar_tops__help" ] )
+    ####################################################################
 
-    abc[ "menubar_tops__help" ].add_command( font = "TkFixedFont" , label = 'Help : sort (A) and unique (C)' , command = lambda: abc__tops__help( "abc__tops__sort_unique" ) )
+    abc[  "menubar_tops__help" ] = Menu( abc[  "menubar_tops" ] , tearoff = 1 )
+
+    abc[  "menubar_tops" ].add_cascade( font = "TkFixedFont" , label = "Help with Text Ops functions" , menu = abc[  "menubar_tops__help" ] )
+
+    abc[  "menubar_tops__help" ].add_command( font = "TkFixedFont" , label = 'Help : sort (A) and unique (C)' , command = lambda: abc__tops__help( "abc__tops__sort_unique" ) )
 
 # endregion  ## Text Ops Menu ##########################################
+
+
+
+
+
+
+
+
+
 
 
 ########################################################################
@@ -1386,6 +1705,335 @@ def menubar_tops() :  ## 3cfc12be2791544118f97540af820fa2 # 2024-04-10 10:16:45 
 ########################################################################
 
 # region     # Text Ops Functions ######################################
+
+
+
+def abc__tops__add_replace( **kwargs ) :  ## f627f3ca194584fe35e9c914e6557ed2 # 2024-10-14 11:35:14 #
+
+    fm_box    = kwargs.get( "fm_box"    , "A" )
+    to_box    = kwargs.get( "to_box"    , "C" )
+
+    find_this = { 
+            "newline"   : r"\n" 
+        ,   "crnl"      : r"\r\n" 
+        ,   "non_word"  : r"\W+" 
+        ,   "non_space" : r"\S+" 
+        ,   "space"     : r"\s+" 
+        ,   "comma"     : r"," 
+        ,   "tab"       : r"\t" 
+        ,   "pipe"      : r"|" 
+        }.get( kwargs.get( "find_this" ) , "space" )
+
+    repl_with = { 
+            "newline"     :  "\n" 
+        ,   "comma"       : r"," 
+        ,   "tab"         :  "\t" 
+        ,   "space"       : r"  " 
+        ,   "comma_space" : r", " 
+        ,   "nothing"     : r"" 
+        ,   "pipe"        : r"|" 
+        ,   "OR"          : r" OR " 
+        ,   "lflf"        :  "\n\n" 
+        ,   "crlf"        :  "\r\n" 
+        }.get( kwargs.get( "repl_with" ) , "nl" )
+
+    timenow = datetime.datetime.now()
+
+    print( f'# INFO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # abc__tops__add_replace( {{ "fm_box" : "{fm_box}" , "to_box" : "{to_box}" , "find_this" : "{repr(find_this)}" , "repl_with" : "{repr(repl_with)}" }} )' )
+
+    if   find_this == "crnl" : pass
+    elif find_this == "nl" : pass
+    else :
+
+        lst_to = []
+
+        for x in [ x for x in re.split( find_this , box[ fm_box ].get( "1.0" , 'end-1c' ) ) if x and x.strip() ] : lst_to.append( x )
+
+        if lst_to : 
+            
+            _clear_box( to_box )
+            
+            box[ to_box ].insert( "end" , f'{repl_with.join(lst_to)}\n' )
+
+
+def abc__tops__randomize_list( fm_box , to_box ) :  ## 80293db13c24fb70f816073cb8b6b81a # 2024-04-10 10:20:06 #
+
+    lst_fm = box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines()
+
+    random.shuffle(lst_fm)
+
+    _clear_box( to_box )
+
+    for x in lst_fm :
+
+        box[ to_box ].insert( "end" , f'{x}\n' )
+
+
+def abc__tops__sort_unique( fm_box , to_box ) :
+
+    fm_set = set( box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() )
+
+    _clear_box( to_box )
+
+    for x in sorted( fm_set ) :
+
+        box[ to_box ].insert( "end" , f'{x}\n' )
+
+
+def abc__tops__sort_unique_count( fm_box , to_box ) :
+
+    lst_fm = box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines()
+
+    cnt_fm = Counter( lst_fm )
+
+    _clear_box( to_box )
+
+    for v , c in sorted( cnt_fm.items() ) :
+
+        box[ to_box ].insert( "end" , f'{c:8,d} : {v}\n' )
+
+
+def abc__tops__sort_unique_count_sort( fm_box , to_box ) :
+
+    lst_fm = box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines()
+
+    cnt_fm = Counter( lst_fm )
+
+    _clear_box( to_box )
+
+    for v , c in cnt_fm.most_common() :
+
+        box[ to_box ].insert( "end" , f'{c:8,d} : {v}\n' )
+
+
+def abc__tops__string_interpolate( vars_box , str_box , to_box ) :  ## 8c30bbab6c1a3ba7dc86f3139fa5633f # 2024-10-14 17:39:32 #
+
+  lst_vars  = [ x.strip() for x in box[ vars_box ].get( "1.0" , 'end-1c' ).splitlines() if x.strip() ]
+  repl_old = box[ str_box ].get( "1.0" , 'end-1c' )
+
+  search_vars = {}
+
+  _clear_box( to_box )
+
+  for var in lst_vars :
+
+    if not var.strip() : continue
+
+    if kv := re.search( r'^(\S+)\s?=\s?(..*)$' , var ) :
+      search_vars |= { kv.groups(1) , kv.groups(2) }
+    else :
+      repl_new = repl_old
+      for k,v in search_vars.items() : repl_new = repl_new.replace( f'#{{{k}}}' , v )
+      repl_new = repl_new.replace( r'#{ReplaceMe}' , var ) # default string to replace
+      box[ to_box ].insert( "end" , f'{repl_new}\n' )
+
+
+def abc__tops__split_string_by( **kwargs ) :  ## 621901c9724e1436983db3f8f0908171 # 2024-10-14 01:04:34 #
+
+    timenow = datetime.datetime.now()
+
+    fm_box = kwargs.get( "fm_box" , "A" )
+    to_box = kwargs.get( "to_box" , fm_box )
+    split_by  = kwargs.get( "split_by"  , "space" )
+    dedupe    = kwargs.get( "dedupe"    , 0       )
+    sort_it   = kwargs.get( "sort_it"   , 0       )
+
+    stops_en         = kwargs.get( "stops_en"         , 0 )
+    min_token_length = kwargs.get( "min_token_length" , 0 )
+    max_token_length = kwargs.get( "max_token_length" , 0 )
+
+    english_stops=[ "a","an","and","are","as","at","be","but","by","for","if","in","into","is","it","no","not","of","on","or","such","that","the","their","then","there","these","they","this","to","was","will","with" ]
+    # english_stop_long_list=[ "'ll","'tis","'twas","'ve","10","39","a","a's","able","ableabout","about","above","abroad","abst","accordance","according","accordingly","across","act","actually","ad","added","adj","adopted","ae","af","affected","affecting","affects","after","afterwards","ag","again","against","ago","ah","ahead","ai","ain't","aint","al","all","allow","allows","almost","alone","along","alongside","already","also","although","always","am","amid","amidst","among","amongst","amoungst","amount","an","and","announce","another","any","anybody","anyhow","anymore","anyone","anything","anyway","anyways","anywhere","ao","apart","apparently","appear","appreciate","appropriate","approximately","aq","ar","are","area","areas","aren","aren't","arent","arise","around","arpa","as","aside","ask","asked","asking","asks","associated","at","au","auth","available","aw","away","awfully","az","b","ba","back","backed","backing","backs","backward","backwards","bb","bd","be","became","because","become","becomes","becoming","been","before","beforehand","began","begin","beginning","beginnings","begins","behind","being","beings","believe","below","beside","besides","best","better","between","beyond","bf","bg","bh","bi","big","bill","billion","biol","bj","bm","bn","bo","both","bottom","br","brief","briefly","bs","bt","but","buy","bv","bw","by","bz","c","c'mon","c's","ca","call","came","can","can't","cannot","cant","caption","case","cases","cause","causes","cc","cd","certain","certainly","cf","cg","ch","changes","ci","ck","cl","clear","clearly","click","cm","cmon","cn","co","co.","com","come","comes","computer","con","concerning","consequently","consider","considering","contain","containing","contains","copy","corresponding","could","could've","couldn","couldn't","couldnt","course","cr","cry","cs","cu","currently","cv","cx","cy","cz","d","dare","daren't","darent","date","de","dear","definitely","describe","described","despite","detail","did","didn","didn't","didnt","differ","different","differently","directly","dj","dk","dm","do","does","doesn","doesn't","doesnt","doing","don","don't","done","dont","doubtful","down","downed","downing","downs","downwards","due","during","dz","e","each","early","ec","ed","edu","ee","effect","eg","eh","eight","eighty","either","eleven","else","elsewhere","empty","end","ended","ending","ends","enough","entirely","er","es","especially","et","et-al","etc","even","evenly","ever","evermore","every","everybody","everyone","everything","everywhere","ex","exactly","example","except","f","face","faces","fact","facts","fairly","far","farther","felt","few","fewer","ff","fi","fifteen","fifth","fifty","fify","fill","find","finds","fire","first","five","fix","fj","fk","fm","fo","followed","following","follows","for","forever","former","formerly","forth","forty","forward","found","four","fr","free","from","front","full","fully","further","furthered","furthering","furthermore","furthers","fx","g","ga","gave","gb","gd","ge","general","generally","get","gets","getting","gf","gg","gh","gi","give","given","gives","giving","gl","gm","gmt","gn","go","goes","going","gone","good","goods","got","gotten","gov","gp","gq","gr","great","greater","greatest","greetings","group","grouped","grouping","groups","gs","gt","gu","gw","gy","h","had","hadn't","hadnt","half","happens","hardly","has","hasn","hasn't","hasnt","have","haven","haven't","havent","having","he","he'd","he'll","he's","hed","hell","hello","help","hence","her","here","here's","hereafter","hereby","herein","heres","hereupon","hers","herself","herse”","hes","hi","hid","high","higher","highest","him","himself","himse”","his","hither","hk","hm","hn","home","homepage","hopefully","how","how'd","how'll","how's","howbeit","however","hr","ht","htm","html","http","hu","hundred","i","i'd","i'll","i'm","i've","i.e.","id","ie","if","ignored","ii","il","ill","im","immediate","immediately","importance","important","in","inasmuch","inc","inc.","indeed","index","indicate","indicated","indicates","information","inner","inside","insofar","instead","int","interest","interested","interesting","interests","into","invention","inward","io","iq","ir","is","isn","isn't","isnt","it","it'd","it'll","it's","itd","itll","its","itself","itse”","ive","j","je","jm","jo","join","jp","just","k","ke","keep","keeps","kept","keys","kg","kh","ki","kind","km","kn","knew","know","known","knows","kp","kr","kw","ky","kz","l","la","large","largely","last","lately","later","latest","latter","latterly","lb","lc","least","length","less","lest","let","let's","lets","li","like","liked","likely","likewise","line","little","lk","ll","long","longer","longest","look","looking","looks","low","lower","lr","ls","lt","ltd","lu","lv","ly","m","ma","made","mainly","make","makes","making","man","many","may","maybe","mayn't","maynt","mc","md","me","mean","means","meantime","meanwhile","member","members","men","merely","mg","mh","microsoft","might","might've","mightn't","mightnt","mil","mill","million","mine","minus","miss","mk","ml","mm","mn","mo","more","moreover","most","mostly","move","mp","mq","mr","mrs","ms","msie","mt","mu","much","mug","must","must've","mustn't","mustnt","mv","mw","mx","my","myself","myse”","mz","n","na","name","namely","nay","nc","nd","ne","near","nearly","necessarily","necessary","need","needed","needing","needn't","neednt","needs","neither","net","netscape","never","neverf","neverless","nevertheless","new","newer","newest","next","nf","ng","ni","nine","ninety","nl","no","no-one","nobody","non","none","nonetheless","noone","nor","normally","nos","not","noted","nothing","notwithstanding","novel","now","nowhere","np","nr","nu","null","number","numbers","nz","o","obtain","obtained","obviously","of","off","often","oh","ok","okay","old","older","oldest","om","omitted","on","once","one","one's","ones","only","onto","open","opened","opening","opens","opposite","or","ord","order","ordered","ordering","orders","org","other","others","otherwise","ought","oughtn't","oughtnt","our","ours","ourselves","out","outside","over","overall","owing","own","p","pa","page","pages","part","parted","particular","particularly","parting","parts","past","pe","per","perhaps","pf","pg","ph","pk","pl","place","placed","places","please","plus","pm","pmid","pn","point","pointed","pointing","points","poorly","possible","possibly","potentially","pp","pr","predominantly","present","presented","presenting","presents","presumably","previously","primarily","probably","problem","problems","promptly","proud","provided","provides","pt","put","puts","pw","py","q","qa","que","quickly","quite","qv","r","ran","rather","rd","re","readily","really","reasonably","recent","recently","ref","refs","regarding","regardless","regards","related","relatively","research","reserved","respectively","resulted","resulting","results","right","ring","ro","room","rooms","round","ru","run","rw","s","sa","said","same","saw","say","saying","says","sb","sc","sd","se","sec","second","secondly","seconds","section","see","seeing","seem","seemed","seeming","seems","seen","sees","self","selves","sensible","sent","serious","seriously","seven","seventy","several","sg","sh","shall","shan't","shant","she","she'd","she'll","she's","shed","shell","shes","should","should've","shouldn","shouldn't","shouldnt","show","showed","showing","shown","showns","shows","si","side","sides","significant","significantly","similar","similarly","since","sincere","site","six","sixty","sj","sk","sl","slightly","sm","small","smaller","smallest","sn","so","some","somebody","someday","somehow","someone","somethan","something","sometime","sometimes","somewhat","somewhere","soon","sorry","specifically","specified","specify","specifying","sr","st","state","states","still","stop","strongly","su","sub","substantially","successfully","such","sufficiently","suggest","sup","sure","sv","sy","system","sz","t","t's","take","taken","taking","tc","td","tell","ten","tends","test","text","tf","tg","th","than","thank","thanks","thanx","that","that'll","that's","that've","thatll","thats","thatve","the","their","theirs","them","themselves","then","thence","there","there'd","there'll","there're","there's","there've","thereafter","thereby","thered","therefore","therein","therell","thereof","therere","theres","thereto","thereupon","thereve","these","they","they'd","they'll","they're","they've","theyd","theyll","theyre","theyve","thick","thin","thing","things","think","thinks","third","thirty","this","thorough","thoroughly","those","thou","though","thoughh","thought","thoughts","thousand","three","throug","through","throughout","thru","thus","til","till","tip","tis","tj","tk","tm","tn","to","today","together","too","took","top","toward","towards","tp","tr","tried","tries","trillion","truly","try","trying","ts","tt","turn","turned","turning","turns","tv","tw","twas","twelve","twenty","twice","two","tz","u","ua","ug","uk","um","un","under","underneath","undoing","unfortunately","unless","unlike","unlikely","until","unto","up","upon","ups","upwards","us","use","used","useful","usefully","usefulness","uses","using","usually","uucp","uy","uz","v","va","value","various","vc","ve","versus","very","vg","vi","via","viz","vn","vol","vols","vs","vu","w","want","wanted","wanting","wants","was","wasn","wasn't","wasnt","way","ways","we","we'd","we'll","we're","we've","web","webpage","website","wed","welcome","well","wells","went","were","weren","weren't","werent","weve","wf","what","what'd","what'll","what's","what've","whatever","whatll","whats","whatve","when","when'd","when'll","when's","whence","whenever","where","where'd","where'll","where's","whereafter","whereas","whereby","wherein","wheres","whereupon","wherever","whether","which","whichever","while","whilst","whim","whither","who","who'd","who'll","who's","whod","whoever","whole","wholl","whom","whomever","whos","whose","why","why'd","why'll","why's","widely","width","will","willing","wish","with","within","without","won","won't","wonder","wont","words","work","worked","working","works","world","would","would've","wouldn","wouldn't","wouldnt","ws","www","x","y","ye","year","years","yes","yet","you","you'd","you'll","you're","you've","youd","youll","young","younger","youngest","your","youre","yours","yourself","yourselves","youve","yt","yu","z","za","zero","zm","zr" ]
+
+    print( f'# INFO # {timenow:%Y-%m-%d %H:%M:%S} #' , f'{getframeinfo(currentframe()).lineno:4,d}' , f' # abc__tops__split_string_by( {{ "fm_box" : "{fm_box}" , "to_box" : "{to_box}"  , "split_by"  : "{split_by}" , "dedupe" : {dedupe} }} )' )
+
+    str_fm = box[ fm_box ].get( "1.0" , 'end-1c' ).strip()
+
+    tokens = []
+
+    if   split_by == "space"    : tokens = [ x            for x in str_fm.split()                                         if x and str(x).strip() ]
+    elif split_by == "simple"   : tokens = [ x.casefold() for x in re.findall( r'[a-zA-Z0-9@.-]+' , str_fm )              if x and str(x).strip() ] 
+    elif split_by == "alpha"    : tokens = [ x            for x in re.findall( r'[a-z]+'          , str_fm )              if x and str(x).strip() ] 
+    elif split_by == "words"    : tokens = [ x            for x in re.findall( r'\w+'             , str_fm )              if x and str(x).strip() ] 
+    elif split_by == "standard" : tokens = [ x.casefold() for x in re.findall (r'\w+|[^\w\s]'     , str_fm , re.UNICODE ) if x and str(x).strip() ] 
+
+    if dedupe           : tokens = list( set( tokens ) )
+    if min_token_length : tokens = [ token for token in tokens if len( token ) >= min_token_length ]
+    if max_token_length : tokens = [ token for token in tokens if len( token ) <= max_token_length ]
+    if stops_en         : tokens = [ token for token in tokens if token.casefold() not in english_stops ]
+    if sort_it          : tokens = sorted( tokens , key=str.casefold )
+
+    if tokens : 
+        _clear_box( to_box )
+        for x in tokens : box[ to_box ].insert( "end" , f"{x}\n" )
+
+
+def abc__tops__split_by_n_lines( fm_box , to_box ) :  ## 3de32b95b63ad1d50c6fb9abe185102d # 2024-10-14 17:45:03 #
+
+    timenow = datetime.datetime.now()
+
+    print( f'# INFO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # abc__tops__split_by_n_lines( {{ "fm_box" : "{fm_box}" , "to_box" : "{to_box}" }} )' )
+
+    there_is_no_window = True
+
+    def _do_this_function( split_by ) :
+
+        try     : split_by_int = int(split_by.get())
+        except  : split_by_int = None
+
+        print( f'# INFO # {"abc__tops__split_by_n_lines":48} # fm_box : {fm_box} | to_box : {to_box} | split_by_int : {split_by_int}')
+
+        if not isinstance( split_by_int, int ) :
+            messagebox.showinfo( 'Doh!.' , 'Entry Must be an integer.' )
+            return
+
+        lst_fm = [ x for x in box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() if x and x.strip() ]
+
+        _clear_box( to_box )
+
+        for i , v in enumerate( lst_fm , start=1 ) :
+
+            box[ to_box ].insert( "end" , f'{v}\n' )
+
+            if i % split_by_int == 0 : box[ to_box ].insert( "end" , abc[  "options_record_separator" ].get() )
+
+    if there_is_no_window :
+
+        entry_box = {}
+        entry_box[ "Toplevel" ] = Toplevel()
+
+        entry_box[ "Toplevel" ].title( "Enter Arguments" )
+
+        entry_box[ "ArgsFrame1"  ] = Frame( entry_box[ "Toplevel" ] , relief = 'flat' , borderwidth = 0 ) ; entry_box[ "ArgsFrame1"  ].pack( side = "top"  , fill = "x" , expand = "yes" )
+        
+        entry_box[ "q1" ] = Label( entry_box[ "ArgsFrame1" ] , text = "Split By This Many Lines : " )     ; entry_box[ "q1"          ].pack( side = "left" , fill = "x" , expand = "yes" )
+        entry_box[ "a1" ] = Entry( entry_box[ "ArgsFrame1" ]                                        )     ; entry_box[ "a1"          ].pack( side = "left" , fill = "x" , expand = "yes" )
+
+        entry_box[ "ButtonFrame"  ] = Frame(  entry_box[ "Toplevel"    ] , relief = 'flat'   , borderwidth = 0 )                                          ; entry_box[ "ButtonFrame"  ].pack( side = "top"  , fill = "x" , expand = "yes" )
+        entry_box[ "Button_Close" ] = Button( entry_box[ "ButtonFrame" ] , text='Close'      , command = entry_box[ "Toplevel" ].destroy                ) ; entry_box[ "Button_Close" ].pack( side = "left" , fill = "x" , expand = "yes" )
+        entry_box[ "Button_Apply" ] = Button( entry_box[ "ButtonFrame" ] , text='Make it so' , command = lambda: _do_this_function( entry_box[ "a1" ] ) ) ; entry_box[ "Button_Apply" ].pack( side = "left" , fill = "x" , expand = "yes" )
+
+
+def abc__tops__sort_lines( **kwargs ) :  ## d4a39a19110ee0f3c732a85430bf63e7 # 2024-10-14 16:42:22 #
+
+    timenow = datetime.datetime.now()
+
+    fm_box     = kwargs.get( "fm_box"     , "A"     )
+    to_box     = kwargs.get( "to_box"     , fm_box  )
+    sort_what  = kwargs.get( "sort_what"  , "lines" )
+    sort_order = kwargs.get( "sort_order" , "AZ"    )
+    sort_case  = kwargs.get( "sort_case"  , 0       )
+    print_head = kwargs.get( "print_head" , 0       )
+
+    print( f'# INFO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # _sort_lines( {{ "fm_box" : "{fm_box}" , "to_box" : "{to_box}"  , "sort_what"  : {sort_what} , "sort_order" : {sort_order} , "sort_case"  : {sort_case} }} )' )
+
+    lst_fm = [ x for x in box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() if x and str(x).strip() and r'## Succesfully Parsed ##' not in x and r'## Failed To Parse ##' not in x ]
+
+    _clear_box( to_box )
+    
+    sorted_lines = []
+    failed_lines = []
+
+    if   sort_what == "lines"  :
+
+        if   sort_order == "AZ"   and sort_case : sorted_lines = sorted( lst_fm                                   )
+        elif sort_order == "AZ"                 : sorted_lines = sorted( lst_fm , key=str.casefold                )
+        elif sort_order == "ZA"   and sort_case : sorted_lines = sorted( lst_fm                    , reverse=True )
+        elif sort_order == "ZA"                 : sorted_lines = sorted( lst_fm , key=str.casefold , reverse=True )
+
+        elif sort_order == "SLAZ" and sort_case : sorted_lines = sorted( lst_fm , key=lambda x: (  len( x ) , x            )                 )
+        elif sort_order == "SLAZ"               : sorted_lines = sorted( lst_fm , key=lambda x: (  len( x ) , x.casefold() )                 )
+        elif sort_order == "SLZA" and sort_case : sorted_lines = sorted( lst_fm , key=lambda x: ( -len( x ) , x            ) , reverse=True  )
+        elif sort_order == "SLZA"               : sorted_lines = sorted( lst_fm , key=lambda x: ( -len( x ) , x.casefold() ) , reverse=True  )
+
+        elif sort_order == "LSAZ" and sort_case : sorted_lines = sorted( lst_fm , key=lambda x: ( -len( x ) , x            )                 )
+        elif sort_order == "LSAZ"               : sorted_lines = sorted( lst_fm , key=lambda x: ( -len( x ) , x.casefold() )                 )
+        elif sort_order == "LSZA" and sort_case : sorted_lines = sorted( lst_fm , key=lambda x: (  len( x ) , x            ) , reverse=True  )
+        elif sort_order == "LSZA"               : sorted_lines = sorted( lst_fm , key=lambda x: (  len( x ) , x.casefold() ) , reverse=True  )
+
+    elif sort_what == "ipaddr" :
+
+        for x in lst_fm :
+        
+            if '.' not in x : failed_lines.append( x ) ; continue  ## IPs have dots. if not, Fail
+            
+            try :
+                y = tuple( map( int , x.split( '.' ) ) )
+                if len( y ) != 4 : failed_lines.append( x ) ; continue  ## IPs have 4 octects. If not, Fail
+            except : failed_lines.append( x ) ; continue
+
+            if not all( 0 <= num <= 255 for num in y ) : failed_lines.append( x ) ; continue ## IPs have 4 octects between 0 and 255. If not, Fail
+
+            sorted_lines.append( x )
+
+        if   sort_order == "AZ" : sorted_lines = sorted( sorted_lines , key=lambda ip: tuple( map( int , ip.split( '.' ) ) )                )
+        elif sort_order == "ZA" : sorted_lines = sorted( sorted_lines , key=lambda ip: tuple( map( int , ip.split( '.' ) ) ) , reverse=True )
+
+    elif sort_what == "domain" :
+
+        ## Reverse Strings #############################################
+        
+        reverse_lines = []
+
+        for x in lst_fm :
+        
+            if '.' not in x : failed_lines.append( x ) ; continue
+            reverse_lines.append( '.'.join( x.split('.')[::-1] ) )
+
+        ## Sort It #####################################################
+
+        if   sort_order == "AZ" and sort_case is False : reverse_lines = sorted( [ x for x in reverse_lines if x ] , key=str.casefold                )
+        elif sort_order == "ZA" and sort_case is False : reverse_lines = sorted( [ x for x in reverse_lines if x ] , key=str.casefold , reverse=True )
+
+        ## Put it back #################################################
+
+        for x in reverse_lines : sorted_lines.append( '.'.join( x.split('.')[::-1] ) )
+
+    elif sort_what == "email"  :
+        
+        reverse_lines = []
+
+        ## Reverse Strings #############################################
+        ## Rearrange admin@mail.yahoo.com to com.yahoo.mail@admin 
+
+        for x in lst_fm :
+
+            if '@' not in x : failed_lines.append( x ) ; continue
+            if '.' not in x : failed_lines.append( x ) ; continue
+
+            username_domain = x.split('@')
+            if len( username_domain ) != 2 : failed_lines.append( x ) ; continue
+
+            username , domain = username_domain
+            reversed_domain = '.'.join(domain.split('.')[::-1])
+
+            reverse_lines.append( f'{reversed_domain}@{username}' )
+
+        if   sort_order == "AZ" : reverse_lines = sorted( [ x for x in reverse_lines if x ] , key=str.casefold                )
+        elif sort_order == "ZA" : reverse_lines = sorted( [ x for x in reverse_lines if x ] , key=str.casefold , reverse=True )
+
+        ## Put it back #################################################
+
+        for x in [ x for x in reverse_lines if x ] :
+
+            domain , username = x.split('@')
+            domain = '.'.join(domain.split('.')[::-1])
+
+            sorted_lines.append( f'{username}@{domain}' )
+    
+    ## Send back to the Box ############################################
+
+    if failed_lines :
+
+        if print_head : box[ to_box ].insert( "end" , "## Failed To Parse #############################\n\n" )
+        for x in failed_lines : box[ to_box ].insert( "end" , f"{x}\n" )
+        if sorted_lines : print()
+
+    if sorted_lines :
+
+        if print_head : box[ to_box ].insert( "end" , "## Succesfully Parsed ##########################\n\n" )
+        for x in sorted_lines : box[ to_box ].insert( "end" , f"{x}\n" )
+
 
 def abc__tops__examples( help_with ) :  ## f31f951ef4dd2dd7747841beceab68b8 # 2024-04-10 10:19:09 #
 
@@ -1493,204 +2141,11 @@ def abc__tops__help( help_with ) :  ## d71b195f81e23a3961b942b13e84671a # 2024-0
         messagebox.showinfo( 'Text Ops : sort and unique' , message_text )
 
 
-def abc__tops__randomize_list( fm_box , to_box ) :  ## 80293db13c24fb70f816073cb8b6b81a # 2024-04-10 10:20:06 #
-
-    lst_fm = box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines()
-
-    random.shuffle(lst_fm)
-
-    _clear_box( to_box )
-
-    for x in lst_fm :
-
-        box[ to_box ].insert( "end" , f'{x}\n' )
-
-
-def abc__tops__sort_unique( fm_box , to_box ) :
-
-    fm_set = set( box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() )
-
-    _clear_box( to_box )
-
-    for x in sorted( fm_set ) :
-
-        box[ to_box ].insert( "end" , f'{x}\n' )
-
-
-def abc__tops__sort_unique_count( fm_box , to_box ) :
-
-    lst_fm = box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines()
-
-    cnt_fm = Counter( lst_fm )
-
-    _clear_box( to_box )
-
-    for v , c in sorted( cnt_fm.items() ) :
-
-        box[ to_box ].insert( "end" , f'{c:8,d} : {v}\n' )
-
-
-def abc__tops__sort_unique_count_sort( fm_box , to_box ) :
-
-    lst_fm = box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines()
-
-    cnt_fm = Counter( lst_fm )
-
-    _clear_box( to_box )
-
-    for v , c in cnt_fm.most_common() :
-
-        box[ to_box ].insert( "end" , f'{c:8,d} : {v}\n' )
-
-
-def abc__tops__split_by_n_lines( fm_box , to_box ) :
-
-    timenow = datetime.datetime.now()
-
-    print( f'# INFO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # abc__tops__split_by_n_lines( {{ "fm_box" : "{fm_box}" , "to_box" : "{to_box}" }} )' )
-
-    there_is_no_window = True
-
-    def _do_this_function( split_by ) :
-
-        try     : split_by_int = int(split_by.get())
-        except  : split_by_int = None
-
-        print( f'# INFO # {"abc__tops__split_by_n_lines":48} # fm_box : {fm_box} | to_box : {to_box} | split_by_int : {split_by_int}')
-
-        if not isinstance( split_by_int, int ) :
-            messagebox.showinfo( 'Doh!.' , 'Entry Must be an integer.' )
-            return
-
-        lst_fm = [ x for x in box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() if x and x.strip() ]
-
-        _clear_box( to_box )
-
-        for i , v in enumerate( lst_fm , start=1 ) :
-
-            box[ to_box ].insert( "end" , f'{v}\n' )
-
-            if i % split_by_int == 0 : box[ to_box ].insert( "end" , abc[ "options_record_separator" ].get() )
-
-    if there_is_no_window :
-
-        entry_box = {}
-        entry_box[ "Toplevel" ] = Toplevel()
-
-        entry_box[ "Toplevel" ].title( "Enter Arguments" )
-
-        entry_box[ "ArgsFrame1"  ] = Frame( entry_box[ "Toplevel" ] , relief = 'flat' , borderwidth = 0 ) ; entry_box[ "ArgsFrame1"  ].pack( side = "top"  , fill = "x" , expand = "yes" )
-        
-        entry_box[ "q1" ] = Label( entry_box[ "ArgsFrame1" ] , text = "Split By This Many Lines : " )     ; entry_box[ "q1"          ].pack( side = "left" , fill = "x" , expand = "yes" )
-        entry_box[ "a1" ] = Entry( entry_box[ "ArgsFrame1" ]                                        )     ; entry_box[ "a1"          ].pack( side = "left" , fill = "x" , expand = "yes" )
-
-        entry_box[ "ButtonFrame"  ] = Frame(  entry_box[ "Toplevel"    ] , relief = 'flat'   , borderwidth = 0 )                                          ; entry_box[ "ButtonFrame"  ].pack( side = "top"  , fill = "x" , expand = "yes" )
-        entry_box[ "Button_Close" ] = Button( entry_box[ "ButtonFrame" ] , text='Close'      , command = entry_box[ "Toplevel" ].destroy                ) ; entry_box[ "Button_Close" ].pack( side = "left" , fill = "x" , expand = "yes" )
-        entry_box[ "Button_Apply" ] = Button( entry_box[ "ButtonFrame" ] , text='Make it so' , command = lambda: _do_this_function( entry_box[ "a1" ] ) ) ; entry_box[ "Button_Apply" ].pack( side = "left" , fill = "x" , expand = "yes" )
-
-
-def abc__tops__add_replace( fm_box , to_box , find_this , repl_with ) :
-
-    #todo: replace non-alphanums with space, newline, nothing
-
-
-    timenow = datetime.datetime.now()
-    print( f'# INFO # {"abc__tops__add_replace":48} # fm_box : {fm_box} | to_box : {to_box} | find_this : {find_this} | repl_with : {repl_with}')
-
-    if   repl_with == "escape" :
-
-        lst_fm = box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines()
-
-        lst_fm = [ f'{re.escape(x)}' for x in lst_fm if x and x.strip() ]
-
-        _clear_box( to_box )
-
-        for x in lst_fm :
-
-            box[ to_box ].insert( "end" , f'{x}\n' )
-
-    elif repl_with == "quotes" :
-
-        lst_fm = box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines()
-
-        lst_fm = [ f'"{x}"' for x in lst_fm if x and x.strip() ]
-
-        _clear_box( to_box )
-
-        for x in lst_fm :
-
-            box[ to_box ].insert( "end" , f'{x}\n' )
-
-    elif repl_with == "quotes_strings" :
-
-        # todo floats showing up as strings. isnumeric, isdigit.. not working.
-        # figure out something else to avoid quotes around things that do not need quotes
-        print( f'# TODO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # abc__tops__add_replace : floats showing up as strings. isnumeric, isdigit.. not working' )
-
-        lst_fm = [ x for x in box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() if x and x.strip() ]
-
-        _clear_box( to_box )
-
-        for x in lst_fm :
-
-            if   isinstance( x , str )   : box[ to_box ].insert( "end" , f'"{x}"\n' )
-            elif isinstance( x , int )   : box[ to_box ].insert( "end" ,  f'{x}\n'  )
-            else                         : box[ to_box ].insert( "end" , f'"{x}"\n' )
-
-    elif find_this == "\n" :
-
-        lst_fm = [ x for x in box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() if x and x.strip() ]
-
-        _clear_box( to_box )
-
-        box[ to_box ].insert( "end" , f'{repl_with.join(lst_fm)}\n' )
-
-    else :
-
-        lst_fm = box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines()
-
-        lst_fm = [ x for x in lst_fm if x and x.strip() ]
-
-        _clear_box( to_box )
-
-        for x in lst_fm :
-
-            for y in x.split( find_this ) :
-
-                box[ to_box ].insert( "end" , f'{y}\n' )
-
-
-def abc__tops__string_interpolate( vars_box , str_box , to_box ) :
-
-  lst_vars  = [ x.strip() for x in box[ vars_box ].get( "1.0" , 'end-1c' ).splitlines() if x.strip() ]
-  repl_old = box[ str_box ].get( "1.0" , 'end-1c' )
-
-  search_vars = {}
-
-  _clear_box( to_box )
-
-  for var in lst_vars :
-
-    if not var.strip() : continue
-
-    if kv := re.search( r'^(\S+)\s?=\s?(..*)$' , var ) :
-      search_vars |= { kv.groups(1) , kv.groups(2) }
-    else :
-      repl_new = repl_old
-      for k,v in search_vars.items() : repl_new = repl_new.replace( f'#{{{k}}}' , v )
-      repl_new = repl_new.replace( r'#{ReplaceMe}' , var ) # default string to replace
-      box[ to_box ].insert( "end" , f'{repl_new}\n' )
 
 def abc__tops__multiple_grep() : 
     timenow = datetime.datetime.now()
     print( f'# TODO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # abc__tops__multiple_grep : Not Done Yet' )
     messagebox.showinfo( 'abc__tops__multiple_grep' , 'This function is not done yet.' )
-
-    #todo: grep
-    #todo: grep -v
-    #todo: grep for regex
-    #todo: grep -v for regex
-
 
 def abc__tops__bulk_replace() : 
     timenow = datetime.datetime.now()
@@ -1711,8 +2166,6 @@ def abc__tops__group_by_first_chars() :
     timenow = datetime.datetime.now()
     print( f'# TODO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # abc__tops__group_by_first_chars : Not Done Yet' )
     messagebox.showinfo( 'abc__tops__group_by_first_chars' , 'This function is not done yet.' )
-
-    #todo: { group, unique } by first chars, split char
 
 
 
@@ -1751,7 +2204,7 @@ def menubar_fops() :
     pass
 
 
-    #abc[ "menubar_fops" ] = Menu( abc[ "menubar" ] , tearoff = 1 ) ; abc[ "menubar" ].add_cascade( label = "File Ops"  , menu = abc[ "menubar_fops" ] )
+    #abc[ "menubar_fops" ] = Menu( abc[  "menubar" ] , tearoff = 1 ) ; abc[  "menubar" ].add_cascade( label = "File Ops"  , menu = abc[  "menubar_fops" ] )
 
     ####################################################################
 
@@ -1799,143 +2252,190 @@ def menubar_fops() :
 
 # region     ## Code Menu ##############################################
 
-def menubar_code() :  ## c4a3b54939e069459553424bc32bab7a # 2024-04-10 11:03:31 #
+def menubar_code() :  ## 532822d83797a107af768f44a463f454 # 2024-10-14 17:47:13 #
 
-    abc[ "menubar_code"     ] = Menu( abc[ "menubar" ] , tearoff = 1 ) ; abc[ "menubar" ].add_cascade( label = "Code"      , menu = abc[ "menubar_code"     ] )
+    abc[  "menubar_code"     ] = Menu( abc[  "menubar" ] , tearoff = 1 ) ; abc[  "menubar" ].add_cascade( label = "Code"      , menu = abc[  "menubar_code"     ] )
+
+    ####################################################################
+    ##                          Code Options                          ##
+    ####################################################################
+
 
     ####################################################################
     ##                         Code Comments                          ## Something here looks familiar
     ####################################################################
 
-    abc[ "menubar_code__cmnt"       ] = Menu( abc[ "menubar_code" ] , tearoff = 1 )
+    abc[  "menubar_code__cmnt" ] = Menu( abc[  "menubar_code" ] , tearoff = 1 )
 
-    abc[ "menubar_code"  ].add_cascade( font = "TkFixedFont" , label = "Code Comments" , menu = abc[ "menubar_code__cmnt"     ] )
+    abc[  "menubar_code" ].add_cascade( font = "TkFixedFont" , label = "Code Comments" , menu = abc[  "menubar_code__cmnt" ] )
 
-    abc[ "menubar_code"             ].add_command( font = "TkFixedFont" , label = 'Build Python List (C) from lines in (A)'                                            , command = lambda: abc__code__build_structures( **{ "fm_box":"A" , "to_box":"C" , "do_this":"py_list"                       } ) )
-    abc[ "menubar_code"             ].add_command( font = "TkFixedFont" , label = 'Build Python List (C) from lines in (A) with newline'                               , command = lambda: abc__code__build_structures( **{ "fm_box":"A" , "to_box":"C" , "do_this":"py_list" , "delim" : "newline" } ) )
-    abc[ "menubar_code"             ].add_command( font = "TkFixedFont" , label = 'Get Hash and Timestamp of function in (C)'                                          , command = lambda: abc__code__hash_function(    **{ "fm_box":"C" } ) )
+    abc[  "menubar_code" ].add_command( font = "TkFixedFont" , label = 'Build Python List (C) from lines in (A)'                                            , command = lambda: abc__code__build_structures( **{ "fm_box":"A" , "to_box":"C" , "do_this":"py_list"                       } ) )
+    abc[  "menubar_code" ].add_command( font = "TkFixedFont" , label = 'Build Python List (C) from lines in (A) with newline'                               , command = lambda: abc__code__build_structures( **{ "fm_box":"A" , "to_box":"C" , "do_this":"py_list" , "delim" : "newline" } ) )
+    abc[  "menubar_code" ].add_command( font = "TkFixedFont" , label = 'Get Hash and Timestamp of function in (C)'                                          , command = lambda: abc__code__hash_function(    **{ "fm_box":"C" } ) )
 
 
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 Center Space Pad'                        , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 Center Space Pad with VS Code Folding'   , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
-    #                                                                                                                                                                                                                                                                                                                            #
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 Center Space Pad'                        , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 Center Space Pad with VS Code Folding'   , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
-    #                                                                                                                                                                                                                                                                                                                            #
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I08 Center Space Pad'                        , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":64 , "I": 8 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I12 Center Space Pad'                        , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":60 , "I":12 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    #                                                                                                                                                                                                                                                                                                                            #
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 Left Pad'                                , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I08 Left Pad'                                , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":64 , "I": 8 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I12 Left Pad'                                , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":60 , "I":12 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    #                                                                                                                                                                                                                                                                                                                            #
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I00 No Head. Left Pad. VS Code Folding'      , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W":72 , "I": 0 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I04 No Head. Left Pad. VS Code Folding'      , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W":68 , "I": 4 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I00 No Head. Rigth Pad. VS Code Folding'     , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W":72 , "I": 0 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I04 No Head. Rigth Pad. VS Code Folding'     , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W":68 , "I": 4 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"R" } ) )
-    #                                                                                                                                                                                                                                                                                                                            #
-    abc[ "menubar_code__cmnt"       ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 Center Space Pad'                        , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    #                                                                                                                                                                                                                                                                                                                            #
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 Center Space Pad'                        , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 Center Space Pad with VS Code Folding'   , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 Center Space Pad'                        , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 Center Space Pad with VS Code Folding'   , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I08 Center Space Pad'                        , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":64 , "I": 8 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I12 Center Space Pad'                        , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":60 , "I":12 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 Left Pad'                                , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I08 Left Pad'                                , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":64 , "I": 8 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I12 Left Pad'                                , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":60 , "I":12 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I00 No Head. Left Pad. VS Code Folding'      , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W":72 , "I": 0 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I04 No Head. Left Pad. VS Code Folding'      , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W":68 , "I": 4 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I00 No Head. Rigth Pad. VS Code Folding'     , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W":72 , "I": 0 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I04 No Head. Rigth Pad. VS Code Folding'     , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W":68 , "I": 4 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 Center Space Pad'                        , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
 
     ####################################################################
 
-    #abc[ "menubar_code" ].add_separator()
+    #abc[ "menubar_code"  ].add_separator()
 
     ####################################################################
 
-    abc[ "menubar_code__cmnt_more" ] = Menu( abc[ "menubar_code__cmnt"    ] , tearoff = 1 )
+    abc[  "menubar_code__cmnt_more" ] = Menu( abc[  "menubar_code__cmnt"    ] , tearoff = 1 )
 
-    abc[ "menubar_code__cmnt"    ].add_cascade( font = "TkFixedFont" , label = "More Code Comments" , menu = abc[ "menubar_code__cmnt_more" ] )
+    abc[  "menubar_code__cmnt"    ].add_cascade( font = "TkFixedFont" , label = "More Code Comments" , menu = abc[  "menubar_code__cmnt_more" ] )
 
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I00 --VL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W":72 , "I": 0 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I00 --VR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W":72 , "I": 0 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I04 --VL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W":68 , "I": 4 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I04 --VR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W":68 , "I": 4 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 CPVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 CPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 CSVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 CSVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 RPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":48 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":48 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I08 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":64 , "I": 8 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I08 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":64 , "I": 8 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 CPVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 CPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 CSVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 CSVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 RPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 CPVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 CPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 CSVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 CSVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 RPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W":72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 CPVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 CPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) , columnbreak = 1 )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 CSVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 CSVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 RPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":48 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":48 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I12 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":60 , "I":12 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I08 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":64 , "I": 8 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I08 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":64 , "I": 8 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 CPVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 CPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 CSVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 CSVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 RPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 CPVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 CPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 CSVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 CSVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 RPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W48 I00 CP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W48 I00 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W48 I00 LP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":48 , "I": 0 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W48 I00 LS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":48 , "I": 0 , "cmnt_align":"L" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W48 I00 RP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":48 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W48 I00 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":48 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I12 CP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":60 , "I":12 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I12 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":60 , "I":12 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I12 LP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":60 , "I":12 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) , columnbreak = 1 )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I12 RP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":60 , "I":12 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I12 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":60 , "I":12 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I08 CP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":64 , "I": 8 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I08 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":64 , "I": 8 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I08 LP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":64 , "I": 8 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I08 RP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":64 , "I": 8 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I08 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":64 , "I": 8 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 CP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 CPVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 CPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 CSVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 CSVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 LP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 RP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 RPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 RSVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 CP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 CPVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 CPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 CSVL' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 CSVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 LP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":72 , "I": 0 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 RP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 RPVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 RS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
-    abc[ "menubar_code__cmnt_more"  ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 RSVR' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I00 --VL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W": 72 , "I": 0 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I00 --VR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W": 72 , "I": 0 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I04 --VL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W": 68 , "I": 4 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H0 W72 I04 --VR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":0 , "W": 68 , "I": 4 , "cmnt_align":"-" , "cmnt_pad":"-" , "fold_type":"V" , "fold_align":"R" } ) )
+    
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 CPVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 CPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 CSVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 CSVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 RPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 48 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W48 I00 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 48 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I08 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 64 , "I": 8 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I08 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 64 , "I": 8 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 CPVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 CPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 CSVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 CSVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 RPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I04 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 CPVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 CPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 CSVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 CSVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 RPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H1 W72 I00 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":1 , "W": 72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 CPVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 CPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 CSVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 CSVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) , columnbreak = 1 )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 RPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 48 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W48 I00 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 48 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I12 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 60 , "I":12 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I08 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 64 , "I": 8 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I08 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 64 , "I": 8 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 CPVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 CPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 CSVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 CSVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 RPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I04 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 CPVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 CPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 CSVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 CSVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 RPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W72 I00 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W": 72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W48 I00 CP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W48 I00 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 48 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W48 I00 LP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 48 , "I": 0 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W48 I00 LS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 48 , "I": 0 , "cmnt_align":"L" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W48 I00 RP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 48 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W48 I00 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 48 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I12 CP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 60 , "I":12 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I12 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 60 , "I":12 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I12 LP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 60 , "I":12 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I12 RP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 60 , "I":12 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I12 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 60 , "I":12 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I08 CP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 64 , "I": 8 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) , columnbreak = 1 )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I08 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 64 , "I": 8 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I08 LP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 64 , "I": 8 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I08 RP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 64 , "I": 8 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I08 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 64 , "I": 8 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 CP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 CPVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 CPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 CSVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 CSVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 68 , "I": 4 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 LP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 68 , "I": 4 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 RP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 RPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I04 RSVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 68 , "I": 4 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 CP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 CPVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 CPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 CS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 CSVL'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"L" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 CSVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 72 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 LP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 72 , "I": 0 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 RP--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 RPVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"P" , "fold_type":"V" , "fold_align":"R" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 RS--'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W72 I00 RSVR'  , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W": 72 , "I": 0 , "cmnt_align":"R" , "cmnt_pad":"S" , "fold_type":"V" , "fold_align":"R" } ) )
+
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H2 W112 I00 CS--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":2 , "W":112 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"S" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W112 I00 CP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":112 , "I": 0 , "cmnt_align":"C" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+    abc[  "menubar_code__cmnt_more" ].add_command( font = "TkFixedFont" , label = 'String from (A) to Code Comment (C) H3 W112 I00 LP--' , command = lambda: abc__code__fancy_comments( **{ "fm_box":"A" , "to_box":"C" , "head":3 , "W":112 , "I": 0 , "cmnt_align":"L" , "cmnt_pad":"P" , "fold_type":"-" , "fold_align":"-" } ) )
+
+    ####################################################################
+
+    #abc[  "menubar_code" ].add_separator()
+      
+    ####################################################################
+      
+    #abc[  "menubar_code__options" ] = Menu( abc[  "menubar_code" ] , tearoff = 1 )
+      
+    #abc[  "menubar_code" ].add_cascade( font = "TkFixedFont" , label = "Options and Defaults" , menu = abc[  "menubar_code__options" ] )
+      
+    ### Code Options : VS Code Default Code Folding String ##############
+      
+    #abc[  "code_vs_code_fold" ] = StringVar()
+    #abc[  "code_vs_code_fold" ].set( gopts[ "code_vs_code_fold" ] )
+      
+    #abc[  "menubar_code__default_code_fold" ] = Menu( abc[  "menubar_code__options" ] , tearoff = 1 )
+      
+    #abc[  "menubar_code__options" ].add_cascade( font = "TkFixedFont" , label = "VS Code. Default Fold Langauge" , menu = abc[  "menubar_code__default_code_fold" ] )
+      
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''Perl5                  #region           #endregion'''           , value = 10 , variable=abc[ "code_vs_code_fold" ] ) #  Perl5:                 |#region           |#endregion             |=pod          |=cut           
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''PowerShell             #region           #endregion'''           , value = 10 , variable=abc[ "code_vs_code_fold" ] ) #  PowerShell:            |#region           |#endregion             |              |               
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''C#                     #region           #endregion'''           , value = 10 , variable=abc[ "code_vs_code_fold" ] ) #  C#:                    |#region           |#endregion             |              |               
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''Python                 #region           #endregion'''           , value = 10 , variable=abc[ "code_vs_code_fold" ] ) #  Python:                |#region           |#endregion             |              |               
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''PHP                    #region           #endregion'''           , value = 10 , variable=abc[ "code_vs_code_fold" ] ) #  PHP:                   |#region           |#endregion             |              |               
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''VB                     #Region           #End Region'''          , value = 11 , variable=abc[ "code_vs_code_fold" ] ) #  VB:                    |#Region           |#End Region            |              |               
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''shellscript            # region          # endregion'''          , value = 12 , variable=abc[ "code_vs_code_fold" ] ) #  shellscript:           |# region          |# endregion            |              |               
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''TypeScript/JavaScript  //#region         //#endregion'''         , value = 20 , variable=abc[ "code_vs_code_fold" ] ) #  TypeScript/JavaScript: |//#region         |//#endregion           |// #region    |// #endregion  
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''F#                     //#region         //#endregion'''         , value = 20 , variable=abc[ "code_vs_code_fold" ] ) #  F#:                    |//#region         |//#endregion           |              |               
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''Java                   //#region         //#endregion'''         , value = 20 , variable=abc[ "code_vs_code_fold" ] ) #  Java:                  |//#region         |//#endregion           |              |               
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''Golang                 //region          //endregion'''          , value = 21 , variable=abc[ "code_vs_code_fold" ] ) #  Golang:                |//region          |//endregion            |//#region     |//#endregion   
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''SCSS/Less              // #region        // #endregion'''        , value = 22 , variable=abc[ "code_vs_code_fold" ] ) #  SCSS/Less:             |// #region        |// #endregion          |              |               
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''Go                     // #region        // #endregion'''        , value = 22 , variable=abc[ "code_vs_code_fold" ] ) #  Go:                    |// #region        |// #endregion          |// region     |// endregion   
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''C/C++                  #pragma region    #pragma endregion'''    , value = 30 , variable=abc[ "code_vs_code_fold" ] ) #  C/C++:                 |#pragma region    |#pragma endregion      |              |               
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''Bat                    ::#region         ::#endregion'''         , value = 31 , variable=abc[ "code_vs_code_fold" ] ) #  Bat:                   |::#region         |::#endregion           |REM #region   |REM #endregion 
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''sql                    --#region         --#endregion'''         , value = 32 , variable=abc[ "code_vs_code_fold" ] ) #  sql:                   |--#region         |--#endregion           |              |               
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''Markdown               <!-- #region -->  <!-- #endregion -->'''  , value = 90 , variable=abc[ "code_vs_code_fold" ] ) #  Markdown:              |<!-- #region -->  |<!-- #endregion -->    |              |               
+    #abc[  "menubar_code__default_code_fold"  ].add_radiobutton( font = "TkFixedFont" , label = r'''CSS/SCSS/Less          /* #region */     /* #endregion */'''     , value = 91 , variable=abc[ "code_vs_code_fold" ] ) #  CSS/SCSS/Less:         |/* #region */     |/* #endregion */       |/*#region*/   |/*#endregion*/ 
 
 # endregion  ## Code Menu ############################################
 
@@ -1960,9 +2460,6 @@ def abc__code__fancy_comments( **kwargs ) :  ## 6a3b1c44f856adfea9381e438f3ea8a3
     fold_align  = { "L" : "<" , "C" : "^" , "R" : ">" }.get( kwargs.get( "fold_align" ) , "L" )
     cmnt_pad    = { "S" : " " , "P" : "#" }.get( kwargs.get( "cmnt_pad" ) , "S" )
 
-    #print( '# = '*20 + '#' )
-    #for k,v in kwargs.items() : print( f'# {k:>37} : {v:<37} #' )
-    #print( '# = '*20 + '#' )
 
     cmnts = [ x.strip() for x in box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() if x and x.strip() ]
 
@@ -2152,46 +2649,22 @@ def abc__code__hash_function( **kwargs ) :  ## 20b7687a13ee105e1a6815026cd1adb2 
 
 # region     ## Misc Menu ##########################################
 
-def menubar_misc() :  ## 666af7f38ed932f599197ec405c546d5 # 2024-04-10 11:07:04 #
+def menubar_misc() :  ## 0575da1a13091478a828df3121d6e815 # 2024-10-14 17:51:00 #
 
-    abc[ "menubar_misc"     ] = Menu( abc[ "menubar" ] , tearoff = 1 ) ; abc[ "menubar" ].add_cascade( label = "Misc"      , menu = abc[ "menubar_misc"     ] )
+    abc[  "menubar_misc"     ] = Menu( abc[  "menubar" ] , tearoff = 1 ) ; abc[  "menubar" ].add_cascade( label = "Misc"      , menu = abc[  "menubar_misc"     ] )
 
     ####################################################################
     ##                Misc Menu : Generate Random Data                ##
     ####################################################################
 
-    abc[ "menubar_misc_random"  ] = Menu( abc[ "menubar_misc" ] , tearoff = 1 )
+    abc[  "menubar_misc_random"  ] = Menu( abc[  "menubar_misc" ] , tearoff = 1 )
 
-    abc[ "menubar_misc" ].add_cascade( font = "TkFixedFont" , label = "Generate Random Data" , menu = abc[ "menubar_misc_random"  ] )
+    abc[  "menubar_misc" ].add_cascade( font = "TkFixedFont" , label = "Generate Random Data" , menu = abc[  "menubar_misc_random"  ] )
 
-    abc[ "menubar_misc_random" ].add_command( font = "TkFixedFont" , label = 'X Y Decimal Coordinates (C)'               , command = lambda: abc__misc__gen_random_data( "C" , "xy coords" ) )
-    abc[ "menubar_misc_random" ].add_command( font = "TkFixedFont" , label = 'Y X Decimal Coordinates (C)'               , command = lambda: abc__misc__gen_random_data( "C" , "yx coords" ) )
-    abc[ "menubar_misc_random" ].add_command( font = "TkFixedFont" , label = 'Epoch dates (C)'                           , command = lambda: abc__misc__gen_random_data( "C" , "epoch"     ) )
-    abc[ "menubar_misc_random" ].add_command( font = "TkFixedFont" , label = 'Generate Random Chars/Password'            , command = lambda: abc__misc__generate_password( **{ "fm_box":"A" } ) )
-
-    ####################################################################
-    ##                Misc Menu : Cryptographic Hashes                ##
-    ####################################################################
-
-    #abc[ "menubar_misc_crypto"  ] = Menu( abc[ "menubar_misc" ] , tearoff = 1 )
-
-    #abc[ "menubar_misc" ].add_cascade( font = "TkFixedFont" , label = "Cryptographic Hashes" , menu = abc[ "menubar_misc_crypto"  ] )
-
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'MD5: All of (C) to a Single hash (A)'      , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'MD5: Lines (C) to hashes (A)'              , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'MD5: Lines (C) to hashes and lines (A)'    , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'SHA1: All of (C) to a Single hash (A)'     , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'SHA1: Lines (C) to hashes (A)'             , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'SHA1: Lines (C) to hashes and lines (A)'   , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'SHA256: All of (C) to a Single hash (A)'   , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'SHA256: Lines (C) to hashes (A)'           , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'SHA256: Lines (C) to hashes and lines (A)' , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'SHA384: All of (C) to a Single hash (A)'   , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'SHA384: Lines (C) to hashes (A)'           , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'SHA384: Lines (C) to hashes and lines (A)' , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'SHA512: All of (C) to a Single hash (A)'   , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'SHA512: Lines (C) to hashes (A)'           , command = lambda: _not_done_yet() )
-    #abc[ "menubar_misc_crypto" ].add_command( font = "TkFixedFont" , label = 'SHA512: Lines (C) to hashes and lines (A)' , command = lambda: _not_done_yet() )
+    abc[  "menubar_misc_random" ].add_command( font = "TkFixedFont" , label = 'X Y Decimal Coordinates (C)'               , command = lambda: abc__misc__gen_random_data( "C" , "xy coords" ) )
+    abc[  "menubar_misc_random" ].add_command( font = "TkFixedFont" , label = 'Y X Decimal Coordinates (C)'               , command = lambda: abc__misc__gen_random_data( "C" , "yx coords" ) )
+    abc[  "menubar_misc_random" ].add_command( font = "TkFixedFont" , label = 'Epoch dates (C)'                           , command = lambda: abc__misc__gen_random_data( "C" , "epoch"     ) )
+    abc[  "menubar_misc_random" ].add_command( font = "TkFixedFont" , label = 'Generate Random Chars/Password'            , command = lambda: abc__misc__generate_password( **{ "fm_box":"A" } ) )
 
 # endregion  ## Misc Menu ##########################################
 
@@ -2239,7 +2712,7 @@ def abc__misc__gen_random_data( to_box , do_this ) :  ## 28276328f4ab015a5192ae3
             box[ to_box ].insert( "end" , f'{y}\n' )
 
 
-def abc__misc__generate_password( **kwargs ) :  ## d8dd54e2076d261ab035fca9e5009c22 # 2024-04-10 11:09:28 #
+def abc__misc__generate_password( **kwargs ) :  ## 46feb3eea1aea125bcffafc724e0c0c5 # 2024-10-14 17:56:50 #
 
     timenow = datetime.datetime.now()
 
@@ -2289,9 +2762,9 @@ def abc__misc__generate_password( **kwargs ) :  ## d8dd54e2076d261ab035fca9e5009
 
     cmnt = "Easy4" ; box[ to_box ].insert( "end" , f'{"":#^48}\n## {cmnt:^42} ##\n{"":#^48}\n\n' )
     words = [ f'''{w.title()}''' for w in random.sample(list(austin_words),len(austin_words)) if len(w)==4 ]
-    box[ to_box ].insert( "end" , "\n".join("  ".join("".join(["".join(words.pop(0)for _ in range(3)),random.choice([r'!1',r'@2',r'#3',r'$4',r'%5',r'^6',r'&7',r'*8'])])for _ in range(4))for _ in range(8))+'\n\n')
+    box[ to_box ].insert( "end" , "\n".join("  ".join("".join([ "".join(words.pop(0)for _ in range(3)),random.choice([r'!1',r'@2',r'#3',r'$4',r'%5',r'^6',r'&7',r'*8'])])for _ in range(4))for _ in range(8))+'\n\n')
     
-    x="\n".join([" ".join([random.choice( words )for _ in range(10)])for _ in range(8)])
+    x="\n".join([ " ".join([random.choice( words )for _ in range(10)])for _ in range(8)])
     box[ to_box ].insert( "end" , f'{x}\n\n' )
 
     ################################################
@@ -2300,9 +2773,9 @@ def abc__misc__generate_password( **kwargs ) :  ## d8dd54e2076d261ab035fca9e5009
 
     cmnt = "Easy5" ; box[ to_box ].insert( "end" , f'{"":#^48}\n## {cmnt:^42} ##\n{"":#^48}\n\n' )
     words = [ f'''{w.title()}''' for w in random.sample(list(austin_words),len(austin_words)) if len(w)==5 ]
-    box[ to_box ].insert( "end" , "\n".join("  ".join("".join(["".join(words.pop(0)for _ in range(3)),random.choice([r'!1',r'@2',r'#3',r'$4',r'%5',r'^6',r'&7',r'*8'])])for _ in range(4))for _ in range(8))+'\n\n')
+    box[ to_box ].insert( "end" , "\n".join("  ".join("".join([ "".join(words.pop(0)for _ in range(3)),random.choice([r'!1',r'@2',r'#3',r'$4',r'%5',r'^6',r'&7',r'*8'])])for _ in range(4))for _ in range(8))+'\n\n')
 
-    x="\n".join([" ".join([random.choice( words )for _ in range(10)])for _ in range(8)])
+    x="\n".join([ " ".join([random.choice( words )for _ in range(10)])for _ in range(8)])
     box[ to_box ].insert( "end" , f'{x}\n\n' )
 
     ################################################
@@ -2310,7 +2783,7 @@ def abc__misc__generate_password( **kwargs ) :  ## d8dd54e2076d261ab035fca9e5009
     ################################################
 
     cmnt = "Non-Ambiguous Characters" ; box[ to_box ].insert( "end" , f'{"":#^48}\n## {cmnt:^42} ##\n{"":#^48}\n\n' )
-    x="\n".join(["  ".join([str(" ".join(["".join([random.choice("2346789BCDFGHJKMPQRTVWXY")for _ in range(4)])for _ in range(8)])),str("".join([random.choice("2346789BCDFGHJKMPQRTVWXY")for _ in range(32)]))])for _ in range(8)])
+    x="\n".join([ "  ".join([str(" ".join([ "".join([random.choice("2346789BCDFGHJKMPQRTVWXY")for _ in range(4)])for _ in range(8)])),str("".join([random.choice("2346789BCDFGHJKMPQRTVWXY")for _ in range(32)]))])for _ in range(8)])
     box[ to_box ].insert( "end" , f'{x}\n\n' )
 
     ################################################
@@ -2318,7 +2791,7 @@ def abc__misc__generate_password( **kwargs ) :  ## d8dd54e2076d261ab035fca9e5009
     ################################################
     
     cmnt = "Lower Case" ; box[ to_box ].insert( "end" , f'{"":#^48}\n## {cmnt:^42} ##\n{"":#^48}\n\n' )
-    x="\n".join(["".join([random.choice("qpwoeirutyalskdjfhgzmxncbv")for _ in range(64)])for _ in range(8)])
+    x="\n".join([ "".join([random.choice("qpwoeirutyalskdjfhgzmxncbv")for _ in range(64)])for _ in range(8)])
     box[ to_box ].insert( "end" , f'{x}\n\n' )
 
     ################################################
@@ -2326,7 +2799,7 @@ def abc__misc__generate_password( **kwargs ) :  ## d8dd54e2076d261ab035fca9e5009
     ################################################
 
     cmnt = "Lower Case and Numbers" ; box[ to_box ].insert( "end" , f'{"":#^48}\n## {cmnt:^42} ##\n{"":#^48}\n\n' )
-    x="\n".join(["".join([random.choice("qpwoeirutyalskdjfhgzmxncbv0192837465")for _ in range(64)])for _ in range(8)])
+    x="\n".join([ "".join([random.choice("qpwoeirutyalskdjfhgzmxncbv0192837465")for _ in range(64)])for _ in range(8)])
     box[ to_box ].insert( "end" , f'{x}\n\n' )
 
     ################################################
@@ -2334,7 +2807,7 @@ def abc__misc__generate_password( **kwargs ) :  ## d8dd54e2076d261ab035fca9e5009
     ################################################
     
     cmnt = "Letters and Numbers" ; box[ to_box ].insert( "end" , f'{"":#^48}\n## {cmnt:^42} ##\n{"":#^48}\n\n' )
-    x="\n".join(["".join([random.choice("qpwoeirutyalskdjfhgzmxncbvZMXNCBVALSKDJFHGPQOWIEURYT0192837465")for _ in range(64)])for _ in range(8)])
+    x="\n".join([ "".join([random.choice("qpwoeirutyalskdjfhgzmxncbvZMXNCBVALSKDJFHGPQOWIEURYT0192837465")for _ in range(64)])for _ in range(8)])
     box[ to_box ].insert( "end" , f'{x}\n\n' )
 
     ################################################
@@ -2342,7 +2815,7 @@ def abc__misc__generate_password( **kwargs ) :  ## d8dd54e2076d261ab035fca9e5009
     ################################################
 
     cmnt = "Letters, Numbers, and Specials" ; box[ to_box ].insert( "end" , f'{"":#^48}\n## {cmnt:^42} ##\n{"":#^48}\n\n' )
-    x="\n".join(["".join([random.choice(r'''qpwoeirutyalskdjfhgzmxncbvZMXNCBVALSKDJFHGPQOWIEURYT0192837465qpwoeirutyalskdjfhgzmxncbvZMXNCBVALSKDJFHGPQOWIEURYT0192837465!@#$%^&*''')for _ in range(64)])for _ in range(8)])
+    x="\n".join([ "".join([random.choice(r'''qpwoeirutyalskdjfhgzmxncbvZMXNCBVALSKDJFHGPQOWIEURYT0192837465qpwoeirutyalskdjfhgzmxncbvZMXNCBVALSKDJFHGPQOWIEURYT0192837465!@#$%^&*''')for _ in range(64)])for _ in range(8)])
     box[ to_box ].insert( "end" , f'{x}\n\n' )
 
     #todo: cmnt = "DH passbook" ; box[ to_box ].insert( "end" , f'{"":#^48}\n## {cmnt:^42} ##\n{"":#^48}\n\n' )
