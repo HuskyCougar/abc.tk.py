@@ -9,14 +9,13 @@
 # git clone https://github.com/HuskyCougar/abc.tk.py.git
 # https://github.com/HuskyCougar/abc.tk.py/blob/master/abc.tk.py
 
-
-
 ########################################################################
 ##                              Updates                               ##
 ########################################################################
 
 #region    ## Updates ##################################################
 
+# 2024-11-25 00:11:08 # abc__tops__grep. Added this to Python version. 
 # 2024-10-14 11:35:14 # abc__tops__add_replace. Replacing with \n resulted in \n in log. Log now shows "\n"
 # 2024-10-14 01:04:34 # abc__tops__split_string_by. Added text tokenizer. This should help with finding good strings to match on when looking for artifacts in text files.
 # 2024-10-13 19:13:49 #_sort_lines  Replaced with a new one that adds case-insensitive sorting. Also added domain name, IP address, and email address sorting. 
@@ -184,6 +183,27 @@ def build_main_window() :  ## f56fc16f56f5fa8e91fd2cd888c45189 # 2024-10-14 17:2
     box[ "B" ].pack( fill = "both" , expand = True )
     box[ "C" ].pack( fill = "both" , expand = True )
 
+    ## Frame with File A and File B ########################################
+
+    #abc[ "frame_F" ] = Frame( abc[  "main_window" ] , relief = 'groove' , borderwidth = 1 ) ; abc[  "frame_F" ].pack( side = "bottom" , fill = "x" , expand = False )
+    #
+    #abc[ "LabFrame_FA" ] = LabelFrame( abc[  "frame_F" ] , text = "File A" )
+    #abc[ "LabFrame_FB" ] = LabelFrame( abc[  "frame_F" ] , text = "File B" )
+    #
+    #abc[ "Button_FA" ] = Button(       abc[  "LabFrame_FA" ] , height = 2 , text = 'File Select' , command = lambda: _file_box_set( "Button_FA" , "File_A" ) )
+    #box[ "File_A"    ] = ScrolledText( abc[  "LabFrame_FA" ] , height = 2 )
+    #
+    #abc[ "Button_FB" ] = Button(       abc[  "LabFrame_FB" ] , height = 2 , text = 'File Select' , command = lambda: _file_box_set( "Button_FB" , "File_B" ) )
+    #box[ "File_B"    ] = ScrolledText( abc[  "LabFrame_FB" ] , height = 2 )
+    #
+    #abc[ "LabFrame_FA" ].pack( side = "left" , fill = "x" , expand = False )
+    #abc[ "LabFrame_FB" ].pack( side = "left" , fill = "x" , expand = False )
+    #
+    #abc[ "Button_FA" ].pack( side = "left" )
+    #abc[ "Button_FB" ].pack( side = "left" )
+    #
+    #box[ "File_A" ].pack( side = "left" , fill = "x" , expand = False )
+    #box[ "File_B" ].pack( side = "left" , fill = "x" , expand = False )
 
 # endregion  ## Build GUI Window ###################################
 
@@ -1395,8 +1415,8 @@ def menubar_tops() :  ## 7c4527a9e19c3febdeb5d83e775e8fc2 # 2024-10-14 17:37:25 
     abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'sort (A) and unique (C)'                           , command = lambda: abc__tops__sort_unique(            "A" , "C" ) )
     abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'sort (A), unique and count (C)'                    , command = lambda: abc__tops__sort_unique_count(      "A" , "C" ) )
     abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'sort (A), unique, count and sort again (C)'        , command = lambda: abc__tops__sort_unique_count_sort( "A" , "C" ) )
-    #abc[ "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Grep from (B) using args in (A) to (C)'            , command = lambda: _not_done_yet() )
-    #abc[ "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Grep -i from (B) using args in (A) to (C)'         , command = lambda: _not_done_yet() )
+    abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Grep from (B) using args in (A) to (C)'            , command = lambda: abc__tops__grep( **{ "grouped" : 0 , "flag_v" : 0 , "flag_i" : 0 } ) )
+    abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Grep -i from (B) using args in (A) to (C)'         , command = lambda: abc__tops__grep( **{ "grouped" : 0 , "flag_v" : 0 , "flag_i" : 1 } ) )
     abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Split lines from (A) into n line groups (C)'       , command = lambda: abc__tops__split_by_n_lines( "A" , "C" ) )
     abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Shuffle lines (A) to (C)'                          , command = lambda: abc__tops__randomize_list(   "A" , "C" ) )
     abc[  "menubar_tops" ].add_command( font = "TkFixedFont" , label = 'Split (A) to Tokens (C) by Space'                  , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "space"    , "dedupe" : 1 , "min_token_length" : 0 , "max_token_length" :  0 , "en_stops" : 0 , "sort_it" : 1 } ) )
@@ -1433,6 +1453,8 @@ def menubar_tops() :  ## 7c4527a9e19c3febdeb5d83e775e8fc2 # 2024-10-14 17:37:25 
     ##                  Text Ops Menu : Add/Replace                   ##
     ####################################################################
 
+    #region    ## Text Ops Menu : Add/Replace ##########################
+
     abc[  "menubar_tops__add_replace"  ] = Menu( abc[  "menubar_tops" ] , tearoff = 1 )
 
     abc[  "menubar_tops" ].add_cascade( font = "TkFixedFont" , label = "Add/Replace" , menu = abc[  "menubar_tops__add_replace" ] )
@@ -1456,6 +1478,8 @@ def menubar_tops() :  ## 7c4527a9e19c3febdeb5d83e775e8fc2 # 2024-10-14 17:37:25 
     abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with OR (C)'                    , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "newline"   , "repl_with" : "OR"          } ) ) #  "\n" , " OR "    ) )
     abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with double space (C)'          , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "newline"   , "repl_with" : "lflf"        } ) ) #  "\n" , "\n\n"    ) )
     abc[  "menubar_tops__add_replace" ].add_command( font = "TkFixedFont" , label = 'Replace Newline (A) with a CRLF (C)'                , command = lambda: abc__tops__add_replace( **{ "fm_box" : "A" , "to_box" : "C" , "find_this" : "newline"   , "repl_with" : "crlf"        } ) ) #  "\n" , ","       ) )
+
+    #endregion ## Text Ops Menu : Add/Replace ##########################
 
 
     ####################################################################
@@ -1654,6 +1678,25 @@ def menubar_tops() :  ## 7c4527a9e19c3febdeb5d83e775e8fc2 # 2024-10-14 17:37:25 
     abc[  "menubar_tops_split_more" ].add_command( font = "TkFixedFont" , label = 'Standard Tokenizer. Sorted. MinLen=4. MaxLen=48. English Stops. Dedupe.'    , command = lambda: abc__tops__split_string_by( **{ "fm_box" : "A" , "to_box" : "C" , "split_by" : "standard" , "dedupe" : 1 , "min_token_length" : 4 , "max_token_length" : 48 , "en_stops" : 1 , "sort_it" : 1 } ) )
 
     #endregion ## Text Ops Menu : More Text Splitting ##################
+
+
+    ####################################################################
+    ##              Text Ops Menu : More Text Functions               ##
+    ####################################################################
+
+    #region    ## Text Ops Menu : More Text Functions ##################
+
+    abc[  "menubar_tops_more"  ] = Menu( abc[  "menubar_tops" ] , tearoff = 1 )
+    abc[  "menubar_tops" ].add_cascade( font = "TkFixedFont" , label = "More Text Functions" , menu = abc[  "menubar_tops_more" ] )
+
+    abc[  "menubar_tops_more" ].add_command( font = "TkFixedFont" , label = 'grep     [box_A] box_B > box_C'            , command = lambda: abc__tops__grep( **{ "grouped" : 0 , "flag_v" : 0 , "flag_i" : 0 } ) )
+    abc[  "menubar_tops_more" ].add_command( font = "TkFixedFont" , label = 'grep -i  [box_A] box_B > box_C'            , command = lambda: abc__tops__grep( **{ "grouped" : 0 , "flag_v" : 0 , "flag_i" : 1 } ) )
+    abc[  "menubar_tops_more" ].add_command( font = "TkFixedFont" , label = 'grep -v  [box_A] box_B > box_C'            , command = lambda: abc__tops__grep( **{ "grouped" : 0 , "flag_v" : 1 , "flag_i" : 0 } ) )
+    abc[  "menubar_tops_more" ].add_command( font = "TkFixedFont" , label = 'grep -iv [box_A] box_B > box_C'            , command = lambda: abc__tops__grep( **{ "grouped" : 0 , "flag_v" : 1 , "flag_i" : 1 } ) )
+    abc[  "menubar_tops_more" ].add_command( font = "TkFixedFont" , label = 'grep     [box_A] box_B > box_C (Group)'    , command = lambda: abc__tops__grep( **{ "grouped" : 1 , "flag_v" : 0 , "flag_i" : 0 } ) )
+    abc[  "menubar_tops_more" ].add_command( font = "TkFixedFont" , label = 'grep -i  [box_A] box_B > box_C (Group)'    , command = lambda: abc__tops__grep( **{ "grouped" : 1 , "flag_v" : 0 , "flag_i" : 1 } ) )
+
+    #endregion ## Text Ops Menu : More Text Functions ##################
 
 
     ####################################################################
@@ -2141,6 +2184,96 @@ def abc__tops__help( help_with ) :  ## d71b195f81e23a3961b942b13e84671a # 2024-0
         messagebox.showinfo( 'Text Ops : sort and unique' , message_text )
 
 
+def abc__tops__grep( **kwargs ) :  ## ec826d0dd2cee281db9dcdbfb76a1458 # 2024-11-25 00:11:08 #
+
+    timenow = datetime.datetime.now()
+
+    args_box = kwargs.get( "args_box"  , "A" )
+    fm_box   = kwargs.get( "fm_box"    , "B" )
+    to_box   = kwargs.get( "to_box"    , "C" )
+    flag_i   = kwargs.get( "flag_i"    ,  0  ) # Match or ignore case.
+    flag_v   = kwargs.get( "flag_v"    ,  0  ) # Print misses
+    grouped  = kwargs.get( "grouped"   ,  0  ) # group matches with a extra space between 
+
+    print( f'# INFO # {timenow:%Y-%m-%d %H:%M:%S} # {getframeinfo(currentframe()).lineno:4,d} # abc__tops__grep( {{ "args_box" : "{args_box}" , "fm_box" : "{fm_box}" , "to_box" : "{to_box}" , "flag_i" : "{flag_i}" , "flag_v" : "{flag_v}" , "grouped" : "{grouped}" }} )' )
+
+    lst_A = [ x.strip() for x in box[ args_box ].get( "1.0" , 'end-1c' ).splitlines() ]
+    lst_B = [ x.strip() for x in box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() ]
+
+    _clear_box( to_box )
+
+    ## Grouped
+    if grouped == 1 : 
+
+        for this_str in lst_A :
+
+            box[ to_box ].insert( "end" , f"## ABC find_{this_str=}\n" )
+
+            if   flag_i == 0 and flag_v == 0 :
+
+                for this_line in [ this_line for this_line in lst_B if this_str in this_line ] :
+
+                    #print( f"grep : {this_line=}" )
+                    box[ to_box ].insert( "end" , f'{this_line}\n' )
+            
+            elif flag_i == 1 and flag_v == 0 :
+
+                for this_line in [ this_line for this_line in lst_B if this_str.casefold() in this_line.casefold() ] :
+
+                    #print( f"grep -i : {this_line=}" )
+                    box[ to_box ].insert( "end" , f'{this_line}\n' )
+            
+            elif flag_i == 1 and flag_v == 1 :
+
+                for this_line in [ this_line for this_line in lst_B if this_str.casefold() not in this_line.casefold() ] :
+
+                    #print( f"grep -iv : {this_line=}" )
+                    box[ to_box ].insert( "end" , f'{this_line}\n' )
+            
+            elif flag_i == 0 and flag_v == 1 :
+
+                for this_line in [ this_line for this_line in lst_B if this_str not in this_line ] :
+
+                    #print( f"grep -v : {this_line=}" )
+                    box[ to_box ].insert( "end" , f'{this_line}\n' )
+            
+            box[ to_box ].insert( "end" , '\n' )
+
+    ## Not Grouped
+    elif grouped == 0 :
+
+        for this_line in lst_B :
+
+            if   flag_i == 0 and flag_v == 0 :
+
+                if any( this_str in this_line for this_str in lst_A ) :
+
+                    #print( f"grep : {this_line=}" )
+                    box[ to_box ].insert( "end" , f'{this_line}\n' )
+
+            elif flag_i == 1 and flag_v == 0 :
+
+                if any( this_str.casefold() in this_line.casefold() for this_str in lst_A ) :
+
+                    #print( f"grep -i : {this_line=}" )
+                    box[ to_box ].insert( "end" , f'{this_line}\n' )
+
+            elif flag_i == 1 and flag_v == 1 :
+
+                if any( this_str.casefold() in this_line.casefold() for this_str in lst_A ) :
+                    continue
+                else :
+                    #print( f"grep -iv : {this_line=}" )
+                    box[ to_box ].insert( "end" , f'{this_line}\n' )
+            
+            elif flag_i == 0 and flag_v == 1 :
+
+                if any( this_str in this_line for this_str in lst_A ) :
+                    continue
+                else :
+                    #print( f"grep -v : {this_line=}" )
+                    box[ to_box ].insert( "end" , f'{this_line}\n' )
+
 
 def abc__tops__multiple_grep() : 
     timenow = datetime.datetime.now()
@@ -2460,6 +2593,9 @@ def abc__code__fancy_comments( **kwargs ) :  ## 6a3b1c44f856adfea9381e438f3ea8a3
     fold_align  = { "L" : "<" , "C" : "^" , "R" : ">" }.get( kwargs.get( "fold_align" ) , "L" )
     cmnt_pad    = { "S" : " " , "P" : "#" }.get( kwargs.get( "cmnt_pad" ) , "S" )
 
+    #print( '# = '*20 + '#' )
+    #for k,v in kwargs.items() : print( f'# {k:>37} : {v:<37} #' )
+    #print( '# = '*20 + '#' )
 
     cmnts = [ x.strip() for x in box[ fm_box ].get( "1.0" , 'end-1c' ).splitlines() if x and x.strip() ]
 
